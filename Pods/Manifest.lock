@@ -1,0 +1,13 @@
+PODS:
+  - Appirater (2.0.4)
+  - EAIntroView (2.6.4)
+
+DEPENDENCIES:
+  - Appirater (~> 2.0.2)
+  - EAIntroView (~> 2.6.3)
+
+SPEC CHECKSUMS:
+  Appirater: cbdb7f305562cfde585300bfff86da01ae559deb
+  EAIntroView: 8f66dc6b79f2d52db26af8fc5476a05ffc549d4c
+
+COCOAPODS: 0.33.1
