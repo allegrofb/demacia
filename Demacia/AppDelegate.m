@@ -8,19 +8,20 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
 #import "ApplyViewController.h"
+#import "DMCFirstViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loginStateChange:)
-                                                 name:KNOTIFICATION_LOGINCHANGE
-                                               object:nil];
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(loginStateChange:)
+//                                                 name:KNOTIFICATION_LOGINCHANGE
+//                                               object:nil];
     
     if ([UIDevice currentDevice].systemVersion.floatValue >= 7.0) {
         [[UINavigationBar appearance] setBarTintColor:RGBACOLOR(78, 188, 211, 1)];
@@ -66,8 +67,8 @@
     //demo coredata, .pch中有相关头文件引用
     [MagicalRecord setupCoreDataStackWithStoreNamed:[NSString stringWithFormat:@"%@.sqlite", @"UIDemo"]];
     
-    [self loginStateChange:nil];
-    [self.window makeKeyAndVisible];
+//    [self loginStateChange:nil];
+//    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -111,9 +112,17 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    if (_mainController) {
-        [_mainController jumpToChatList];
+    
+    DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+    
+    if(vc.mainController)
+    {
+        [vc.mainController jumpToChatList];
     }
+    
+//    if (_mainController) {
+//        [_mainController jumpToChatList];
+//    }
     
 #warning SDK方法调用
     [[EaseMob sharedInstance] application:application didReceiveRemoteNotification:userInfo];
@@ -121,9 +130,17 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    if (_mainController) {
-        [_mainController jumpToChatList];
+    
+    DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+    
+    if(vc.mainController)
+    {
+        [vc.mainController jumpToChatList];
     }
+    
+//    if (_mainController) {
+//        [_mainController jumpToChatList];
+//    }
 #warning SDK方法调用
     [[EaseMob sharedInstance] application:application didReceiveLocalNotification:notification];
 }
@@ -174,9 +191,18 @@
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"title":username, @"username":username, @"applyMessage":message, @"applyStyle":[NSNumber numberWithInteger:ApplyStyleFriend]}];
     [[ApplyViewController shareController] addNewApply:dic];
-    if (_mainController) {
-        [_mainController setupUntreatedApplyCount];
+    
+    
+    DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+    
+    if(vc.mainController)
+    {
+        [vc.mainController setupUntreatedApplyCount];
     }
+    
+//    if (_mainController) {
+//        [_mainController setupUntreatedApplyCount];
+//    }
 }
 
 #pragma mark - IChatManagerDelegate 群组变化
@@ -195,9 +221,16 @@
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"title":groupName, @"groupId":groupId, @"username":username, @"applyMessage":message, @"applyStyle":[NSNumber numberWithInteger:ApplyStyleGroupInvitation]}];
     [[ApplyViewController shareController] addNewApply:dic];
-    if (_mainController) {
-        [_mainController setupUntreatedApplyCount];
+    
+    DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+    if(vc.mainController)
+    {
+        [vc.mainController setupUntreatedApplyCount];
     }
+    
+//    if (_mainController) {
+//        [_mainController setupUntreatedApplyCount];
+//    }
 }
 
 //接收到入群申请
@@ -226,9 +259,17 @@
     else{
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"title":groupname, @"groupId":groupId, @"username":username, @"groupname":groupname, @"applyMessage":reason, @"applyStyle":[NSNumber numberWithInteger:ApplyStyleJoinGroup]}];
         [[ApplyViewController shareController] addNewApply:dic];
-        if (_mainController) {
-            [_mainController setupUntreatedApplyCount];
+        
+        DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+
+        if(vc.mainController)
+        {
+            [vc.mainController setupUntreatedApplyCount];
         }
+        
+//        if (_mainController) {
+//            [_mainController setupUntreatedApplyCount];
+//        }
     }
 }
 
@@ -273,44 +314,44 @@
         TTAlertNoTitle(@"消息推送与设备绑定失败");
     }
 }
-
-#pragma mark - private
-
--(void)loginStateChange:(NSNotification *)notification
-{
-    UINavigationController *nav = nil;
-    
-    BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
-    BOOL loginSuccess = [notification.object boolValue];
-    
-    if (isAutoLogin || loginSuccess) {
-        [[ApplyViewController shareController] loadDataSourceFromLocalDB];
-        if (_mainController == nil) {
-            _mainController = [[MainViewController alloc] init];
-            nav = [[UINavigationController alloc] initWithRootViewController:_mainController];
-        }else{
-            nav  = _mainController.navigationController;
-        }
-    }else{
-        _mainController = nil;
-        LoginViewController *loginController = [[LoginViewController alloc] init];
-        nav = [[UINavigationController alloc] initWithRootViewController:loginController];
-        loginController.title = @"环信Demo";
-    }
-    
-    if ([UIDevice currentDevice].systemVersion.floatValue < 7.0){
-        nav.navigationBar.barStyle = UIBarStyleDefault;
-        [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"titleBar"]
-                                forBarMetrics:UIBarMetricsDefault];
-        
-        [nav.navigationBar.layer setMasksToBounds:YES];
-    }
-    
-    self.window.rootViewController = nav;
-    
-    [nav setNavigationBarHidden:YES];
-    [nav setNavigationBarHidden:NO];
-}
+//
+//#pragma mark - private
+//
+//-(void)loginStateChange:(NSNotification *)notification
+//{
+//    UINavigationController *nav = nil;
+//    
+//    BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
+//    BOOL loginSuccess = [notification.object boolValue];
+//    
+//    if (isAutoLogin || loginSuccess) {
+//        [[ApplyViewController shareController] loadDataSourceFromLocalDB];
+//        if (_mainController == nil) {
+//            _mainController = [[MainViewController alloc] init];
+//            nav = [[UINavigationController alloc] initWithRootViewController:_mainController];
+//        }else{
+//            nav  = _mainController.navigationController;
+//        }
+//    }else{
+//        _mainController = nil;
+//        LoginViewController *loginController = [[LoginViewController alloc] init];
+//        nav = [[UINavigationController alloc] initWithRootViewController:loginController];
+//        loginController.title = @"环信Demo";
+//    }
+//    
+//    if ([UIDevice currentDevice].systemVersion.floatValue < 7.0){
+//        nav.navigationBar.barStyle = UIBarStyleDefault;
+//        [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"titleBar"]
+//                                forBarMetrics:UIBarMetricsDefault];
+//        
+//        [nav.navigationBar.layer setMasksToBounds:YES];
+//    }
+//    
+//    self.window.rootViewController = nav;
+//    
+//    [nav setNavigationBarHidden:YES];
+//    [nav setNavigationBarHidden:NO];
+//}
 
 @end
 
