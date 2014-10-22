@@ -54,6 +54,7 @@
     [self networkStateView];
     
     [self searchController];
+    
 }
 
 - (void)didReceiveMemoryWarning

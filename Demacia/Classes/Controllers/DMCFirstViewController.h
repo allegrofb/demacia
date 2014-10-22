@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MainViewController.h"
+#import "DMCBuddyTabBarController.h"
+#import "DMCCarGroupTabBarController.h"
 
 @interface DMCFirstViewController : UIViewController
 
-@property (strong, nonatomic) MainViewController *mainController;
+@property (strong, nonatomic) DMCBuddyTabBarController *buddyTabBarController;
+@property (strong, nonatomic) DMCCarGroupTabBarController *carGroupTabBarController;
 
 @end

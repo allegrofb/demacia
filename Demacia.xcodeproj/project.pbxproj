@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8905ACCF19F77CCF00CD0C1D /* DMCBuddyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8905ACCE19F77CCF00CD0C1D /* DMCBuddyTabBarController.m */; };
+		8905ACD219F780E700CD0C1D /* DMCCarGroupTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8905ACD119F780E700CD0C1D /* DMCCarGroupTabBarController.m */; };
 		890FFB4C19F5F0520098B030 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 890FFB4B19F5F0520098B030 /* main.m */; };
 		890FFB4F19F5F0520098B030 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 890FFB4E19F5F0520098B030 /* AppDelegate.m */; };
 		890FFB5219F5F0520098B030 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890FFB5119F5F0520098B030 /* FirstViewController.m */; };
@@ -234,7 +236,6 @@
 		890FFEF319F629950098B030 /* UIDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 890FFD9819F629950098B030 /* UIDemo.xcdatamodeld */; };
 		890FFEF419F629950098B030 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890FFD9B19F629950098B030 /* LoginViewController.m */; };
 		890FFEF519F629950098B030 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890FFD9C19F629950098B030 /* LoginViewController.xib */; };
-		890FFEF619F629950098B030 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890FFD9E19F629950098B030 /* MainViewController.m */; };
 		890FFEF719F629950098B030 /* BlackListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890FFDA119F629950098B030 /* BlackListViewController.m */; };
 		890FFEF819F629950098B030 /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890FFDA319F629950098B030 /* DebugViewController.m */; };
 		890FFEF919F629950098B030 /* PushNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890FFDA519F629950098B030 /* PushNotificationViewController.m */; };
@@ -390,6 +391,10 @@
 /* Begin PBXFileReference section */
 		4ACA18A3EA804F85A6F518F4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		513E548A478645B38C8482A5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		8905ACCD19F77CCF00CD0C1D /* DMCBuddyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCBuddyTabBarController.h; sourceTree = "<group>"; };
+		8905ACCE19F77CCF00CD0C1D /* DMCBuddyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCBuddyTabBarController.m; sourceTree = "<group>"; };
+		8905ACD019F780E700CD0C1D /* DMCCarGroupTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCCarGroupTabBarController.h; sourceTree = "<group>"; };
+		8905ACD119F780E700CD0C1D /* DMCCarGroupTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCCarGroupTabBarController.m; sourceTree = "<group>"; };
 		890FFB4619F5F0520098B030 /* Demacia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demacia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		890FFB4A19F5F0520098B030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		890FFB4B19F5F0520098B030 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -835,8 +840,6 @@
 		890FFD9A19F629950098B030 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		890FFD9B19F629950098B030 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		890FFD9C19F629950098B030 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		890FFD9D19F629950098B030 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		890FFD9E19F629950098B030 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		890FFDA019F629950098B030 /* BlackListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackListViewController.h; sourceTree = "<group>"; };
 		890FFDA119F629950098B030 /* BlackListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackListViewController.m; sourceTree = "<group>"; };
 		890FFDA219F629950098B030 /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
@@ -1123,6 +1126,10 @@
 			children = (
 				892E9A7F19F753F400D396E6 /* DMCFirstViewController.h */,
 				892E9A8019F753F400D396E6 /* DMCFirstViewController.m */,
+				8905ACCD19F77CCF00CD0C1D /* DMCBuddyTabBarController.h */,
+				8905ACCE19F77CCF00CD0C1D /* DMCBuddyTabBarController.m */,
+				8905ACD019F780E700CD0C1D /* DMCCarGroupTabBarController.h */,
+				8905ACD119F780E700CD0C1D /* DMCCarGroupTabBarController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1725,8 +1732,6 @@
 				890FFD9A19F629950098B030 /* LoginViewController.h */,
 				890FFD9B19F629950098B030 /* LoginViewController.m */,
 				890FFD9C19F629950098B030 /* LoginViewController.xib */,
-				890FFD9D19F629950098B030 /* MainViewController.h */,
-				890FFD9E19F629950098B030 /* MainViewController.m */,
 				890FFD9F19F629950098B030 /* Settings */,
 			);
 			path = Class;
@@ -2787,6 +2792,7 @@
 				890FFEC219F629950098B030 /* ContactSelectionViewController.m in Sources */,
 				890FFE6919F629950098B030 /* NSDate+Category.m in Sources */,
 				890FFEFE19F629950098B030 /* EMRemarkImageView.m in Sources */,
+				8905ACCF19F77CCF00CD0C1D /* DMCBuddyTabBarController.m in Sources */,
 				890FFE8019F629950098B030 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				890FFE7D19F629950098B030 /* CallViewController.m in Sources */,
 				890FFE5219F629950098B030 /* DACircularProgressView.m in Sources */,
@@ -2798,6 +2804,7 @@
 				890FFEC319F629950098B030 /* CreateGroupViewController.m in Sources */,
 				890FFEFC19F629950098B030 /* EMSearchBar.m in Sources */,
 				890FFEFB19F629950098B030 /* BaseTableViewCell.m in Sources */,
+				8905ACD219F780E700CD0C1D /* DMCCarGroupTabBarController.m in Sources */,
 				890FFE8319F629950098B030 /* DXMessageToolBar.m in Sources */,
 				890FFEBB19F629950098B030 /* EMChatViewBaseCell.m in Sources */,
 				890FFEE119F629950098B030 /* NSManagedObject+MagicalDataImport.m in Sources */,
@@ -2888,7 +2895,6 @@
 				890FFE6A19F629950098B030 /* NSDateFormatter+Category.m in Sources */,
 				890FFBDE19F5F27A0098B030 /* SSCheckMark.m in Sources */,
 				890FFEDD19F629950098B030 /* NSObject+MagicalDataImport.m in Sources */,
-				890FFEF619F629950098B030 /* MainViewController.m in Sources */,
 				890FFE5019F629950098B030 /* MWTapDetectingView.m in Sources */,
 				890FFEFD19F629950098B030 /* EMTextView.m in Sources */,
 				890FFE8719F629950098B030 /* FacialView.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "DMCFirstViewController.h"
+#import "DMCBuddyTabBarController.h"
 #import "LoginViewController.h"
 #import "ApplyViewController.h"
 
@@ -15,7 +16,8 @@
 @end
 
 @implementation DMCFirstViewController
-@synthesize mainController;
+@synthesize buddyTabBarController;
+@synthesize carGroupTabBarController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,22 +60,23 @@
     if (isAutoLogin || loginSuccess)
     {
         [[ApplyViewController shareController] loadDataSourceFromLocalDB];
-        if (mainController == nil)
+        if (buddyTabBarController == nil)
         {
-            mainController = [[MainViewController alloc] init];
-//            nav = [[UINavigationController alloc] initWithRootViewController:_mainController];
-            [nav pushViewController:mainController animated:NO];
+            buddyTabBarController = [[DMCBuddyTabBarController alloc] init];
+            [nav pushViewController:buddyTabBarController animated:NO];
         }
-//        else
-//        {
-//            nav  = _mainController.navigationController;
-//        }
+        
+        if(carGroupTabBarController == nil)
+        {
+            carGroupTabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCCarGroupTabBarController"];
+        }
+
     }
     else
     {
-        mainController = nil;
+        buddyTabBarController = nil;
+        carGroupTabBarController = nil;
         LoginViewController *loginController = [[LoginViewController alloc] init];
-//        nav = [[UINavigationController alloc] initWithRootViewController:loginController];
         [nav pushViewController:loginController animated:NO];
         loginController.title = @"CarChat";
     }

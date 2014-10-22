@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
-//#import "LoginViewController.h"
 #import "ApplyViewController.h"
 #import "DMCFirstViewController.h"
 
@@ -115,9 +113,9 @@
     
     DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
     
-    if(vc.mainController)
+    if(vc.buddyTabBarController)
     {
-        [vc.mainController jumpToChatList];
+        [vc.buddyTabBarController jumpToChatList];
     }
     
 //    if (_mainController) {
@@ -133,9 +131,9 @@
     
     DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
     
-    if(vc.mainController)
+    if(vc.buddyTabBarController)
     {
-        [vc.mainController jumpToChatList];
+        [vc.buddyTabBarController jumpToChatList];
     }
     
 //    if (_mainController) {
@@ -195,9 +193,9 @@
     
     DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
     
-    if(vc.mainController)
+    if(vc.buddyTabBarController)
     {
-        [vc.mainController setupUntreatedApplyCount];
+        [vc.buddyTabBarController setupUntreatedApplyCount];
     }
     
 //    if (_mainController) {
@@ -223,9 +221,9 @@
     [[ApplyViewController shareController] addNewApply:dic];
     
     DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
-    if(vc.mainController)
+    if(vc.buddyTabBarController)
     {
-        [vc.mainController setupUntreatedApplyCount];
+        [vc.buddyTabBarController setupUntreatedApplyCount];
     }
     
 //    if (_mainController) {
@@ -262,9 +260,9 @@
         
         DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
 
-        if(vc.mainController)
+        if(vc.buddyTabBarController)
         {
-            [vc.mainController setupUntreatedApplyCount];
+            [vc.buddyTabBarController setupUntreatedApplyCount];
         }
         
 //        if (_mainController) {
@@ -314,44 +312,6 @@
         TTAlertNoTitle(@"消息推送与设备绑定失败");
     }
 }
-//
-//#pragma mark - private
-//
-//-(void)loginStateChange:(NSNotification *)notification
-//{
-//    UINavigationController *nav = nil;
-//    
-//    BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
-//    BOOL loginSuccess = [notification.object boolValue];
-//    
-//    if (isAutoLogin || loginSuccess) {
-//        [[ApplyViewController shareController] loadDataSourceFromLocalDB];
-//        if (_mainController == nil) {
-//            _mainController = [[MainViewController alloc] init];
-//            nav = [[UINavigationController alloc] initWithRootViewController:_mainController];
-//        }else{
-//            nav  = _mainController.navigationController;
-//        }
-//    }else{
-//        _mainController = nil;
-//        LoginViewController *loginController = [[LoginViewController alloc] init];
-//        nav = [[UINavigationController alloc] initWithRootViewController:loginController];
-//        loginController.title = @"环信Demo";
-//    }
-//    
-//    if ([UIDevice currentDevice].systemVersion.floatValue < 7.0){
-//        nav.navigationBar.barStyle = UIBarStyleDefault;
-//        [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"titleBar"]
-//                                forBarMetrics:UIBarMetricsDefault];
-//        
-//        [nav.navigationBar.layer setMasksToBounds:YES];
-//    }
-//    
-//    self.window.rootViewController = nav;
-//    
-//    [nav setNavigationBarHidden:YES];
-//    [nav setNavigationBarHidden:NO];
-//}
 
 @end
 

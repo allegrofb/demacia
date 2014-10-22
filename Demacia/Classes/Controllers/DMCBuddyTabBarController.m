@@ -1,25 +1,23 @@
-/************************************************************
-  *  * EaseMob CONFIDENTIAL 
-  * __________________ 
-  * Copyright (C) 2013-2014 EaseMob Technologies. All rights reserved. 
-  *  
-  * NOTICE: All information contained herein is, and remains 
-  * the property of EaseMob Technologies.
-  * Dissemination of this information or reproduction of this material 
-  * is strictly forbidden unless prior written permission is obtained
-  * from EaseMob Technologies.
-  */
+//
+//  DMCBuddyTabBarController.m
+//  Demacia
+//
+//  Created by Hongyong Jiang on 22/10/14.
+//  Copyright (c) 2014年 Demacia.cc. All rights reserved.
+//
 
-#import "MainViewController.h"
+#import "DMCBuddyTabBarController.h"
 #import "ChatListViewController.h"
 #import "ContactsViewController.h"
 #import "SettingsViewController.h"
 #import "ApplyViewController.h"
+#import "DMCCarGroupTabBarController.h"
+#import "DMCFirstViewController.h"
 
 //两次提示的默认间隔
 static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
-@interface MainViewController () <UIAlertViewDelegate, IChatManagerDelegate>
+@interface DMCBuddyTabBarController () <UIAlertViewDelegate, IChatManagerDelegate>
 {
     ChatListViewController *_chatListVC;
     ContactsViewController *_contactsVC;
@@ -32,7 +30,8 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
 @end
 
-@implementation MainViewController
+@implementation DMCBuddyTabBarController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -74,6 +73,17 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 {
     [super didReceiveMemoryWarning];
 }
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
+
 
 - (void)dealloc
 {
@@ -142,6 +152,10 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
                          withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_chats"]];
     [self unSelectedTapTabBarItems:_chatListVC.tabBarItem];
     [self selectedTapTabBarItems:_chatListVC.tabBarItem];
+    
+    UISwipeGestureRecognizer *gestureLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];//direction is set by default.
+    [gestureLeft setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [[_chatListVC view] addGestureRecognizer:gestureLeft];//this gets things rolling.
     
     _contactsVC = [[ContactsViewController alloc] initWithNibName:nil bundle:nil];
     _contactsVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"通讯录"
@@ -367,8 +381,8 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     notification.timeZone = [NSTimeZone defaultTimeZone];
     //发送通知
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-//    UIApplication *application = [UIApplication sharedApplication];
-//    application.applicationIconBadgeNumber += 1;
+    //    UIApplication *application = [UIApplication sharedApplication];
+    //    application.applicationIconBadgeNumber += 1;
 }
 
 #pragma mark - IChatManagerDelegate 登陆回调（主要用于监听自动登录是否成功）
@@ -377,29 +391,29 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 {
     if (error) {
         /*NSString *hintText = @"";
-        if (error.errorCode != EMErrorServerMaxRetryCountExceeded) {
-            if (![[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled]) {
-                hintText = @"你的账号登录失败，请重新登陆";
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                    message:hintText
-                                                                   delegate:self
-                                                          cancelButtonTitle:@"确定"
-                                                          otherButtonTitles:nil,
-                                          nil];
-                alertView.tag = 99;
-                [alertView show];
-            }
-        } else {
-            hintText = @"已达到最大登陆重试次数，请重新登陆";
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                message:hintText
-                                                               delegate:self
-                                                      cancelButtonTitle:@"确定"
-                                                      otherButtonTitles:nil,
-                                      nil];
-            alertView.tag = 99;
-            [alertView show];
-        }*/
+         if (error.errorCode != EMErrorServerMaxRetryCountExceeded) {
+         if (![[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled]) {
+         hintText = @"你的账号登录失败，请重新登陆";
+         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+         message:hintText
+         delegate:self
+         cancelButtonTitle:@"确定"
+         otherButtonTitles:nil,
+         nil];
+         alertView.tag = 99;
+         [alertView show];
+         }
+         } else {
+         hintText = @"已达到最大登陆重试次数，请重新登陆";
+         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+         message:hintText
+         delegate:self
+         cancelButtonTitle:@"确定"
+         otherButtonTitles:nil,
+         nil];
+         alertView.tag = 99;
+         [alertView show];
+         }*/
         NSString *hintText = @"你的账号登录失败，正在重试中... \n点击 '登出' 按钮跳转到登录页面 \n点击 '继续等待' 按钮等待重连成功";
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:hintText
@@ -542,7 +556,7 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     [_chatListVC networkChanged:connectionState];
 }
 
-#pragma mark - 
+#pragma mark -
 
 - (void)willAutoReconnect{
     [self hideHud];
@@ -569,4 +583,20 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     }
 }
 
+#pragma mark - swipe right
+
+- (void)swipeLeft:(UISwipeGestureRecognizer *)gesture
+{
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded))
+    {
+        //do something for a right swipe gesture.
+        UINavigationController* nav = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+        DMCFirstViewController* vc = (DMCFirstViewController*)[nav.viewControllers objectAtIndex:0];
+;
+        [nav pushViewController:vc.carGroupTabBarController animated:YES];
+    }
+}
+
 @end
+
