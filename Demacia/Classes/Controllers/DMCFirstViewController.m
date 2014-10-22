@@ -62,7 +62,8 @@
         [[ApplyViewController shareController] loadDataSourceFromLocalDB];
         if (buddyTabBarController == nil)
         {
-            buddyTabBarController = [[DMCBuddyTabBarController alloc] init];
+//            buddyTabBarController = [[DMCBuddyTabBarController alloc] init];
+            buddyTabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCBuddyTabBarController"];
             [nav pushViewController:buddyTabBarController animated:NO];
         }
         

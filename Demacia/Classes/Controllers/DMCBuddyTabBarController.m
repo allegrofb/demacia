@@ -45,6 +45,8 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 {
     [super viewDidLoad];
     
+    self.navigationItem.hidesBackButton = YES;
+    
     //if 使tabBarController中管理的viewControllers都符合 UIRectEdgeNone
     if ([UIDevice currentDevice].systemVersion.floatValue >= 7) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -176,7 +178,20 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     [self unSelectedTapTabBarItems:_settingsVC.tabBarItem];
     [self selectedTapTabBarItems:_settingsVC.tabBarItem];
     
-    self.viewControllers = @[_chatListVC, _contactsVC, _settingsVC];
+//    self.viewControllers = @[_chatListVC, _contactsVC, _settingsVC];
+    
+    NSMutableArray* views = [[NSMutableArray alloc] init];
+    
+    [views addObject:_chatListVC];
+    [views addObject:_contactsVC];
+    [views addObject:_settingsVC];
+    
+    for (id vc in self.viewControllers) {
+        [views addObject:vc];
+    }
+    
+    [self setViewControllers:views];
+    
     [self selectedTapTabBarItems:_chatListVC.tabBarItem];
 }
 

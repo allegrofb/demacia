@@ -18,6 +18,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.navigationItem.hidesBackButton = YES;
+    
     UISwipeGestureRecognizer *gestureRight;
     UISwipeGestureRecognizer *gestureLeft;
     gestureRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];//direction is set by default.
