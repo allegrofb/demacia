@@ -375,6 +375,11 @@
 		890FFF8519F640930098B030 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 890FFF8419F640930098B030 /* libz.dylib */; };
 		890FFF8719F640AF0098B030 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 890FFF8619F640AF0098B030 /* libresolv.dylib */; };
 		892E9A8119F753F400D396E6 /* DMCFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 892E9A8019F753F400D396E6 /* DMCFirstViewController.m */; };
+		899D754819F88AD60052CBA6 /* DMCBuddyMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D754719F88AD60052CBA6 /* DMCBuddyMeTableViewController.m */; };
+		899D754B19F8971B0052CBA6 /* DMCKeyChainUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D754A19F8971B0052CBA6 /* DMCKeyChainUtil.m */; };
+		899D756619F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D756519F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m */; };
+		899D756919F8CBB90052CBA6 /* DMCBuddyDiscoveryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D756819F8CBB90052CBA6 /* DMCBuddyDiscoveryTableViewController.m */; };
+		89F7DD2319F8D44900334B5D /* DMCBuddySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7DD2219F8D44900334B5D /* DMCBuddySettingsTableViewController.m */; };
 		ED46D4B4FD374C53879C8EA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACA18A3EA804F85A6F518F4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -994,6 +999,16 @@
 		890FFF8819F640E70098B030 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		892E9A7F19F753F400D396E6 /* DMCFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCFirstViewController.h; sourceTree = "<group>"; };
 		892E9A8019F753F400D396E6 /* DMCFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCFirstViewController.m; sourceTree = "<group>"; };
+		899D754619F88AD60052CBA6 /* DMCBuddyMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCBuddyMeTableViewController.h; sourceTree = "<group>"; };
+		899D754719F88AD60052CBA6 /* DMCBuddyMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCBuddyMeTableViewController.m; sourceTree = "<group>"; };
+		899D754919F8971B0052CBA6 /* DMCKeyChainUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCKeyChainUtil.h; sourceTree = "<group>"; };
+		899D754A19F8971B0052CBA6 /* DMCKeyChainUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCKeyChainUtil.m; sourceTree = "<group>"; };
+		899D756419F8AB350052CBA6 /* DMCStrokeRectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCStrokeRectTableViewCell.h; sourceTree = "<group>"; };
+		899D756519F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCStrokeRectTableViewCell.m; sourceTree = "<group>"; };
+		899D756719F8CBB90052CBA6 /* DMCBuddyDiscoveryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCBuddyDiscoveryTableViewController.h; sourceTree = "<group>"; };
+		899D756819F8CBB90052CBA6 /* DMCBuddyDiscoveryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCBuddyDiscoveryTableViewController.m; sourceTree = "<group>"; };
+		89F7DD2119F8D44900334B5D /* DMCBuddySettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCBuddySettingsTableViewController.h; sourceTree = "<group>"; };
+		89F7DD2219F8D44900334B5D /* DMCBuddySettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCBuddySettingsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1124,12 +1139,18 @@
 		890FFB7A19F5F2540098B030 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				899D756719F8CBB90052CBA6 /* DMCBuddyDiscoveryTableViewController.h */,
+				899D756819F8CBB90052CBA6 /* DMCBuddyDiscoveryTableViewController.m */,
 				892E9A7F19F753F400D396E6 /* DMCFirstViewController.h */,
 				892E9A8019F753F400D396E6 /* DMCFirstViewController.m */,
 				8905ACCD19F77CCF00CD0C1D /* DMCBuddyTabBarController.h */,
 				8905ACCE19F77CCF00CD0C1D /* DMCBuddyTabBarController.m */,
 				8905ACD019F780E700CD0C1D /* DMCCarGroupTabBarController.h */,
 				8905ACD119F780E700CD0C1D /* DMCCarGroupTabBarController.m */,
+				899D754619F88AD60052CBA6 /* DMCBuddyMeTableViewController.h */,
+				899D754719F88AD60052CBA6 /* DMCBuddyMeTableViewController.m */,
+				89F7DD2119F8D44900334B5D /* DMCBuddySettingsTableViewController.h */,
+				89F7DD2219F8D44900334B5D /* DMCBuddySettingsTableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1165,6 +1186,8 @@
 		890FFB7F19F5F2540098B030 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				899D756419F8AB350052CBA6 /* DMCStrokeRectTableViewCell.h */,
+				899D756519F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1172,6 +1195,8 @@
 		890FFB8019F5F2600098B030 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				899D754919F8971B0052CBA6 /* DMCKeyChainUtil.h */,
+				899D754A19F8971B0052CBA6 /* DMCKeyChainUtil.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -2805,10 +2830,12 @@
 				890FFEFC19F629950098B030 /* EMSearchBar.m in Sources */,
 				890FFEFB19F629950098B030 /* BaseTableViewCell.m in Sources */,
 				8905ACD219F780E700CD0C1D /* DMCCarGroupTabBarController.m in Sources */,
+				89F7DD2319F8D44900334B5D /* DMCBuddySettingsTableViewController.m in Sources */,
 				890FFE8319F629950098B030 /* DXMessageToolBar.m in Sources */,
 				890FFEBB19F629950098B030 /* EMChatViewBaseCell.m in Sources */,
 				890FFEE119F629950098B030 /* NSManagedObject+MagicalDataImport.m in Sources */,
 				890FFEF219F629950098B030 /* MagicalRecord.m in Sources */,
+				899D754B19F8971B0052CBA6 /* DMCKeyChainUtil.m in Sources */,
 				890FFE6419F629950098B030 /* SRRefreshView.m in Sources */,
 				890FFE8219F629950098B030 /* LocationViewController.m in Sources */,
 				890FFE6C19F629950098B030 /* UIResponder+Router.m in Sources */,
@@ -2838,6 +2865,7 @@
 				890FFEEB19F629950098B030 /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				890FFEE519F629950098B030 /* NSManagedObjectContext+MagicalObserving.m in Sources */,
 				890FFEFA19F629950098B030 /* SettingsViewController.m in Sources */,
+				899D754819F88AD60052CBA6 /* DMCBuddyMeTableViewController.m in Sources */,
 				890FFE5519F629950098B030 /* PSTCollectionViewCell.m in Sources */,
 				890FFEF819F629950098B030 /* DebugViewController.m in Sources */,
 				890FFE5619F629950098B030 /* PSTCollectionViewController.m in Sources */,
@@ -2851,6 +2879,7 @@
 				890FFEEE19F629950098B030 /* MagicalRecord+iCloud.m in Sources */,
 				890FFEDA19F629950098B030 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				890FFBEB19F5F27A0098B030 /* UITableViewTextFieldCell.m in Sources */,
+				899D756919F8CBB90052CBA6 /* DMCBuddyDiscoveryTableViewController.m in Sources */,
 				890FFE5719F629950098B030 /* PSTCollectionViewData.m in Sources */,
 				890FFE8919F629950098B030 /* DXRecordView.m in Sources */,
 				890FFBE519F5F27A0098B030 /* UIImage+ColouredButton.m in Sources */,
@@ -2887,6 +2916,7 @@
 				890FFE7F19F629950098B030 /* ChatViewController.m in Sources */,
 				890FFEF119F629950098B030 /* MagicalRecord+ShorthandSupport.m in Sources */,
 				890FFBE919F5F27A0098B030 /* UITableViewSwitchCell.m in Sources */,
+				899D756619F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m in Sources */,
 				890FFE5919F629950098B030 /* PSTCollectionViewItemKey.m in Sources */,
 				890FFBC519F5F27A0098B030 /* ALButton.m in Sources */,
 				890FFEE619F629950098B030 /* NSManagedObjectContext+MagicalRecord.m in Sources */,
@@ -3040,6 +3070,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = Demacia/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3065,6 +3096,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = Demacia/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
