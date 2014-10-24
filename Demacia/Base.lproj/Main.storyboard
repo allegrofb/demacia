@@ -56,7 +56,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a1e-mg-FU9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="196" y="3192"/>
+            <point key="canvasLocation" x="-211" y="4095"/>
+        </scene>
+        <!--车陌-->
+        <scene sceneID="pJc-CW-h64">
+            <objects>
+                <viewController id="HTA-bw-Brx" customClass="ChatListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="miE-wo-EdB"/>
+                        <viewControllerLayoutGuide type="bottom" id="2z9-ET-tIC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vXa-tZ-Xb0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="车陌" id="WLH-i2-Kgp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Pa-bP-PW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-625" y="1959"/>
         </scene>
         <!--Buddy Tab Bar Controller-->
         <scene sceneID="BTE-MQ-Gqq">
@@ -69,13 +88,54 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="HTA-bw-Brx" kind="relationship" relationship="viewControllers" id="YDA-0B-JoR"/>
+                        <segue destination="unm-DZ-YnO" kind="relationship" relationship="viewControllers" id="ax8-o8-yDV"/>
+                        <segue destination="quw-sv-mw2" kind="relationship" relationship="viewControllers" id="vnO-i1-8p3"/>
                         <segue destination="fhD-t8-Voc" kind="relationship" relationship="viewControllers" id="fEz-vG-0gA"/>
                         <segue destination="quJ-ev-Hoi" kind="relationship" relationship="viewControllers" id="pdr-Wt-4Mr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BA6-Xu-boz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-534" y="2559"/>
+            <point key="canvasLocation" x="-1272" y="2575"/>
+        </scene>
+        <!--搜索-->
+        <scene sceneID="4CG-eW-tpo">
+            <objects>
+                <viewController id="quw-sv-mw2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bay-cb-6k4"/>
+                        <viewControllerLayoutGuide type="bottom" id="TQA-r1-nsh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gqD-bP-jRO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="搜索" id="PsA-q6-iB2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9it-Cc-KB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-625" y="3321"/>
+        </scene>
+        <!--通讯录-->
+        <scene sceneID="Q4w-cG-08I">
+            <objects>
+                <viewController id="unm-DZ-YnO" customClass="ContactsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Le0-ex-FcS"/>
+                        <viewControllerLayoutGuide type="bottom" id="irD-Mf-01i"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ccZ-ze-C1Z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="通讯录" id="sgp-ZX-31I"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vHH-4r-ifO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-625" y="2632"/>
         </scene>
         <!--我-->
         <scene sceneID="vHD-74-hzl">
@@ -133,7 +193,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xhp-t4-65E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141" y="2463"/>
+            <point key="canvasLocation" x="-211" y="4786"/>
         </scene>
         <!--服务-->
         <scene sceneID="gpI-tS-N5y">

@@ -35,6 +35,14 @@
 
 @implementation ChatListViewController
 
+
+- (void)awakeFromNib {
+    // Initialization code
+    _dataSource = [NSMutableArray array];
+    
+}
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

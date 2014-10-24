@@ -44,6 +44,15 @@
 
 @implementation ContactsViewController
 
+
+- (void)awakeFromNib {
+    // Initialization code
+    _dataSource = [NSMutableArray array];
+    _contactsSource = [NSMutableArray array];
+    _sectionTitles = [NSMutableArray array];
+    
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
