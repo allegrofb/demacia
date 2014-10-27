@@ -26,4 +26,14 @@
 
     #import "EaseMob.h"
 
+
+#define ScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define IS_iOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 ? YES : NO)
+#define StatueBarHeight (IS_iOS7 ? 0:20)
+#define NavigationBarHeight (IS_iOS7 ? 0:44)
+
+#define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
+#define ViewOrginY (64-StatueBarHeight-NavigationBarHeight)
+
+
 #endif

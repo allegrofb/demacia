@@ -8,6 +8,8 @@
 
 #import "DMCBuddyMeTableViewController.h"
 #import "DMCBuddySettingsTableViewController.h"
+#import "RootViewController.h"
+
 
 @interface DMCBuddyMeTableViewController ()
 
@@ -158,6 +160,14 @@
             DMCBuddySettingsTableViewController*vc = [[DMCBuddySettingsTableViewController alloc] init];
             
             [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if(indexPath.row == 5)
+        {
+            RootViewController *rvc        = [[RootViewController alloc] init];
+            [self.navigationController pushViewController: rvc animated:YES];
+            
+            
+            
         }
     }
     

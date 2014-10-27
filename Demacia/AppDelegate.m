@@ -9,11 +9,15 @@
 #import "AppDelegate.h"
 #import "ApplyViewController.h"
 #import "DMCFirstViewController.h"
+#import <BmobSDK/Bmob.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [Bmob registerWithAppKey:@"77f48a9d1ad85e39573b4853411c3a0b"];
+    
 //    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [[NSNotificationCenter defaultCenter] addObserver:self
