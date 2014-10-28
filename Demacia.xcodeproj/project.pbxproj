@@ -407,6 +407,8 @@
 		89F7DD6B19FDCDF600334B5D /* yes_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F7DD4D19FDCDF600334B5D /* yes_@2x.png */; };
 		89F7DD6E19FDCEA800334B5D /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7DD6D19FDCEA800334B5D /* AddViewController.m */; };
 		89F7DD7119FF3B3800334B5D /* DMCModelGroupTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7DD7019FF3B3800334B5D /* DMCModelGroupTabBarController.m */; };
+		89F7DD8F19FF698A00334B5D /* JSONUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7DD8E19FF698A00334B5D /* JSONUserInfo.m */; };
+		89F7DD9219FF6A0D00334B5D /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7DD9119FF6A0D00334B5D /* JSONModel.m */; };
 		ED46D4B4FD374C53879C8EA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACA18A3EA804F85A6F518F4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -1069,6 +1071,10 @@
 		89F7DD6D19FDCEA800334B5D /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 		89F7DD6F19FF3B3800334B5D /* DMCModelGroupTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCModelGroupTabBarController.h; sourceTree = "<group>"; };
 		89F7DD7019FF3B3800334B5D /* DMCModelGroupTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCModelGroupTabBarController.m; sourceTree = "<group>"; };
+		89F7DD8D19FF698A00334B5D /* JSONUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONUserInfo.h; sourceTree = "<group>"; };
+		89F7DD8E19FF698A00334B5D /* JSONUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONUserInfo.m; sourceTree = "<group>"; };
+		89F7DD9019FF6A0D00334B5D /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModel.h; sourceTree = "<group>"; };
+		89F7DD9119FF6A0D00334B5D /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1189,10 +1195,10 @@
 		890FFB7919F5F2540098B030 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				89F7DD8A19FF694F00334B5D /* JSONObject */,
 				890FFB7A19F5F2540098B030 /* Controllers */,
 				890FFB7B19F5F2540098B030 /* Delegates */,
 				890FFB7C19F5F2540098B030 /* Extensions */,
-				890FFB7D19F5F2540098B030 /* JSONObject */,
 				890FFB7E19F5F2540098B030 /* Models */,
 				890FFB7F19F5F2540098B030 /* Views */,
 			);
@@ -1232,13 +1238,6 @@
 			children = (
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		890FFB7D19F5F2540098B030 /* JSONObject */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = JSONObject;
 			sourceTree = "<group>";
 		};
 		890FFB7E19F5F2540098B030 /* Models */ = {
@@ -2551,6 +2550,17 @@
 			path = "Found+LostDemo";
 			sourceTree = "<group>";
 		};
+		89F7DD8A19FF694F00334B5D /* JSONObject */ = {
+			isa = PBXGroup;
+			children = (
+				89F7DD8D19FF698A00334B5D /* JSONUserInfo.h */,
+				89F7DD8E19FF698A00334B5D /* JSONUserInfo.m */,
+				89F7DD9019FF6A0D00334B5D /* JSONModel.h */,
+				89F7DD9119FF6A0D00334B5D /* JSONModel.m */,
+			);
+			path = JSONObject;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2981,6 +2991,7 @@
 				890FFBE219F5F27A0098B030 /* TmpFilesMgr.m in Sources */,
 				890FFEF319F629950098B030 /* UIDemo.xcdatamodeld in Sources */,
 				890FFEBF19F629950098B030 /* MessageModelManager.m in Sources */,
+				89F7DD9219FF6A0D00334B5D /* JSONModel.m in Sources */,
 				890FFE7E19F629950098B030 /* ChatSendHelper.m in Sources */,
 				890FFEFF19F629950098B030 /* BaseViewController.m in Sources */,
 				890FFF0019F629950098B030 /* EMChooseViewController.m in Sources */,
@@ -2990,6 +3001,7 @@
 				890FFEE219F629950098B030 /* NSManagedObject+MagicalFinders.m in Sources */,
 				890FFEF719F629950098B030 /* BlackListViewController.m in Sources */,
 				890FFED519F629950098B030 /* ApplyViewController.m in Sources */,
+				89F7DD8F19FF698A00334B5D /* JSONUserInfo.m in Sources */,
 				890FFEE719F629950098B030 /* NSManagedObjectContext+MagicalSaves.m in Sources */,
 				890FFE6519F629950098B030 /* SRSlimeView.m in Sources */,
 				890FFED319F629950098B030 /* AddFriendViewController.m in Sources */,

@@ -19,9 +19,10 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
 @interface DMCBuddyTabBarController () <UIAlertViewDelegate, IChatManagerDelegate>
 {
-    ChatListViewController *_chatListVC;
-    ContactsViewController *_contactsVC;
-    SettingsViewController *_settingsVC;
+    ChatListViewController* _chatListVC;
+    ContactsViewController* _contactsVC;
+    SettingsViewController* _settingsVC;
+    UIView*                 _titleView;
     
     UIBarButtonItem *_addFriendItem;
 }
@@ -52,7 +53,6 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     
     self.navigationItem.hidesBackButton = YES;
 
-    
     UILabel* label = [[UILabel alloc] init];
     label.frame = CGRectMake(0,0, 400, 20);
     label.text = @"好友";
@@ -62,14 +62,26 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     UIPageControl* pageControl = [[UIPageControl alloc]init];
     pageControl.frame = CGRectMake(0, 20, 400, 10);
     pageControl.numberOfPages = 3;
+    pageControl.defersCurrentPageDisplay = YES;
+    [pageControl addTarget:self action:@selector(pageAction:) forControlEvents:UIControlEventValueChanged];
     
     UIView* titleView = [[UIView alloc] init];
     titleView.frame = CGRectMake(0,0,400,30);
     [titleView addSubview:label];
     [titleView addSubview:pageControl];
+    _titleView = titleView;
     
     self.navigationItem.titleView = titleView;
     
+    UISwipeGestureRecognizer *gestureRight;
+    UISwipeGestureRecognizer *gestureLeft;
+    gestureRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
+    gestureLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
+    [gestureLeft setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    
+    UIViewController* vc = (UIViewController*)[self.viewControllers objectAtIndex:0];
+    [[vc view] addGestureRecognizer:gestureRight];
+    [[vc view] addGestureRecognizer:gestureLeft];
     
     //获取未读消息数，此时并没有把self注册为SDK的delegate，读取出的未读数是上次退出程序时的
     [self didUnreadMessagesCountChanged];
@@ -87,6 +99,12 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     
     [self setupUnreadMessageCount];
     [self setupUntreatedApplyCount];
+    
+    int i = 0;
+    for(id item in self.tabBar.items)
+    {
+        ((UITabBarItem*)item).tag = i++;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,14 +132,39 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
-    //TODO
-//    if (item.tag == 0) {
-//        self.title = @"会话";
-//        self.navigationItem.rightBarButtonItem = nil;
-//    }else if (item.tag == 1){
-//        self.title = @"通讯录";
-//        self.navigationItem.rightBarButtonItem = _addFriendItem;
-//    }else if (item.tag == 2){
+    if (item.tag == 0)
+    {
+        self.title = @"会话";
+        self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.titleView = _titleView;
+    }
+    else
+    {
+        self.navigationItem.titleView = nil;
+    }
+    
+    if (item.tag == 1)
+    {
+        self.title = @"通讯录";
+        self.navigationItem.rightBarButtonItem = _addFriendItem;
+    }
+    else if(item.tag == 2)
+    {
+        self.title = @"搜索";
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    else if(item.tag == 3)
+    {
+        self.title = @"发现";
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    else if(item.tag == 4)
+    {
+        self.title = @"我";
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+//    else if (item.tag == 2)
+//    {
 //        self.title = @"设置";
 //        self.navigationItem.rightBarButtonItem = nil;
 //        [_settingsVC refreshConfig];
@@ -162,77 +205,9 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
 - (void)setupSubviews
 {
-//    self.tabBar.backgroundImage = [[UIImage imageNamed:@"tabbarBackground"] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-//    self.tabBar.selectionIndicatorImage = [[UIImage imageNamed:@"tabbarSelectBg"] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-  
     _chatListVC = [self.viewControllers objectAtIndex:0];
-//    _chatListVC = [[ChatListViewController alloc] init];
-//    _chatListVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"会话"                                                            image:nil                                                              tag:0];
-//    [_chatListVC.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_chatsHL"]
-//                         withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_chats"]];
-//    [self unSelectedTapTabBarItems:_chatListVC.tabBarItem];
-//    [self selectedTapTabBarItems:_chatListVC.tabBarItem];
-    
-    UISwipeGestureRecognizer *gestureLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];//direction is set by default.
-    [gestureLeft setDirection:(UISwipeGestureRecognizerDirectionLeft)];
-    [[_chatListVC view] addGestureRecognizer:gestureLeft];//this gets things rolling.
-    
     _contactsVC = [self.viewControllers objectAtIndex:1];
-//    _contactsVC = [[ContactsViewController alloc] initWithNibName:nil bundle:nil];
-//    _contactsVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"通讯录"
-//                                                           image:nil
-//                                                             tag:1];
-//    [_contactsVC.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_contactsHL"]
-//                         withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_contacts"]];
-//    [self unSelectedTapTabBarItems:_contactsVC.tabBarItem];
-//    [self selectedTapTabBarItems:_contactsVC.tabBarItem];
-    
-//    _settingsVC = [[SettingsViewController alloc] init];
-//    _settingsVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"设置"
-//                                                           image:nil
-//                                                             tag:2];
-//    [_settingsVC.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_settingHL"]
-//                         withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_setting"]];
-//    _settingsVC.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-//    [self unSelectedTapTabBarItems:_settingsVC.tabBarItem];
-//    [self selectedTapTabBarItems:_settingsVC.tabBarItem];
-    
-//    self.viewControllers = @[_chatListVC, _contactsVC, _settingsVC];
-
-    
-    
-    
-    
-    
-//    NSMutableArray* views = [[NSMutableArray alloc] init];
-//    
-//    [views addObject:_chatListVC];
-//    [views addObject:_contactsVC];
-//    [views addObject:_settingsVC];
-//    
-//    for (id vc in self.viewControllers) {
-//        [views addObject:vc];
-//    }
-//    
-//    [self setViewControllers:views];
-//    
-//    [self selectedTapTabBarItems:_chatListVC.tabBarItem];
 }
-//
-//-(void)unSelectedTapTabBarItems:(UITabBarItem *)tabBarItem
-//{
-//    [tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-//                                        [UIFont systemFontOfSize:14], UITextAttributeFont,[UIColor whiteColor],UITextAttributeTextColor,
-//                                        nil] forState:UIControlStateNormal];
-//}
-//
-//-(void)selectedTapTabBarItems:(UITabBarItem *)tabBarItem
-//{
-//    [tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-//                                        [UIFont systemFontOfSize:14],
-//                                        UITextAttributeFont,[UIColor colorWithRed:0.393 green:0.553 blue:1.000 alpha:1.000],UITextAttributeTextColor,
-//                                        nil] forState:UIControlStateSelected];
-//}
 
 // 统计未读消息数
 -(void)setupUnreadMessageCount
@@ -632,7 +607,29 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
         //do something for a right swipe gesture.
         UINavigationController* nav = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
         DMCFirstViewController* vc = (DMCFirstViewController*)[nav.viewControllers objectAtIndex:0];
-;
+        [nav pushViewController:vc.carGroupTabBarController animated:YES];
+    }
+}
+
+- (void)swipeRight:(UISwipeGestureRecognizer *)gesture
+{
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded))
+    {
+        //do something for a right swipe gesture.
+    }
+}
+
+- (void)pageAction:(id)sender
+{
+    UIPageControl* pageControl = sender;
+    
+    if(pageControl.currentPage > 0)
+    {
+        pageControl.currentPage = 0;
+    
+        UINavigationController* nav = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+        DMCFirstViewController* vc = (DMCFirstViewController*)[nav.viewControllers objectAtIndex:0];
         [nav pushViewController:vc.carGroupTabBarController animated:YES];
     }
 }
