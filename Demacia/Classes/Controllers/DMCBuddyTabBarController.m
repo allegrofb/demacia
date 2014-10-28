@@ -45,13 +45,31 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 {
     [super viewDidLoad];
     
-    self.navigationItem.hidesBackButton = YES;
-    
     //if 使tabBarController中管理的viewControllers都符合 UIRectEdgeNone
     if ([UIDevice currentDevice].systemVersion.floatValue >= 7) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
-    self.title = @"会话";
+    
+    self.navigationItem.hidesBackButton = YES;
+
+    
+    UILabel* label = [[UILabel alloc] init];
+    label.frame = CGRectMake(0,0, 400, 20);
+    label.text = @"好友";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    UIPageControl* pageControl = [[UIPageControl alloc]init];
+    pageControl.frame = CGRectMake(0, 20, 400, 10);
+    pageControl.numberOfPages = 3;
+    
+    UIView* titleView = [[UIView alloc] init];
+    titleView.frame = CGRectMake(0,0,400,30);
+    [titleView addSubview:label];
+    [titleView addSubview:pageControl];
+    
+    self.navigationItem.titleView = titleView;
+    
     
     //获取未读消息数，此时并没有把self注册为SDK的delegate，读取出的未读数是上次退出程序时的
     [self didUnreadMessagesCountChanged];

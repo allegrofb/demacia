@@ -406,6 +406,7 @@
 		89F7DD6A19FDCDF600334B5D /* yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F7DD4C19FDCDF600334B5D /* yes@2x.png */; };
 		89F7DD6B19FDCDF600334B5D /* yes_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F7DD4D19FDCDF600334B5D /* yes_@2x.png */; };
 		89F7DD6E19FDCEA800334B5D /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7DD6D19FDCEA800334B5D /* AddViewController.m */; };
+		89F7DD7119FF3B3800334B5D /* DMCModelGroupTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7DD7019FF3B3800334B5D /* DMCModelGroupTabBarController.m */; };
 		ED46D4B4FD374C53879C8EA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACA18A3EA804F85A6F518F4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -1066,6 +1067,8 @@
 		89F7DD4D19FDCDF600334B5D /* yes_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yes_@2x.png"; sourceTree = "<group>"; };
 		89F7DD6C19FDCEA800334B5D /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		89F7DD6D19FDCEA800334B5D /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
+		89F7DD6F19FF3B3800334B5D /* DMCModelGroupTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCModelGroupTabBarController.h; sourceTree = "<group>"; };
+		89F7DD7019FF3B3800334B5D /* DMCModelGroupTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCModelGroupTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1211,6 +1214,8 @@
 				899D754719F88AD60052CBA6 /* DMCBuddyMeTableViewController.m */,
 				89F7DD2119F8D44900334B5D /* DMCBuddySettingsTableViewController.h */,
 				89F7DD2219F8D44900334B5D /* DMCBuddySettingsTableViewController.m */,
+				89F7DD6F19FF3B3800334B5D /* DMCModelGroupTabBarController.h */,
+				89F7DD7019FF3B3800334B5D /* DMCModelGroupTabBarController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2969,6 +2974,7 @@
 				890FFECE19F629950098B030 /* PublicGroupListViewController.m in Sources */,
 				890FFEB319F629950098B030 /* EMChatAudioBubbleView.m in Sources */,
 				890FFE7219F629950098B030 /* ChatListCell.m in Sources */,
+				89F7DD7119FF3B3800334B5D /* DMCModelGroupTabBarController.m in Sources */,
 				890FFEB519F629950098B030 /* EMChatImageBubbleView.m in Sources */,
 				890FFE5C19F629950098B030 /* PSTGridLayoutInfo.m in Sources */,
 				890FFEF019F629950098B030 /* MagicalRecord+Setup.m in Sources */,

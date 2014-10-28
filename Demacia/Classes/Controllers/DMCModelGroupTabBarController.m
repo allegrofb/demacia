@@ -1,37 +1,37 @@
 //
-//  DMCCarGroupTabBarController.m
+//  DMCModelGroupTabBarController.m
 //  Demacia
 //
-//  Created by Hongyong Jiang on 22/10/14.
+//  Created by Hongyong Jiang on 28/10/14.
 //  Copyright (c) 2014年 Demacia.cc. All rights reserved.
 //
 
-#import "DMCCarGroupTabBarController.h"
-#import "DMCFirstViewController.h"
+#import "DMCModelGroupTabBarController.h"
 
-@interface DMCCarGroupTabBarController ()
+@interface DMCModelGroupTabBarController ()
 
 @end
 
-@implementation DMCCarGroupTabBarController
+@implementation DMCModelGroupTabBarController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     
     self.navigationItem.hidesBackButton = YES;
     
     
     UILabel* label = [[UILabel alloc] init];
     label.frame = CGRectMake(0,0, 400, 20);
-    label.text = @"车队";
+    label.text = @"车模";
     label.textAlignment = NSTextAlignmentCenter;
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     UIPageControl* pageControl = [[UIPageControl alloc]init];
     pageControl.frame = CGRectMake(0, 20, 400, 10);
     pageControl.numberOfPages = 3;
-    pageControl.currentPage = 1;
+    pageControl.currentPage = 2;
     
     UIView* titleView = [[UIView alloc] init];
     titleView.frame = CGRectMake(0,0,400,30);
@@ -53,8 +53,6 @@
     [[vc view] addGestureRecognizer:gestureRight];//this gets things rolling.
     [[vc view] addGestureRecognizer:gestureLeft];//this gets things rolling.
     
-//    [[self view] addGestureRecognizer:gestureRight];//this gets things rolling.
-//    [[self view] addGestureRecognizer:gestureLeft];//this gets things rolling.
     
 }
 
@@ -81,13 +79,6 @@
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded))
     {
-        //do something for a right swipe gesture.
-        
-        UINavigationController* nav = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
-        DMCFirstViewController* vc = (DMCFirstViewController*)[nav.viewControllers objectAtIndex:0];
-        ;
-        [nav pushViewController:vc.modelGroupTabBarController animated:YES];
-        
     }
 }
 
@@ -99,8 +90,9 @@
         
         //do something for a right swipe gesture.
         UINavigationController* nav = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
-        [nav popViewControllerAnimated:YES];        
+        [nav popViewControllerAnimated:YES];
     }
 }
+
 
 @end

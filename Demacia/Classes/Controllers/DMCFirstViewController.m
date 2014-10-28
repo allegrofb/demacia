@@ -18,6 +18,7 @@
 @implementation DMCFirstViewController
 @synthesize buddyTabBarController;
 @synthesize carGroupTabBarController;
+@synthesize modelGroupTabBarController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -72,6 +73,11 @@
             carGroupTabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCCarGroupTabBarController"];
         }
 
+        if(modelGroupTabBarController == nil)
+        {
+            modelGroupTabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCModelGroupTabBarController"];
+        }
+        
     }
     else
     {
