@@ -432,9 +432,9 @@
 		89B0EA091A00C5400031A846 /* JastorRuntimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA051A00C5400031A846 /* JastorRuntimeHelper.m */; };
 		89B0EA0A1A00C5400031A846 /* ObjUrlData.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA071A00C5400031A846 /* ObjUrlData.m */; };
 		89B0EA0C1A00C6820031A846 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B0EA0B1A00C6820031A846 /* libsqlite3.dylib */; };
-		89B0EA151A00C8460031A846 /* DialogUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA0F1A00C8460031A846 /* DialogUtil.m */; };
 		89B0EA161A00C8460031A846 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA121A00C8460031A846 /* MBProgressHUD+Add.m */; };
 		89B0EA171A00C8460031A846 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA141A00C8460031A846 /* MBProgressHUD.m */; };
+		89B0EA321A00E9C70031A846 /* DialogUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA311A00E9C70031A846 /* DialogUtil.m */; };
 		89F7DD2319F8D44900334B5D /* DMCBuddySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7DD2219F8D44900334B5D /* DMCBuddySettingsTableViewController.m */; };
 		89F7DD2619FDCD7400334B5D /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F7DD2519FDCD7400334B5D /* BmobSDK.framework */; };
 		89F7DD4E19FDCDF600334B5D /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F7DD2819FDCDF600334B5D /* add@2x.png */; };
@@ -1193,12 +1193,12 @@
 		89B0EA061A00C5400031A846 /* ObjUrlData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjUrlData.h; sourceTree = "<group>"; };
 		89B0EA071A00C5400031A846 /* ObjUrlData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjUrlData.m; sourceTree = "<group>"; };
 		89B0EA0B1A00C6820031A846 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		89B0EA0E1A00C8460031A846 /* DialogUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogUtil.h; sourceTree = "<group>"; };
-		89B0EA0F1A00C8460031A846 /* DialogUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogUtil.m; sourceTree = "<group>"; };
 		89B0EA111A00C8460031A846 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		89B0EA121A00C8460031A846 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		89B0EA131A00C8460031A846 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		89B0EA141A00C8460031A846 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		89B0EA301A00E9C70031A846 /* DialogUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogUtil.h; sourceTree = "<group>"; };
+		89B0EA311A00E9C70031A846 /* DialogUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogUtil.m; sourceTree = "<group>"; };
 		89F7DD2119F8D44900334B5D /* DMCBuddySettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCBuddySettingsTableViewController.h; sourceTree = "<group>"; };
 		89F7DD2219F8D44900334B5D /* DMCBuddySettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCBuddySettingsTableViewController.m; sourceTree = "<group>"; };
 		89F7DD2519FDCD7400334B5D /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
@@ -2891,8 +2891,8 @@
 		89B0EA0D1A00C8460031A846 /* Dialog */ = {
 			isa = PBXGroup;
 			children = (
-				89B0EA0E1A00C8460031A846 /* DialogUtil.h */,
-				89B0EA0F1A00C8460031A846 /* DialogUtil.m */,
+				89B0EA301A00E9C70031A846 /* DialogUtil.h */,
+				89B0EA311A00E9C70031A846 /* DialogUtil.m */,
 			);
 			path = Dialog;
 			sourceTree = "<group>";
@@ -3413,7 +3413,6 @@
 				89B0E9F61A00C0780031A846 /* Reachability.m in Sources */,
 				890FFEEA19F629950098B030 /* NSPersistentStore+MagicalRecord.m in Sources */,
 				89B0E9F91A00C0780031A846 /* MatchParser.m in Sources */,
-				89B0EA151A00C8460031A846 /* DialogUtil.m in Sources */,
 				890FFECE19F629950098B030 /* PublicGroupListViewController.m in Sources */,
 				890FFEB319F629950098B030 /* EMChatAudioBubbleView.m in Sources */,
 				890FFE7219F629950098B030 /* ChatListCell.m in Sources */,
@@ -3493,6 +3492,7 @@
 				890FFE5D19F629950098B030 /* PSTGridLayoutItem.m in Sources */,
 				890FFE5E19F629950098B030 /* PSTGridLayoutRow.m in Sources */,
 				890FFECB19F629950098B030 /* GroupSettingViewController.m in Sources */,
+				89B0EA321A00E9C70031A846 /* DialogUtil.m in Sources */,
 				890FFECD19F629950098B030 /* PublicGroupDetailViewController.m in Sources */,
 				890FFEE419F629950098B030 /* NSManagedObject+MagicalRequests.m in Sources */,
 				89B0E9F31A00C0780031A846 /* ASIHTTPRequest.m in Sources */,
