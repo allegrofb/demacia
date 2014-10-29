@@ -9,6 +9,7 @@
 #import "DMCBuddyMeTableViewController.h"
 #import "DMCBuddySettingsTableViewController.h"
 #import "RootViewController.h"
+#import "DMCMomentsViewController.h"
 
 
 @interface DMCBuddyMeTableViewController ()
@@ -155,7 +156,14 @@
     }
     else if(indexPath.section == 1)
     {
-        if(indexPath.row == 4)
+        if(indexPath.row == 3)
+        {
+            DMCMomentsViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCMomentsViewController"];
+            
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
+        else if(indexPath.row == 4)
         {
             DMCBuddySettingsTableViewController*vc = [[DMCBuddySettingsTableViewController alloc] init];
             

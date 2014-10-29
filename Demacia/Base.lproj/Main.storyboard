@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="i9d-pN-kQa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="i9d-pN-kQa">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--消息-->
@@ -386,5 +386,149 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="-662"/>
         </scene>
+        <!--朋友圈-->
+        <scene sceneID="ldj-n2-rdp">
+            <objects>
+                <viewController storyboardIdentifier="DMCMomentsViewController" hidesBottomBarWhenPushed="YES" id="W2r-24-O1j" customClass="DMCMomentsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ndT-iT-yjU"/>
+                        <viewControllerLayoutGuide type="bottom" id="r9M-XD-EQU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K0p-Mc-st5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="135" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="r34-Gg-zHh">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DMCMomentsTableViewCell" rowHeight="135" id="tTF-9G-IhS" customClass="DMCMomentsTableViewCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="135"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tTF-9G-IhS" id="u14-4T-zOp">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="134"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="people.png" translatesAutoresizingMaskIntoConstraints="NO" id="D6f-dP-OfQ">
+                                                    <rect key="frame" x="7" y="7" width="40" height="40"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="star" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVu-yb-S72">
+                                                    <rect key="frame" x="57" y="7" width="219" height="21"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.20000000000000001" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" contentMode="left" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3N5-VM-Phr">
+                                                    <rect key="frame" x="57" y="32" width="252" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSK-4W-2tn">
+                                                    <rect key="frame" x="57" y="57" width="236" height="10"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xnA-62-oXD">
+                                                    <rect key="frame" x="57" y="67" width="270" height="62"/>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jen-BR-4ly">
+                                                            <rect key="frame" x="0.0" y="4" width="130" height="21"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="AlbumTriangleB.png" translatesAutoresizingMaskIntoConstraints="NO" id="3FR-uJ-LPf">
+                                                            <rect key="frame" x="0.0" y="28" width="252" height="34"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <rect key="contentStretch" x="0.79999999999999982" y="0.74999999999999978" width="0.0" height="0.0"/>
+                                                        </imageView>
+                                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TSW-cH-Xtp">
+                                                            <rect key="frame" x="0.0" y="35" width="252" height="27"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <prototypes>
+                                                                <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="DMCMomentsCommentTableViewCell" rowHeight="21" id="A68-ev-WRz" customClass="DMCMomentsCommentTableViewCell">
+                                                                    <rect key="frame" x="0.0" y="22" width="252" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A68-ev-WRz" id="Xnh-Ml-Nsp">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="252" height="21"/>
+                                                                        <autoresizingMask key="autoresizingMask"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebb-XJ-qQS">
+                                                                                <rect key="frame" x="5" y="2" width="240" height="21"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </tableViewCellContentView>
+                                                                    <connections>
+                                                                        <outlet property="label" destination="ebb-XJ-qQS" id="Y4x-xf-mhd"/>
+                                                                    </connections>
+                                                                </tableViewCell>
+                                                            </prototypes>
+                                                            <connections>
+                                                                <outlet property="dataSource" destination="tTF-9G-IhS" id="2cE-Je-4qE"/>
+                                                                <outlet property="delegate" destination="tTF-9G-IhS" id="UUx-xy-F2N"/>
+                                                            </connections>
+                                                        </tableView>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaK-Uw-oYw">
+                                                            <rect key="frame" x="207" y="1" width="60" height="25"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <inset key="contentEdgeInsets" minX="22" minY="0.0" maxX="10" maxY="0.0"/>
+                                                            <state key="normal" image="AlbumOperateMore.png">
+                                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <state key="highlighted">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="btnReplyAction:" destination="tTF-9G-IhS" eventType="touchUpInside" id="I9c-jM-ufq"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="back" destination="3FR-uJ-LPf" id="8ij-le-9Fe"/>
+                                            <outlet property="btnReply" destination="vaK-Uw-oYw" id="j9R-ax-BTK"/>
+                                            <outlet property="content" destination="3N5-VM-Phr" id="u22-Bs-TsY"/>
+                                            <outlet property="imageContent" destination="JSK-4W-2tn" id="vr1-zH-aEn"/>
+                                            <outlet property="mLogo" destination="D6f-dP-OfQ" id="4P7-Hk-0Ce"/>
+                                            <outlet property="replyContent" destination="xnA-62-oXD" id="AZW-YV-oUC"/>
+                                            <outlet property="tableReply" destination="TSW-cH-Xtp" id="WG0-pu-LFh"/>
+                                            <outlet property="time" destination="Jen-BR-4ly" id="Fsm-4r-n3V"/>
+                                            <outlet property="title" destination="HVu-yb-S72" id="isT-dn-8xR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="W2r-24-O1j" id="miH-Lp-tzI"/>
+                                    <outlet property="delegate" destination="W2r-24-O1j" id="X3C-oV-0uY"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="朋友圈" id="OFk-FY-9IQ"/>
+                    <connections>
+                        <outlet property="tableView" destination="r34-Gg-zHh" id="8wm-zV-MLs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cog-R0-GUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2709" y="-2379"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="AlbumOperateMore.png" width="25" height="25"/>
+        <image name="AlbumTriangleB.png" width="45" height="30"/>
+        <image name="people.png" width="48" height="48"/>
+    </resources>
 </document>
