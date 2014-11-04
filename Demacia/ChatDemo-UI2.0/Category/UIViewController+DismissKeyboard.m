@@ -13,6 +13,7 @@
 #import "UIViewController+DismissKeyboard.h"
 
 @implementation UIViewController (DismissKeyboard)
+
 - (void)setupForDismissKeyboard {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     UITapGestureRecognizer *singleTapGR =

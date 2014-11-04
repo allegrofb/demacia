@@ -10,24 +10,15 @@
 #import "PageLoadFootView.h"
 #import "JSONPost.h"
 #import "JSONComment.h"
-//#import "HBCoreLabel.h"
 
-#define WeiboUpdateNotification  @"WeiboUpdateNotification"
 
 @interface DMCMomentsViewController : UIViewController<PageLoadFootViewDelegate,UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate>
 {
-    
-    
     NSMutableArray * _artArr;
-    
     NSMutableDictionary * _artDic;
-    
     void(^_block)(NSString*string);
-    
     JSONPost * _deleteWeibo;
-    
     NSIndexPath *_deletePath;
-    
     BOOL  animationEnd;
 }
 

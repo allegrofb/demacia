@@ -8,10 +8,11 @@
 
 #import "DMCMomentsViewController.h"
 #import "DMCMomentsTableViewCell.h"
+#import "DMCCommentMessageToolBar.h"
 #import "ObjUrlData.h"
 #import "JSONKit.h"
 
-@interface DMCMomentsViewController ()
+@interface DMCMomentsViewController () <DMCCommentMessageToolBarDelegate>
 {
     PageLoadFootView *_footView;
     BOOL _first;
@@ -24,6 +25,8 @@
     NSMutableArray * _contents;
 }
 
+@property (strong, nonatomic) DMCCommentMessageToolBar *chatToolBar;
+
 @end
 
 @implementation DMCMomentsViewController
@@ -33,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setupForDismissKeyboard];
     
     datas = [[NSMutableArray alloc] init];
     
@@ -84,6 +89,10 @@
     [self loadFromDb:YES];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     _first=NO;
+    
+    UIBarButtonItem* testButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(testAction)];
+
+    self.navigationItem.rightBarButtonItem = testButtonItem;
     
 }
 
@@ -338,15 +347,82 @@
 }
 
 
-#pragma -mark 私有方法
+#pragma mark - 私有方法
 
-#pragma -mark 事件响应方法
+#pragma mark - 事件响应方法
 
 -(void)update
 {
 //    [self loadFromDb:NO];
 }
 
+
+#pragma mark - DMCCommentMessageToolBarDelegate
+
+- (void)didSendText:(NSString *)text
+{
+//    if (text && text.length > 0) {
+//        [self sendTextMessage:text];
+//    }
+    
+    [_chatToolBar setHidden:YES];
+    [self.view endEditing:YES];
+
+}
+
+#pragma mark - dismiss keyboard
+
+- (void)setupForDismissKeyboard
+{
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    UITapGestureRecognizer *singleTapGR =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(tapAnywhereToDismissKeyboard:)];
+    
+    __weak UIViewController *weakSelf = self;
+    
+    NSOperationQueue *mainQuene =[NSOperationQueue mainQueue];
+    [nc addObserverForName:UIKeyboardWillShowNotification
+                    object:nil
+                     queue:mainQuene
+                usingBlock:^(NSNotification *note){
+                    [weakSelf.view addGestureRecognizer:singleTapGR];
+                }];
+    [nc addObserverForName:UIKeyboardWillHideNotification
+                    object:nil
+                     queue:mainQuene
+                usingBlock:^(NSNotification *note){
+                    [weakSelf.view removeGestureRecognizer:singleTapGR];
+                }];
+}
+
+- (void)tapAnywhereToDismissKeyboard:(UIGestureRecognizer *)gestureRecognizer {
+    //此method会将self.view里所有的subview的first responder都resign掉
+    [_chatToolBar setHidden:YES];
+    [self.view endEditing:YES];
+}
+
+#pragma mark - test button action
+
+- (void)testAction
+{
+    if(_chatToolBar == nil)
+    {
+        _chatToolBar = [[DMCCommentMessageToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - [DMCCommentMessageToolBar defaultHeight], self.view.frame.size.width, [DMCCommentMessageToolBar defaultHeight])];
+        
+        _chatToolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
+        _chatToolBar.delegate = self;
+        
+        [self.view addSubview:_chatToolBar];
+        [_chatToolBar.inputTextView becomeFirstResponder];
+    }
+    else
+    {
+        [_chatToolBar setHidden:NO];
+        [_chatToolBar.inputTextView becomeFirstResponder];
+    }
+    
+}
 
 
 @end
