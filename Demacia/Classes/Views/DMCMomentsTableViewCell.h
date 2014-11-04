@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "HBShowImageControl.h"
-#import "JSONPost.h"
-#import "JSONComment.h"
+#import "DMCPost.h"
+#import "DMCComment.h"
 #import "DMCMomentsViewController.h"
 #import <QuickLook/QuickLook.h>
 
@@ -26,8 +26,8 @@
 
 @interface DMCMomentsTableViewCell : UITableViewCell<HBShowImageControlDelegate,UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
-    JSONPost * _weibo;
-    JSONComment * _reply;
+    DMCPost * _weibo;
+    DMCComment * _reply;
     
     //    HBCellOperation * _operation;
     
@@ -55,9 +55,9 @@
 @property(nonatomic,strong) DMCMomentsViewController * controller;
 
 -(void)loadReply;
--(void)setCellContent:(JSONPost *)data;
+-(void)setCellContent:(DMCPost *)data;
 
-+(float)getHeightByContent:(JSONPost*)data;
++(float)getHeightByContent:(DMCPost*)data;
 +(float) heightForReply:(NSArray*)replys;
 
 @end

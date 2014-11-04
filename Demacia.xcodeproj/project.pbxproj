@@ -436,6 +436,15 @@
 		89B0EA171A00C8460031A846 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA141A00C8460031A846 /* MBProgressHUD.m */; };
 		89B0EA351A00EB010031A846 /* DialogUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA341A00EB010031A846 /* DialogUtil.m */; };
 		89B0EA381A01D0720031A846 /* DMCCommentMessageToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA371A01D0720031A846 /* DMCCommentMessageToolBar.m */; };
+		89B0EA3E1A085DFC0031A846 /* DMCDatastore.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA3D1A085DFC0031A846 /* DMCDatastore.m */; };
+		89B0EA411A0871310031A846 /* DMCPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA401A0871310031A846 /* DMCPost.m */; };
+		89B0EA441A0871980031A846 /* DMCComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA431A0871980031A846 /* DMCComment.m */; };
+		89B0EA471A0874510031A846 /* JSONUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA461A0874510031A846 /* JSONUserDetail.m */; };
+		89B0EA4A1A0874740031A846 /* JSONCarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA491A0874740031A846 /* JSONCarInfo.m */; };
+		89B0EA4D1A0874930031A846 /* JSONModelInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA4C1A0874930031A846 /* JSONModelInfo.m */; };
+		89B0EA501A0875420031A846 /* JSONGroupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA4F1A0875420031A846 /* JSONGroupInfo.m */; };
+		89B0EA531A08755A0031A846 /* JSONGroupDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA521A08755A0031A846 /* JSONGroupDetail.m */; };
+		89B0EA561A0875760031A846 /* JSONGroupPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA551A0875760031A846 /* JSONGroupPost.m */; };
 		89F7DD2319F8D44900334B5D /* DMCBuddySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7DD2219F8D44900334B5D /* DMCBuddySettingsTableViewController.m */; };
 		89F7DD2619FDCD7400334B5D /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F7DD2519FDCD7400334B5D /* BmobSDK.framework */; };
 		89F7DD4E19FDCDF600334B5D /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F7DD2819FDCDF600334B5D /* add@2x.png */; };
@@ -1202,6 +1211,24 @@
 		89B0EA341A00EB010031A846 /* DialogUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogUtil.m; sourceTree = "<group>"; };
 		89B0EA361A01D0720031A846 /* DMCCommentMessageToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCCommentMessageToolBar.h; sourceTree = "<group>"; };
 		89B0EA371A01D0720031A846 /* DMCCommentMessageToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCCommentMessageToolBar.m; sourceTree = "<group>"; };
+		89B0EA3C1A085DFC0031A846 /* DMCDatastore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCDatastore.h; sourceTree = "<group>"; };
+		89B0EA3D1A085DFC0031A846 /* DMCDatastore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCDatastore.m; sourceTree = "<group>"; };
+		89B0EA3F1A0871310031A846 /* DMCPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCPost.h; sourceTree = "<group>"; };
+		89B0EA401A0871310031A846 /* DMCPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCPost.m; sourceTree = "<group>"; };
+		89B0EA421A0871980031A846 /* DMCComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCComment.h; sourceTree = "<group>"; };
+		89B0EA431A0871980031A846 /* DMCComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCComment.m; sourceTree = "<group>"; };
+		89B0EA451A0874510031A846 /* JSONUserDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONUserDetail.h; sourceTree = "<group>"; };
+		89B0EA461A0874510031A846 /* JSONUserDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONUserDetail.m; sourceTree = "<group>"; };
+		89B0EA481A0874740031A846 /* JSONCarInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONCarInfo.h; sourceTree = "<group>"; };
+		89B0EA491A0874740031A846 /* JSONCarInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONCarInfo.m; sourceTree = "<group>"; };
+		89B0EA4B1A0874930031A846 /* JSONModelInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelInfo.h; sourceTree = "<group>"; };
+		89B0EA4C1A0874930031A846 /* JSONModelInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelInfo.m; sourceTree = "<group>"; };
+		89B0EA4E1A0875420031A846 /* JSONGroupInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONGroupInfo.h; sourceTree = "<group>"; };
+		89B0EA4F1A0875420031A846 /* JSONGroupInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONGroupInfo.m; sourceTree = "<group>"; };
+		89B0EA511A08755A0031A846 /* JSONGroupDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONGroupDetail.h; sourceTree = "<group>"; };
+		89B0EA521A08755A0031A846 /* JSONGroupDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONGroupDetail.m; sourceTree = "<group>"; };
+		89B0EA541A0875760031A846 /* JSONGroupPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONGroupPost.h; sourceTree = "<group>"; };
+		89B0EA551A0875760031A846 /* JSONGroupPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONGroupPost.m; sourceTree = "<group>"; };
 		89F7DD2119F8D44900334B5D /* DMCBuddySettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCBuddySettingsTableViewController.h; sourceTree = "<group>"; };
 		89F7DD2219F8D44900334B5D /* DMCBuddySettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCBuddySettingsTableViewController.m; sourceTree = "<group>"; };
 		89F7DD2519FDCD7400334B5D /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
@@ -1362,6 +1389,7 @@
 		890FFB7919F5F2540098B030 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				89B0EA3B1A085DCE0031A846 /* Datastore */,
 				89F7DD8A19FF694F00334B5D /* JSONObject */,
 				890FFB7A19F5F2540098B030 /* Controllers */,
 				890FFB7B19F5F2540098B030 /* Delegates */,
@@ -1412,6 +1440,10 @@
 		890FFB7E19F5F2540098B030 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				89B0EA3F1A0871310031A846 /* DMCPost.h */,
+				89B0EA401A0871310031A846 /* DMCPost.m */,
+				89B0EA421A0871980031A846 /* DMCComment.h */,
+				89B0EA431A0871980031A846 /* DMCComment.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2913,6 +2945,15 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		89B0EA3B1A085DCE0031A846 /* Datastore */ = {
+			isa = PBXGroup;
+			children = (
+				89B0EA3C1A085DFC0031A846 /* DMCDatastore.h */,
+				89B0EA3D1A085DFC0031A846 /* DMCDatastore.m */,
+			);
+			path = Datastore;
+			sourceTree = "<group>";
+		};
 		89F7DD2419FDCD7400334B5D /* BmobSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -2969,6 +3010,18 @@
 				89F7DD8E19FF698A00334B5D /* JSONUserInfo.m */,
 				89F7DD9019FF6A0D00334B5D /* JSONModel.h */,
 				89F7DD9119FF6A0D00334B5D /* JSONModel.m */,
+				89B0EA451A0874510031A846 /* JSONUserDetail.h */,
+				89B0EA461A0874510031A846 /* JSONUserDetail.m */,
+				89B0EA481A0874740031A846 /* JSONCarInfo.h */,
+				89B0EA491A0874740031A846 /* JSONCarInfo.m */,
+				89B0EA4B1A0874930031A846 /* JSONModelInfo.h */,
+				89B0EA4C1A0874930031A846 /* JSONModelInfo.m */,
+				89B0EA4E1A0875420031A846 /* JSONGroupInfo.h */,
+				89B0EA4F1A0875420031A846 /* JSONGroupInfo.m */,
+				89B0EA511A08755A0031A846 /* JSONGroupDetail.h */,
+				89B0EA521A08755A0031A846 /* JSONGroupDetail.m */,
+				89B0EA541A0875760031A846 /* JSONGroupPost.h */,
+				89B0EA551A0875760031A846 /* JSONGroupPost.m */,
 			);
 			path = JSONObject;
 			sourceTree = "<group>";
@@ -3398,6 +3451,7 @@
 				89B0E9E01A00C0780031A846 /* LKDB+Manager.m in Sources */,
 				890FFE5A19F629950098B030 /* PSTCollectionViewLayout.m in Sources */,
 				890FFBE719F5F27A0098B030 /* UITableViewActivityCell.m in Sources */,
+				89B0EA501A0875420031A846 /* JSONGroupInfo.m in Sources */,
 				890FFEC319F629950098B030 /* CreateGroupViewController.m in Sources */,
 				890FFEFC19F629950098B030 /* EMSearchBar.m in Sources */,
 				89B0E9661A00B4BC0031A846 /* DMCMomentsTableViewCell.m in Sources */,
@@ -3434,9 +3488,11 @@
 				890FFEBF19F629950098B030 /* MessageModelManager.m in Sources */,
 				89B0EA171A00C8460031A846 /* MBProgressHUD.m in Sources */,
 				89F7DD9219FF6A0D00334B5D /* JSONModel.m in Sources */,
+				89B0EA4D1A0874930031A846 /* JSONModelInfo.m in Sources */,
 				89B0E9EA1A00C0780031A846 /* HBHttpImageDownloaderOperation.m in Sources */,
 				890FFE7E19F629950098B030 /* ChatSendHelper.m in Sources */,
 				890FFEFF19F629950098B030 /* BaseViewController.m in Sources */,
+				89B0EA531A08755A0031A846 /* JSONGroupDetail.m in Sources */,
 				890FFF0019F629950098B030 /* EMChooseViewController.m in Sources */,
 				890FFBC719F5F27A0098B030 /* ALMoviePlayerControls.m in Sources */,
 				890FFBDB19F5F27A0098B030 /* RadioButton.m in Sources */,
@@ -3461,6 +3517,8 @@
 				899D754819F88AD60052CBA6 /* DMCBuddyMeTableViewController.m in Sources */,
 				890FFE5519F629950098B030 /* PSTCollectionViewCell.m in Sources */,
 				890FFEF819F629950098B030 /* DebugViewController.m in Sources */,
+				89B0EA4A1A0874740031A846 /* JSONCarInfo.m in Sources */,
+				89B0EA561A0875760031A846 /* JSONGroupPost.m in Sources */,
 				890FFE5619F629950098B030 /* PSTCollectionViewController.m in Sources */,
 				890FFEBA19F629950098B030 /* EMChatTimeCell.m in Sources */,
 				890FFBC419F5F27A0098B030 /* ALAirplayView.m in Sources */,
@@ -3472,6 +3530,7 @@
 				89B0E9631A00B2300031A846 /* DMCMomentsViewController.m in Sources */,
 				890FFEDF19F629950098B030 /* NSString+MagicalDataImport.m in Sources */,
 				890FFEEE19F629950098B030 /* MagicalRecord+iCloud.m in Sources */,
+				89B0EA3E1A085DFC0031A846 /* DMCDatastore.m in Sources */,
 				89F7DD5B19FDCDF600334B5D /* FoundTableViewCell.m in Sources */,
 				890FFEDA19F629950098B030 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				890FFBEB19F5F27A0098B030 /* UITableViewTextFieldCell.m in Sources */,
@@ -3490,6 +3549,7 @@
 				892E9A8119F753F400D396E6 /* DMCFirstViewController.m in Sources */,
 				890FFEE819F629950098B030 /* NSManagedObjectContext+MagicalThreading.m in Sources */,
 				89B0E9F51A00C0780031A846 /* ASINetworkQueue.m in Sources */,
+				89B0EA441A0871980031A846 /* DMCComment.m in Sources */,
 				890FFF0219F629950098B030 /* EMSearchDisplayController.m in Sources */,
 				890FFBE619F5F27A0098B030 /* CDeviceSupport.m in Sources */,
 				890FFB4F19F5F0520098B030 /* AppDelegate.m in Sources */,
@@ -3526,7 +3586,9 @@
 				890FFBE919F5F27A0098B030 /* UITableViewSwitchCell.m in Sources */,
 				899D756619F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m in Sources */,
 				890FFE5919F629950098B030 /* PSTCollectionViewItemKey.m in Sources */,
+				89B0EA411A0871310031A846 /* DMCPost.m in Sources */,
 				89B0E97E1A00BCC10031A846 /* JSONComment.m in Sources */,
+				89B0EA471A0874510031A846 /* JSONUserDetail.m in Sources */,
 				890FFBC519F5F27A0098B030 /* ALButton.m in Sources */,
 				890FFEE619F629950098B030 /* NSManagedObjectContext+MagicalRecord.m in Sources */,
 				89B0EA081A00C5400031A846 /* Jastor.m in Sources */,

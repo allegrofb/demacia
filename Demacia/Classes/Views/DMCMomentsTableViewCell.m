@@ -128,7 +128,7 @@
     [self.tableReply reloadData];
 }
 
--(void)setCellContent:(JSONPost *)weibo
+-(void)setCellContent:(DMCPost *)weibo
 {
 //    weibo.willDisplay=YES;
 //    if(weibo.msgId.intValue==_weibo.msgId.intValue&&weibo.local==_weibo.local&&linesLimit==weibo.linesLimit&&[_weibo.replys count]==[weibo.replys count])

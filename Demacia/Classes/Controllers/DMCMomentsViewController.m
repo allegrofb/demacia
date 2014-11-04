@@ -114,7 +114,7 @@
         NSMutableArray * array=[[NSMutableArray alloc]init];
         for (int i=0; i<8; i++)
         {
-            JSONPost * data=[[JSONPost alloc]init];
+            DMCPost * data=[[DMCPost alloc]init];
             data.content=[_contents objectAtIndex:(msgId%_contents.count)];
             data.msgId=[NSString stringWithFormat:@"%d",msgId++];
             [array addObject:data];
@@ -156,7 +156,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"section = %d, row = %d",indexPath.section,indexPath.row);
-    JSONPost * weibo=[datas objectAtIndex:indexPath.row];
+    DMCPost * weibo=[datas objectAtIndex:indexPath.row];
     DMCMomentsTableViewCell *cell = nil;
     
     cell = [tableView dequeueReusableCellWithIdentifier:@"DMCMomentsTableViewCell" forIndexPath:indexPath];
@@ -232,7 +232,7 @@
 
 -(void)loadWeboData:(NSArray*)webos complete:(void(^)())complete formDb:(BOOL)fromDb
 {
-    for(JSONPost * weibo in webos)
+    for(DMCPost * weibo in webos)
     {
 //        weibo.match=nil;
 //        [weibo setMatch];
