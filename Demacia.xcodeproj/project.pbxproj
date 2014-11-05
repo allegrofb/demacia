@@ -445,6 +445,8 @@
 		89B0EA501A0875420031A846 /* JSONGroupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA4F1A0875420031A846 /* JSONGroupInfo.m */; };
 		89B0EA531A08755A0031A846 /* JSONGroupDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA521A08755A0031A846 /* JSONGroupDetail.m */; };
 		89B0EA561A0875760031A846 /* JSONGroupPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA551A0875760031A846 /* JSONGroupPost.m */; };
+		89B0EA591A09B2C50031A846 /* DMCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA581A09B2C40031A846 /* DMCLoginViewController.m */; };
+		89B0EA5C1A09E23B0031A846 /* DMCUserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA5B1A09E23B0031A846 /* DMCUserHelper.m */; };
 		89F7DD2319F8D44900334B5D /* DMCBuddySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7DD2219F8D44900334B5D /* DMCBuddySettingsTableViewController.m */; };
 		89F7DD2619FDCD7400334B5D /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F7DD2519FDCD7400334B5D /* BmobSDK.framework */; };
 		89F7DD4E19FDCDF600334B5D /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F7DD2819FDCDF600334B5D /* add@2x.png */; };
@@ -1229,6 +1231,10 @@
 		89B0EA521A08755A0031A846 /* JSONGroupDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONGroupDetail.m; sourceTree = "<group>"; };
 		89B0EA541A0875760031A846 /* JSONGroupPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONGroupPost.h; sourceTree = "<group>"; };
 		89B0EA551A0875760031A846 /* JSONGroupPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONGroupPost.m; sourceTree = "<group>"; };
+		89B0EA571A09B2C40031A846 /* DMCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCLoginViewController.h; sourceTree = "<group>"; };
+		89B0EA581A09B2C40031A846 /* DMCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCLoginViewController.m; sourceTree = "<group>"; };
+		89B0EA5A1A09E23B0031A846 /* DMCUserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCUserHelper.h; sourceTree = "<group>"; };
+		89B0EA5B1A09E23B0031A846 /* DMCUserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCUserHelper.m; sourceTree = "<group>"; };
 		89F7DD2119F8D44900334B5D /* DMCBuddySettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCBuddySettingsTableViewController.h; sourceTree = "<group>"; };
 		89F7DD2219F8D44900334B5D /* DMCBuddySettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCBuddySettingsTableViewController.m; sourceTree = "<group>"; };
 		89F7DD2519FDCD7400334B5D /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
@@ -1419,6 +1425,8 @@
 				89F7DD7019FF3B3800334B5D /* DMCModelGroupTabBarController.m */,
 				89B0E9611A00B2300031A846 /* DMCMomentsViewController.h */,
 				89B0E9621A00B2300031A846 /* DMCMomentsViewController.m */,
+				89B0EA571A09B2C40031A846 /* DMCLoginViewController.h */,
+				89B0EA581A09B2C40031A846 /* DMCLoginViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2950,6 +2958,8 @@
 			children = (
 				89B0EA3C1A085DFC0031A846 /* DMCDatastore.h */,
 				89B0EA3D1A085DFC0031A846 /* DMCDatastore.m */,
+				89B0EA5A1A09E23B0031A846 /* DMCUserHelper.h */,
+				89B0EA5B1A09E23B0031A846 /* DMCUserHelper.m */,
 			);
 			path = Datastore;
 			sourceTree = "<group>";
@@ -3519,6 +3529,7 @@
 				890FFEF819F629950098B030 /* DebugViewController.m in Sources */,
 				89B0EA4A1A0874740031A846 /* JSONCarInfo.m in Sources */,
 				89B0EA561A0875760031A846 /* JSONGroupPost.m in Sources */,
+				89B0EA5C1A09E23B0031A846 /* DMCUserHelper.m in Sources */,
 				890FFE5619F629950098B030 /* PSTCollectionViewController.m in Sources */,
 				890FFEBA19F629950098B030 /* EMChatTimeCell.m in Sources */,
 				890FFBC419F5F27A0098B030 /* ALAirplayView.m in Sources */,
@@ -3537,6 +3548,7 @@
 				899D756919F8CBB90052CBA6 /* DMCBuddyDiscoveryTableViewController.m in Sources */,
 				890FFE5719F629950098B030 /* PSTCollectionViewData.m in Sources */,
 				890FFE8919F629950098B030 /* DXRecordView.m in Sources */,
+				89B0EA591A09B2C50031A846 /* DMCLoginViewController.m in Sources */,
 				890FFBE519F5F27A0098B030 /* UIImage+ColouredButton.m in Sources */,
 				890FFE5419F629950098B030 /* PSTCollectionView.m in Sources */,
 				890FFE4D19F629950098B030 /* MWPhoto.m in Sources */,

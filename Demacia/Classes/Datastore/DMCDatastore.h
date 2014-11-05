@@ -15,6 +15,31 @@ typedef void (^DMCRemoteDictResultBlock) (NSDictionary* result, BOOL isSuccessfu
 typedef void (^DMCRemoteListResultBlock) (NSArray* result, BmobQuery* query, BOOL isSuccessful, NSError *error);
 
 
+typedef enum : NSUInteger {
+    
+    DMCErrorUserNameTaken = 202,
+    
+    DMCErrorPasswordNil      = 20000,     
+    DMCErrorUserNameNil,
+    DMCErrorConnectionFailure,
+    DMCErrorNoneObjectId,
+    DMCErrorNoneObject,
+    DMCErrorExpired,
+    DMCErrorCloudFunctionFailure,
+    DMCErrorNoneFileName,
+    DMCErrorNoneFile,
+    DMCErrorUnknown,
+    DMCErrorNoneFileData,
+    DMCErrorNoneUpdateContent,
+    DMCErrorCloudFunctionNameNil,
+    DMCErrorArrayTooBig,
+    DMCErrorArrayNil,
+    DMCErrorPushContentNil,
+
+} DMCErrorType;
+
+
+
 @interface DMCDatastore : NSObject
 
 - (void)signUp:(NSString*)username password:(NSString*)password block:(DMCRemoteLoginResultBlock)block;

@@ -10,6 +10,7 @@
 #import "DMCBuddyTabBarController.h"
 #import "LoginViewController.h"
 #import "ApplyViewController.h"
+#import "DMCLoginViewController.h"
 
 @interface DMCFirstViewController ()
 
@@ -83,7 +84,10 @@
     {
         buddyTabBarController = nil;
         carGroupTabBarController = nil;
-        LoginViewController *loginController = [[LoginViewController alloc] init];
+//        LoginViewController *loginController = [[LoginViewController alloc] init];
+//        [nav pushViewController:loginController animated:NO];
+//        loginController.title = @"CarChat";
+        DMCLoginViewController *loginController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCLoginViewController"];
         [nav pushViewController:loginController animated:NO];
         loginController.title = @"CarChat";
     }

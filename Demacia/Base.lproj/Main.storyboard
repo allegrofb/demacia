@@ -530,10 +530,101 @@
             </objects>
             <point key="canvasLocation" x="-2709" y="-2379"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="bHg-To-2ri">
+            <objects>
+                <viewController storyboardIdentifier="DMCLoginViewController" id="z4T-gk-iTW" customClass="DMCLoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LRp-u7-e6e"/>
+                        <viewControllerLayoutGuide type="bottom" id="IbM-jd-t0O"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dee-z2-IkZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JVg-Ia-NGx">
+                                <rect key="frame" x="140" y="16" width="320" height="568"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="account.png" translatesAutoresizingMaskIntoConstraints="NO" id="7nS-cU-oBQ">
+                                        <rect key="frame" x="49" y="43" width="18" height="18"/>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="个人账号/手机" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="t7y-WB-owg" userLabel="username - 个人账号/手机">
+                                        <rect key="frame" x="82" y="37" width="193" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bja-0M-URF">
+                                        <rect key="frame" x="45" y="66" width="230" height="1"/>
+                                        <color key="backgroundColor" red="0.84313725490000002" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="password.png" translatesAutoresizingMaskIntoConstraints="NO" id="eXA-pg-pPZ">
+                                        <rect key="frame" x="49" y="83" width="18" height="18"/>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="H8h-Vm-K74" userLabel="password - 密码">
+                                        <rect key="frame" x="82" y="77" width="193" height="30"/>
+                                        <color key="tintColor" red="0.74977948589999999" green="0.18706713229999999" blue="0.19164996079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QxK-9h-yzE">
+                                        <rect key="frame" x="45" y="106" width="230" height="1"/>
+                                        <color key="backgroundColor" red="0.84313725490000002" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tf3-Sv-KhD">
+                                        <rect key="frame" x="35" y="136" width="80" height="44"/>
+                                        <color key="backgroundColor" red="0.3411764706" green="0.72941176470000002" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="注册">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doRegister:" destination="z4T-gk-iTW" eventType="touchDown" id="4j1-yr-nUD"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bev-KM-6wi">
+                                        <rect key="frame" x="125" y="136" width="160" height="43"/>
+                                        <color key="backgroundColor" red="0.0" green="0.39607843139999999" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                        <state key="normal" title="登录">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doLogin:" destination="z4T-gk-iTW" eventType="touchDown" id="vcc-Xc-5Ii"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="JVg-Ia-NGx" secondAttribute="centerX" id="3oM-xT-og2"/>
+                            <constraint firstAttribute="centerY" secondItem="JVg-Ia-NGx" secondAttribute="centerY" id="GZF-CK-ZTB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="H8h-Vm-K74" id="XJd-r1-2ai"/>
+                        <outlet property="usernameTextField" destination="t7y-WB-owg" id="rvw-Mg-96f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nfP-Wo-6Lb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2709" y="-1722"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AlbumOperateMore.png" width="25" height="25"/>
         <image name="AlbumTriangleB.png" width="45" height="30"/>
+        <image name="account.png" width="18" height="18"/>
+        <image name="password.png" width="18" height="18"/>
         <image name="people.png" width="48" height="48"/>
     </resources>
 </document>

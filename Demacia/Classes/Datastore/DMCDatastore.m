@@ -30,9 +30,6 @@
 
 - (void)signUp:(NSString*)username password:(NSString*)password block:(DMCRemoteLoginResultBlock)block
 {
-    //signup Easemob
-    
-    
     //signup Bmob
     BmobUser *bUser = [[BmobUser alloc] init];
     [bUser setUserName:username];
@@ -128,7 +125,7 @@
                 }
                 else
                 {
-                    block(array[0],isSuccessful,error);
+                    block(array[0],YES,error);
                 }
                 
             }];
