@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ApplyEntity" representedClassName="ApplyEntity" syncable="YES">
         <attribute name="applicantNick" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="applicantUsername" optional="YES" attributeType="String" syncable="YES"/>
@@ -10,7 +10,11 @@
         <attribute name="receiverUsername" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="style" optional="YES" attributeType="Integer 16" syncable="YES"/>
     </entity>
+    <entity name="AppSettings" representedClassName="AppSettings" syncable="YES">
+        <attribute name="isAutoLogin" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
     <elements>
         <element name="ApplyEntity" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="AppSettings" positionX="-63" positionY="45" width="128" height="58"/>
     </elements>
 </model>

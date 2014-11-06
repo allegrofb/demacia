@@ -373,6 +373,11 @@
 		890FFF8519F640930098B030 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 890FFF8419F640930098B030 /* libz.dylib */; };
 		890FFF8719F640AF0098B030 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 890FFF8619F640AF0098B030 /* libresolv.dylib */; };
 		892E9A8119F753F400D396E6 /* DMCFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 892E9A8019F753F400D396E6 /* DMCFirstViewController.m */; };
+		894A5B891A0B406F007C0A1A /* DMCBuddyWritePostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894A5B881A0B406F007C0A1A /* DMCBuddyWritePostTableViewController.m */; };
+		894A5B8C1A0B4572007C0A1A /* DMCWritePostTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 894A5B8B1A0B4572007C0A1A /* DMCWritePostTextTableViewCell.m */; };
+		894A5B8F1A0B4585007C0A1A /* DMCWritePostImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 894A5B8E1A0B4585007C0A1A /* DMCWritePostImageTableViewCell.m */; };
+		894A5B921A0B4FD5007C0A1A /* DMCWritePostImageImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 894A5B911A0B4FD5007C0A1A /* DMCWritePostImageImageCollectionViewCell.m */; };
+		894A5B991A0B67F6007C0A1A /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 894A5B981A0B67F6007C0A1A /* AppSettings.m */; };
 		899D754819F88AD60052CBA6 /* DMCBuddyMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D754719F88AD60052CBA6 /* DMCBuddyMeTableViewController.m */; };
 		899D754B19F8971B0052CBA6 /* DMCKeyChainUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D754A19F8971B0052CBA6 /* DMCKeyChainUtil.m */; };
 		899D756619F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D756519F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m */; };
@@ -1092,6 +1097,16 @@
 		890FFF8819F640E70098B030 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		892E9A7F19F753F400D396E6 /* DMCFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCFirstViewController.h; sourceTree = "<group>"; };
 		892E9A8019F753F400D396E6 /* DMCFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCFirstViewController.m; sourceTree = "<group>"; };
+		894A5B871A0B406F007C0A1A /* DMCBuddyWritePostTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCBuddyWritePostTableViewController.h; sourceTree = "<group>"; };
+		894A5B881A0B406F007C0A1A /* DMCBuddyWritePostTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCBuddyWritePostTableViewController.m; sourceTree = "<group>"; };
+		894A5B8A1A0B4572007C0A1A /* DMCWritePostTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCWritePostTextTableViewCell.h; sourceTree = "<group>"; };
+		894A5B8B1A0B4572007C0A1A /* DMCWritePostTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCWritePostTextTableViewCell.m; sourceTree = "<group>"; };
+		894A5B8D1A0B4585007C0A1A /* DMCWritePostImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCWritePostImageTableViewCell.h; sourceTree = "<group>"; };
+		894A5B8E1A0B4585007C0A1A /* DMCWritePostImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCWritePostImageTableViewCell.m; sourceTree = "<group>"; };
+		894A5B901A0B4FD5007C0A1A /* DMCWritePostImageImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCWritePostImageImageCollectionViewCell.h; sourceTree = "<group>"; };
+		894A5B911A0B4FD5007C0A1A /* DMCWritePostImageImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCWritePostImageImageCollectionViewCell.m; sourceTree = "<group>"; };
+		894A5B971A0B67F6007C0A1A /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
+		894A5B981A0B67F6007C0A1A /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
 		899D754619F88AD60052CBA6 /* DMCBuddyMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCBuddyMeTableViewController.h; sourceTree = "<group>"; };
 		899D754719F88AD60052CBA6 /* DMCBuddyMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCBuddyMeTableViewController.m; sourceTree = "<group>"; };
 		899D754919F8971B0052CBA6 /* DMCKeyChainUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCKeyChainUtil.h; sourceTree = "<group>"; };
@@ -1395,6 +1410,7 @@
 		890FFB7919F5F2540098B030 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				894A5B961A0B67F6007C0A1A /* CoreData */,
 				89B0EA3B1A085DCE0031A846 /* Datastore */,
 				89F7DD8A19FF694F00334B5D /* JSONObject */,
 				890FFB7A19F5F2540098B030 /* Controllers */,
@@ -1427,6 +1443,8 @@
 				89B0E9621A00B2300031A846 /* DMCMomentsViewController.m */,
 				89B0EA571A09B2C40031A846 /* DMCLoginViewController.h */,
 				89B0EA581A09B2C40031A846 /* DMCLoginViewController.m */,
+				894A5B871A0B406F007C0A1A /* DMCBuddyWritePostTableViewController.h */,
+				894A5B881A0B406F007C0A1A /* DMCBuddyWritePostTableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1465,6 +1483,12 @@
 				89B0E9651A00B4BC0031A846 /* DMCMomentsTableViewCell.m */,
 				89B0EA361A01D0720031A846 /* DMCCommentMessageToolBar.h */,
 				89B0EA371A01D0720031A846 /* DMCCommentMessageToolBar.m */,
+				894A5B8A1A0B4572007C0A1A /* DMCWritePostTextTableViewCell.h */,
+				894A5B8B1A0B4572007C0A1A /* DMCWritePostTextTableViewCell.m */,
+				894A5B8D1A0B4585007C0A1A /* DMCWritePostImageTableViewCell.h */,
+				894A5B8E1A0B4585007C0A1A /* DMCWritePostImageTableViewCell.m */,
+				894A5B901A0B4FD5007C0A1A /* DMCWritePostImageImageCollectionViewCell.h */,
+				894A5B911A0B4FD5007C0A1A /* DMCWritePostImageImageCollectionViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2710,6 +2734,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		894A5B961A0B67F6007C0A1A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				894A5B971A0B67F6007C0A1A /* AppSettings.h */,
+				894A5B981A0B67F6007C0A1A /* AppSettings.m */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		89B0E9501A00B15A0031A846 /* HBWeibo */ = {
 			isa = PBXGroup;
 			children = (
@@ -3441,6 +3474,7 @@
 				890FFEB419F629950098B030 /* EMChatBaseBubbleView.m in Sources */,
 				890FFE7319F629950098B030 /* ChatListViewController.m in Sources */,
 				890FFED219F629950098B030 /* AddFriendCell.m in Sources */,
+				894A5B921A0B4FD5007C0A1A /* DMCWritePostImageImageCollectionViewCell.m in Sources */,
 				890FFED719F629950098B030 /* RealtimeSearchUtil.m in Sources */,
 				890FFEBE19F629950098B030 /* MessageModel.m in Sources */,
 				89B0E9F41A00C0780031A846 /* ASIInputStream.m in Sources */,
@@ -3479,11 +3513,13 @@
 				89B0E9DC1A00C0780031A846 /* FMDatabaseAdditions.m in Sources */,
 				89B0E95E1A00B15A0031A846 /* HBImageViewList.m in Sources */,
 				890FFE8219F629950098B030 /* LocationViewController.m in Sources */,
+				894A5B991A0B67F6007C0A1A /* AppSettings.m in Sources */,
 				890FFE6C19F629950098B030 /* UIResponder+Router.m in Sources */,
 				89B0E9F61A00C0780031A846 /* Reachability.m in Sources */,
 				890FFEEA19F629950098B030 /* NSPersistentStore+MagicalRecord.m in Sources */,
 				89B0E9F91A00C0780031A846 /* MatchParser.m in Sources */,
 				890FFECE19F629950098B030 /* PublicGroupListViewController.m in Sources */,
+				894A5B8C1A0B4572007C0A1A /* DMCWritePostTextTableViewCell.m in Sources */,
 				890FFEB319F629950098B030 /* EMChatAudioBubbleView.m in Sources */,
 				890FFE7219F629950098B030 /* ChatListCell.m in Sources */,
 				89B0E9FA1A00C0780031A846 /* NSImageUtil.m in Sources */,
@@ -3521,6 +3557,7 @@
 				890FFED319F629950098B030 /* AddFriendViewController.m in Sources */,
 				890FFBC619F5F27A0098B030 /* ALMoviePlayerController.m in Sources */,
 				89F7DD6E19FDCEA800334B5D /* AddViewController.m in Sources */,
+				894A5B891A0B406F007C0A1A /* DMCBuddyWritePostTableViewController.m in Sources */,
 				890FFEEB19F629950098B030 /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				890FFEE519F629950098B030 /* NSManagedObjectContext+MagicalObserving.m in Sources */,
 				890FFEFA19F629950098B030 /* SettingsViewController.m in Sources */,
@@ -3594,6 +3631,7 @@
 				890FFBE119F5F27A0098B030 /* DocFilesMgr.m in Sources */,
 				890FFE7F19F629950098B030 /* ChatViewController.m in Sources */,
 				89F7DD6419FDCDF600334B5D /* News.m in Sources */,
+				894A5B8F1A0B4585007C0A1A /* DMCWritePostImageTableViewCell.m in Sources */,
 				890FFEF119F629950098B030 /* MagicalRecord+ShorthandSupport.m in Sources */,
 				890FFBE919F5F27A0098B030 /* UITableViewSwitchCell.m in Sources */,
 				899D756619F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m in Sources */,

@@ -157,7 +157,13 @@
     }
     else if(indexPath.section == 1)
     {
-        if(indexPath.row == 3)
+        if(indexPath.row == 0)
+        {
+            UITableViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCBuddyWritePostTableViewController"];
+            
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if(indexPath.row == 3)
         {
             DMCMomentsViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCMomentsViewController"];
             

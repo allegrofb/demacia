@@ -11,6 +11,9 @@
 #import "LoginViewController.h"
 #import "ApplyViewController.h"
 #import "DMCLoginViewController.h"
+#import "AppSettings.h"
+#import "DMCDatastore.h"
+#import "DMCUserHelper.h"
 
 @interface DMCFirstViewController ()
 
@@ -30,7 +33,8 @@
                                                  name:KNOTIFICATION_LOGINCHANGE
                                                object:nil];
     
-    [self loginStateChange:nil];
+//    [self loginStateChange:nil];
+    [self login];
     
 }
 
@@ -52,14 +56,139 @@
 
 #pragma mark - private
 
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password block:(void(^)(BOOL isSuccessful))block
+{
+    [[DMCDatastore sharedInstance]signIn:username password:password block:^(BmobObject *userInfo, BOOL isSuccessful, NSError *error)
+     {
+         if(isSuccessful)
+         {
+             [DMCUserHelper sharedInstance].userInfo = userInfo;
+             
+             [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:userInfo.objectId password:userInfo.objectId completion:
+              ^(NSDictionary *loginInfo, EMError *error)
+              {
+                  if (loginInfo && !error)
+                  {
+                      block(YES);
+                  }
+                  else
+                  {
+                      block(NO);
+                  }
+              } onQueue:nil];
+             
+         }
+         else
+         {
+             block(NO);
+         }
+         
+     }];
+    
+}
+
+
+- (void)login
+{
+    UINavigationController *nav = self.navigationController;
+    
+    BOOL isAutoLogin = YES;
+    
+//    NSArray* settings = [AppSettings findAll];
+//    if(settings.count > 0)
+//    {
+//        AppSettings* setting = settings[0];
+//        isAutoLogin = setting.isAutoLogin;
+//    }
+    
+    if(isAutoLogin)
+    {
+        //get username and password
+        
+        
+        //login in
+        
+        [self loginWithUsername:@"wsxzaq" password:@"wsxzaq" block:^(BOOL isSuccessful) {
+            if(isSuccessful)
+            {
+                //success
+                [[ApplyViewController shareController] loadDataSourceFromLocalDB];
+                if (buddyTabBarController == nil)
+                {
+                    buddyTabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCBuddyTabBarController"];
+                    [nav pushViewController:buddyTabBarController animated:NO];
+                }
+                
+                if(carGroupTabBarController == nil)
+                {
+                    carGroupTabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCCarGroupTabBarController"];
+                }
+                
+                if(modelGroupTabBarController == nil)
+                {
+                    modelGroupTabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCModelGroupTabBarController"];
+                }
+            }
+            else
+            {
+                
+                buddyTabBarController = nil;
+                carGroupTabBarController = nil;
+                DMCLoginViewController *loginController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCLoginViewController"];
+                [nav pushViewController:loginController animated:NO];
+                loginController.title = @"CarChat";
+                
+            }
+            
+            
+            if ([UIDevice currentDevice].systemVersion.floatValue < 7.0)
+            {
+                nav.navigationBar.barStyle = UIBarStyleDefault;
+                [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"titleBar"]
+                                        forBarMetrics:UIBarMetricsDefault];
+                
+                [nav.navigationBar.layer setMasksToBounds:YES];
+            }
+            
+            [nav setNavigationBarHidden:YES];
+            [nav setNavigationBarHidden:NO];
+            
+            
+            
+        }];
+        
+    }
+    else
+    {
+        buddyTabBarController = nil;
+        carGroupTabBarController = nil;
+        DMCLoginViewController *loginController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCLoginViewController"];
+        [nav pushViewController:loginController animated:NO];
+        loginController.title = @"CarChat";
+
+        
+        if ([UIDevice currentDevice].systemVersion.floatValue < 7.0)
+        {
+            nav.navigationBar.barStyle = UIBarStyleDefault;
+            [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"titleBar"]
+                                    forBarMetrics:UIBarMetricsDefault];
+            
+            [nav.navigationBar.layer setMasksToBounds:YES];
+        }
+        
+        [nav setNavigationBarHidden:YES];
+        [nav setNavigationBarHidden:NO];
+        
+    }
+}
+
 -(void)loginStateChange:(NSNotification *)notification
 {
     UINavigationController *nav = self.navigationController;
     
-    BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
     BOOL loginSuccess = [notification.object boolValue];
     
-    if (isAutoLogin || loginSuccess)
+    if (loginSuccess)
     {
         [[ApplyViewController shareController] loadDataSourceFromLocalDB];
         if (buddyTabBarController == nil)
