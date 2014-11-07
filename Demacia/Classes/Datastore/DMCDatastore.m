@@ -188,6 +188,21 @@
     
 }
 
+- (void)addPost:(NSString*)userInfoId content:(NSString*)content picKeys:(NSArray*)picKeys thumbKeys:(NSArray*)thumbKeys block:(DMCRemoteBoolResultBlock)block
+{
+    BmobObject  *bObject = [BmobObject objectWithClassName:@"DMCPost"];
+    [bObject setObject:content forKey:@"content"];
+    [bObject setObject:[BmobObject objectWithoutDatatWithClassName:@"DMCUserInfo" objectId:userInfoId] forKey:@"userInfoPointer"];
+    if(picKeys != nil && thumbKeys != nil)
+    {
+        
+    }
+    [bObject saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        block(isSuccessful,error);
+        
+    }];
+}
 
 
 

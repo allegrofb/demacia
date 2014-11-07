@@ -13,6 +13,7 @@
 #import "BlackListViewController.h"
 #import "DebugViewController.h"
 #import "WCAlertView.h"
+#import "AppSettings.h"
 
 @interface DMCBuddySettingsTableViewController ()
 
@@ -44,6 +45,8 @@
     
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.tableFooterView = self.footerView;
+    
+    [self refreshConfig];
 }
 
 - (void)didReceiveMemoryWarning
@@ -224,7 +227,22 @@
 
 - (void)autoLoginChanged:(UISwitch *)autoSwitch
 {
-    [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:autoSwitch.isOn];
+//    [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:autoSwitch.isOn];
+    
+    NSArray* array = [AppSettings findAll];
+    if(array == nil || array.count <= 0)
+    {
+        AppSettings* setting = [AppSettings createEntity];
+        setting.isAutoLogin = [[NSNumber alloc] initWithBool:autoSwitch.isOn];
+    }
+    else
+    {
+        AppSettings* setting = array[0];
+        setting.isAutoLogin = [[NSNumber alloc] initWithBool:autoSwitch.isOn];
+    }
+    
+    [[NSManagedObjectContext defaultContext] saveToPersistentStoreAndWait];
+    
 }
 
 - (void)beInvitedChanged:(UISwitch *)beInvitedSwitch
@@ -242,7 +260,19 @@
 
 - (void)refreshConfig
 {
-    [self.autoLoginSwitch setOn:[[EaseMob sharedInstance].chatManager isAutoLoginEnabled] animated:YES];
+//    [self.autoLoginSwitch setOn:[[EaseMob sharedInstance].chatManager isAutoLoginEnabled] animated:YES];
+  
+    BOOL isAutoLogin = NO;
+    
+    NSArray* array = [AppSettings findAll];
+    if(array.count > 0)
+    {
+        AppSettings* setting = array[0];
+        
+        isAutoLogin = [setting.isAutoLogin boolValue];
+    }
+    
+    [self.autoLoginSwitch setOn:isAutoLogin animated:YES];
     
     [self.tableView reloadData];
 }

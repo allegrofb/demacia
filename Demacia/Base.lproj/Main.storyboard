@@ -635,59 +635,33 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gUt-no-EyP" id="tIg-O0-Zi9">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="61Q-29-kOf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="216"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="str-ZY-UV5">
-                                                        <size key="itemSize" width="583" height="158"/>
-                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    </collectionViewFlowLayout>
-                                                    <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DMCWritePostTextCollectionTextCell1" id="QUB-in-Sds">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                <rect key="frame" x="0.0" y="0.0" width="583" height="158"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <subviews>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5eX-If-sle">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="583" height="158"/>
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                                    </textView>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            </view>
-                                                        </collectionViewCell>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DMCWritePostTextCollectionTextCell2" id="IrI-sv-qZj">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gfx-om-iC6">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
-                                                                    </imageView>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            </view>
-                                                            <size key="customSize" width="35" height="35"/>
-                                                        </collectionViewCell>
-                                                    </cells>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Hello world" translatesAutoresizingMaskIntoConstraints="NO" id="oAq-ta-cCd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="170"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGf-NL-VeP">
+                                                    <rect key="frame" x="18" y="178" width="30" height="30"/>
+                                                    <state key="normal" image="chatBar_face.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
                                                     <connections>
-                                                        <outlet property="dataSource" destination="gUt-no-EyP" id="79M-6o-rXi"/>
-                                                        <outlet property="delegate" destination="gUt-no-EyP" id="eee-2O-ch8"/>
+                                                        <action selector="faceButtonAction:" destination="gUt-no-EyP" eventType="touchDown" id="FOs-QZ-IaS"/>
                                                     </connections>
-                                                </collectionView>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="oAq-ta-cCd" secondAttribute="bottom" constant="40" id="Okf-7o-ter"/>
+                                                <constraint firstAttribute="centerX" secondItem="oAq-ta-cCd" secondAttribute="centerX" id="WT7-z0-VAH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oAq-ta-cCd" secondAttribute="trailing" constant="592" id="ask-Cx-9Xv"/>
+                                                <constraint firstItem="oAq-ta-cCd" firstAttribute="top" secondItem="tIg-O0-Zi9" secondAttribute="topMargin" constant="-8" id="e3X-0M-0MN"/>
+                                                <constraint firstItem="oAq-ta-cCd" firstAttribute="leading" secondItem="tIg-O0-Zi9" secondAttribute="leadingMargin" constant="-8" id="wMA-Vt-EEs"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="collectionView" destination="61Q-29-kOf" id="4Hy-Xw-fNX"/>
+                                            <outlet property="faceButton" destination="CGf-NL-VeP" id="nTQ-2M-uLf"/>
+                                            <outlet property="textView" destination="oAq-ta-cCd" id="gso-pZ-DeT"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -788,6 +762,9 @@
                             <outlet property="delegate" destination="c2v-PM-mVI" id="vip-an-PsD"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="textView" destination="oAq-ta-cCd" id="SPT-Mf-ZpP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S52-Ot-ogw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -798,6 +775,7 @@
         <image name="AlbumOperateMore.png" width="25" height="25"/>
         <image name="AlbumTriangleB.png" width="45" height="30"/>
         <image name="account.png" width="18" height="18"/>
+        <image name="chatBar_face.png" width="30" height="30"/>
         <image name="password.png" width="18" height="18"/>
         <image name="people.png" width="48" height="48"/>
     </resources>

@@ -14,6 +14,7 @@
 #import "AppSettings.h"
 #import "DMCDatastore.h"
 #import "DMCUserHelper.h"
+#import "DMCKeyChainUtil.h"
 
 @interface DMCFirstViewController ()
 
@@ -92,23 +93,47 @@
 {
     UINavigationController *nav = self.navigationController;
     
-    BOOL isAutoLogin = YES;
+    BOOL isAutoLogin = NO;
     
-//    NSArray* settings = [AppSettings findAll];
-//    if(settings.count > 0)
-//    {
-//        AppSettings* setting = settings[0];
-//        isAutoLogin = setting.isAutoLogin;
-//    }
+    NSArray* array = [AppSettings findAll];
+    if(array.count > 0)
+    {
+        AppSettings* setting = array[0];
+        isAutoLogin = [setting.isAutoLogin boolValue];
+    }
     
     if(isAutoLogin)
     {
         //get username and password
+
+        NSString* username = [[DMCKeyChainUtil sharedObject] getUserName];
+        NSString* password = [[DMCKeyChainUtil sharedObject] getPassword];
         
+        if(username == nil || [username length] <= 0
+           || password == nil || [password length]<= 0)
+        {
+            buddyTabBarController = nil;
+            carGroupTabBarController = nil;
+            DMCLoginViewController *loginController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCLoginViewController"];
+            [nav pushViewController:loginController animated:NO];
+            loginController.title = @"CarChat";
+            
+            
+            if ([UIDevice currentDevice].systemVersion.floatValue < 7.0)
+            {
+                nav.navigationBar.barStyle = UIBarStyleDefault;
+                [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"titleBar"]
+                                        forBarMetrics:UIBarMetricsDefault];
+                
+                [nav.navigationBar.layer setMasksToBounds:YES];
+            }
+            
+            [nav setNavigationBarHidden:YES];
+            [nav setNavigationBarHidden:NO];
+        }
         
         //login in
-        
-        [self loginWithUsername:@"wsxzaq" password:@"wsxzaq" block:^(BOOL isSuccessful) {
+        [self loginWithUsername:username password:password block:^(BOOL isSuccessful) {
             if(isSuccessful)
             {
                 //success

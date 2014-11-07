@@ -265,13 +265,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Demacia/Classes/Views/DMCWritePostTextTableViewCell.m"
-            timestampString = "436947312.160275"
+            filePath = "Demacia/Classes/Datastore/DMCDatastore.m"
+            timestampString = "437035348.612073"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "-collectionView:numberOfItemsInSection:"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "-addPost:content:picKeys:thumbKeys:block:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

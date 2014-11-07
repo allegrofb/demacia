@@ -7,6 +7,8 @@
 //
 
 #import "DMCBuddyWritePostTableViewController.h"
+#import "DMCDatastore.h"
+#import "DMCUserHelper.h"
 
 @interface DMCBuddyWritePostTableViewController ()
 
@@ -106,8 +108,22 @@
 
 - (void)postAction
 {
-    TTAlertNoTitle(@"发表成功");
-    [self.navigationController popViewControllerAnimated:YES];
+    NSString* userInfo = [DMCUserHelper sharedInstance].userInfo.objectId;
+    NSString* content = self.textView.text;
+    
+    [[DMCDatastore sharedInstance]addPost:userInfo content:content picKeys:nil thumbKeys:nil block:^(BOOL isSuccessful, NSError *error) {
+       
+        if(isSuccessful)
+        {
+            TTAlertNoTitle(@"发表成功");
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            NSString* msg = [NSString stringWithFormat:@"发表失败, 故障码：%ld",(long)error.code];
+            TTAlertNoTitle(msg);
+        }
+    }];
 }
 
 - (void)cancelAction

@@ -10,4 +10,6 @@
 
 @interface DMCBuddyWritePostTableViewController : UITableViewController
 
+@property(nonatomic,weak) IBOutlet UITextView* textView;
+
 @end

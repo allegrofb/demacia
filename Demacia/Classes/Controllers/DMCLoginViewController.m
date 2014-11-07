@@ -10,6 +10,7 @@
 #import "EMError.h"
 #import "DMCDatastore.h"
 #import "DMCUserHelper.h"
+#import "DMCKeyChainUtil.h"
 
 @interface DMCLoginViewController()<IChatManagerDelegate,UITextFieldDelegate>
 
@@ -84,6 +85,9 @@
         if(isSuccessful)
         {
             [DMCUserHelper sharedInstance].userInfo = userInfo;
+            
+            [[DMCKeyChainUtil sharedObject] setUserName:username];
+            [[DMCKeyChainUtil sharedObject] setPassword:password];
             
             TTAlertNoTitle(@"注册成功,请登录");
             
@@ -179,6 +183,9 @@
         if(isSuccessful)
         {
             [DMCUserHelper sharedInstance].userInfo = userInfo;
+            
+            [[DMCKeyChainUtil sharedObject] setUserName:username];
+            [[DMCKeyChainUtil sharedObject] setPassword:password];
             
             [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:userInfo.objectId password:userInfo.objectId completion:
                  ^(NSDictionary *loginInfo, EMError *error)

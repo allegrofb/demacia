@@ -63,7 +63,8 @@ typedef enum : NSUInteger {
 - (void)getFunsPostList:(NSString*)userInfoId block:(DMCRemoteListResultBlock)block;
 - (void)getFollowingsPostList:(NSString*)userInfoId block:(DMCRemoteListResultBlock)block;
 - (void)getPostDetail:(NSString*)postId block:(DMCRemoteDictResultBlock)block;
-- (void)addPost:(NSString*)userInfoId info:(NSDictionary*)info block:(DMCRemoteBoolResultBlock)block;
+- (void)addFiles:(NSString*)userInfoId pics:(NSArray*)pics block:(DMCRemoteBoolResultBlock)block;
+- (void)addPost:(NSString*)userInfoId content:(NSString*)content picKeys:(NSArray*)picKeys thumbKeys:(NSArray*)thumbKeys block:(DMCRemoteBoolResultBlock)block;
 - (void)modifyPost:(NSString*)postId info:(NSDictionary*)info block:(DMCRemoteBoolResultBlock)block;
 
 - (void)getNextList:(BmobQuery*)query block:(DMCRemoteListResultBlock)block;

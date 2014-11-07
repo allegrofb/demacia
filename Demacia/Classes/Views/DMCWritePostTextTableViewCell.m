@@ -20,31 +20,9 @@
     // Configure the view for the selected state
 }
 
-
-#pragma mark - UICollectionViewDataSource
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (IBAction)faceButtonAction:(id)sender
 {
-    return 3;
+    
 }
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-
-    if(indexPath.row == 0)
-    {
-        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DMCWritePostTextCollectionTextCell1" forIndexPath:indexPath];
-        
-        return cell;
-    }
-    else
-    {
-        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DMCWritePostTextCollectionTextCell2" forIndexPath:indexPath];
-        
-        return cell;
-        
-    }
-}
-
 
 @end

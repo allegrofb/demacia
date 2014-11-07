@@ -10,6 +10,7 @@
 
 @implementation DMCUserHelper
 @synthesize userInfo;
+@synthesize photoUploadStatus;
 
 + (DMCUserHelper *)sharedInstance
 {

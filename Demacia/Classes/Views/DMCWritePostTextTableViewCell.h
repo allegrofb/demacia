@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DMCWritePostTextTableViewCell : UITableViewCell <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface DMCWritePostTextTableViewCell : UITableViewCell
 
-@property(nonatomic,strong) IBOutlet UICollectionView *  collectionView;
+@property(nonatomic,strong) IBOutlet UITextView* textView;
+@property(nonatomic,strong) IBOutlet UIButton *faceButton;
 
 @end
