@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol DMCWritePostImageTableViewCellDelegate <NSObject>
+
+- (void)addImageButtonAction;
+
+@end
+
+
 @interface DMCWritePostImageTableViewCell : UITableViewCell <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property(nonatomic,strong) IBOutlet UICollectionView *  collectionView;
+
+@property(nonatomic, weak)id<DMCWritePostImageTableViewCellDelegate> delegate;
+
+- (void)setImageArray:(NSArray*)assets;
 
 @end

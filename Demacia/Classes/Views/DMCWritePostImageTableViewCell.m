@@ -8,6 +8,7 @@
 
 #import "DMCWritePostImageTableViewCell.h"
 #import "DMCWritePostImageImageCollectionViewCell.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface DMCWritePostImageTableViewCell()
 {
@@ -42,7 +43,10 @@
     {
         DMCWritePostImageImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DMCWritePostTextCollectionImageCell1" forIndexPath:indexPath];
         
-        cell.imageView.backgroundColor = [UIColor blackColor];
+//        cell.imageView.backgroundColor = [UIColor blackColor];
+        cell.imageView.image = [UIImage imageNamed:@"addImage.png"];
+        
+        cell.tag = indexPath.row;
         
         return cell;
     }
@@ -50,20 +54,50 @@
     {
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DMCWritePostTextCollectionImageCell2" forIndexPath:indexPath];
         
+        cell.tag = indexPath.row;
         
         
         return cell;
     }
     else
     {
-        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DMCWritePostTextCollectionImageCell1" forIndexPath:indexPath];
+        DMCWritePostImageImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DMCWritePostTextCollectionImageCell1" forIndexPath:indexPath];
         
-        //load image
+        cell.imageView.image = _imageArray[indexPath.row];
+        cell.tag = indexPath.row;
         
         return cell;
-        
     }
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(!self.editing)
+    {
+        //deselect cell view
+        [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+        
+        if(indexPath.row == _imageArray.count)
+        {
+            [self.delegate addImageButtonAction];
+        }
+        
+        return;
+    }    
+}
+
+- (void)setImageArray:(NSArray*)assets
+{
+    [_imageArray removeAllObjects];
+    
+    for(int i=0;i<assets.count;i++)
+    {
+        ALAsset *asset=assets[i];
+        UIImage *img=[UIImage imageWithCGImage:asset.defaultRepresentation.fullScreenImage];
+        [_imageArray addObject:img];
+    }
+    
+    [self.collectionView reloadData];
+}
 
 @end
