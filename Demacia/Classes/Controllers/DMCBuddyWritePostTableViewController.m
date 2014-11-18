@@ -6,13 +6,16 @@
 //  Copyright (c) 2014年 Demacia.cc. All rights reserved.
 //
 
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "DMCBuddyWritePostTableViewController.h"
 #import "DMCDatastore.h"
 #import "DMCUserHelper.h"
 #import "DMCWritePostImageTableViewCell.h"
-#import <MobileCoreServices/MobileCoreServices.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 #import "ZYQAssetPickerController.h"
+#import "TmpFilesMgr.h"
+#import "DMCUploadHelper.h"
+#import "Utility.h"
 
 @interface DMCBuddyWritePostTableViewController ()<UIImagePickerControllerDelegate, DMCWritePostImageTableViewCellDelegate,
     ZYQAssetPickerControllerDelegate>
@@ -23,6 +26,7 @@
 @property(nonatomic,weak) IBOutlet UITableViewCell* cell3;
 
 @property(nonatomic) NSUInteger imageCellHeight;
+
 @end
 
 @implementation DMCBuddyWritePostTableViewController
@@ -141,20 +145,30 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)postAction
 {
+    [self showHudInView:self.view hint:@"正在发表..."];
+    
+    [[DMCUploadHelper sharedInstance] blockHUD];
+    
+    NSArray* picKeys = [[DMCUploadHelper sharedInstance]getUploadFiles];
+    NSArray* thumbKeys = [[DMCUploadHelper sharedInstance]getUploadThumbs];
+    
     NSString* userInfo = [DMCUserHelper sharedInstance].userInfo.objectId;
     NSString* content = self.textView.text;
     
-    [[DMCDatastore sharedInstance]addPost:userInfo content:content picKeys:nil thumbKeys:nil block:^(BOOL isSuccessful, NSError *error) {
+    [[DMCDatastore sharedInstance]addPost:userInfo content:content picKeys:picKeys thumbKeys:thumbKeys block:^(BOOL isSuccessful, NSError *error) {
        
         if(isSuccessful)
         {
+            [self hideHud];
             TTAlertNoTitle(@"发表成功");
             [self.navigationController popViewControllerAnimated:YES];
         }
         else
         {
+            [self hideHud];
             NSString* msg = [NSString stringWithFormat:@"发表失败, 故障码：%ld",(long)error.code];
             TTAlertNoTitle(msg);
+            
         }
     }];
 }
@@ -200,11 +214,34 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     [self setCellHeight:assets.count];
     
     [picker dismissViewControllerAnimated:YES completion:^(){
-        
-        [self.imageCell setImageArray:assets];
-        //TODO
+
+        [self processAssets:assets];
     }];
     
+}
+
+- (void)processAssets:(NSArray *)assets
+{
+    NSMutableArray* imageArray = [[NSMutableArray alloc] init];
+    NSMutableArray* urlArray = [[NSMutableArray alloc] init];
+    
+    for(int i=0;i<assets.count;i++)
+    {
+        ALAsset *asset=assets[i];
+        UIImage *img=[UIImage imageWithCGImage:asset.defaultRepresentation.fullScreenImage];
+
+        NSURL* url = [asset defaultRepresentation].url;
+        NSString* uti = [asset defaultRepresentation].UTI;
+
+        DLog(@"url = %@",url);
+        DLog(@"uti = %@",uti);
+        
+        [imageArray addObject:img];
+        [urlArray addObject:url];
+    }
+
+    [[DMCUploadHelper sharedInstance] setupUpload:imageArray urls:urlArray];
+    [self.imageCell setImageArray:imageArray];
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{

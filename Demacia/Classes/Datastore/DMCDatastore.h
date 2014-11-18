@@ -11,8 +11,11 @@
 
 typedef void (^DMCRemoteLoginResultBlock) (BmobObject* userInfo, BOOL isSuccessful, NSError *error);
 typedef void (^DMCRemoteBoolResultBlock) (BOOL isSuccessful, NSError *error);
+typedef void (^DMCRemoteStringResultBlock) (NSString* result, BOOL isSuccessful, NSError *error);
 typedef void (^DMCRemoteDictResultBlock) (NSDictionary* result, BOOL isSuccessful, NSError *error);
 typedef void (^DMCRemoteListResultBlock) (NSArray* result, BmobQuery* query, BOOL isSuccessful, NSError *error);
+typedef void (^DMCRemoteUploadResultBlock) (NSURL* key, BmobFile* bmobFile, BOOL isSuccessful, NSError *error);
+typedef void (^DMCRemoteWithProgressBlock) (float progress);
 
 
 typedef enum : NSUInteger {
@@ -66,10 +69,13 @@ typedef enum : NSUInteger {
 - (void)addFiles:(NSString*)userInfoId pics:(NSArray*)pics block:(DMCRemoteBoolResultBlock)block;
 - (void)addPost:(NSString*)userInfoId content:(NSString*)content picKeys:(NSArray*)picKeys thumbKeys:(NSArray*)thumbKeys block:(DMCRemoteBoolResultBlock)block;
 - (void)modifyPost:(NSString*)postId info:(NSDictionary*)info block:(DMCRemoteBoolResultBlock)block;
+- (void)addPhoto:(NSString*)userInfoId content:(NSString*)content picture:(BmobFile*)picture thumb:(BmobFile*)thumb block:(DMCRemoteBoolResultBlock)block;
+- (void)addPhotos:(NSString*)userInfoId content:(NSString*)content picture:(NSArray*)pictures thumb:(NSArray*)thumbs block:(DMCRemoteBoolResultBlock)block;
+- (void)uploadFile:(NSString*)filePath key:(NSURL*)key resultBlock:(DMCRemoteUploadResultBlock)resultBlock progressBlock:(DMCRemoteWithProgressBlock)progressBlock;
 
 - (void)getNextList:(BmobQuery*)query block:(DMCRemoteListResultBlock)block;
 
-
+- (void)getBmobUserName:(NSString*)easeMobId block:(DMCRemoteStringResultBlock)block;
 
 
 + (DMCDatastore *)sharedInstance;

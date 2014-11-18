@@ -9,6 +9,7 @@
 #import "DMCWritePostImageTableViewCell.h"
 #import "DMCWritePostImageImageCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "Utility.h"
 
 @interface DMCWritePostImageTableViewCell()
 {
@@ -63,6 +64,8 @@
     {
         DMCWritePostImageImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DMCWritePostTextCollectionImageCell1" forIndexPath:indexPath];
         
+        DLog(@"row = %ld",indexPath.row);
+        
         cell.imageView.image = _imageArray[indexPath.row];
         cell.tag = indexPath.row;
         
@@ -86,14 +89,11 @@
     }    
 }
 
-- (void)setImageArray:(NSArray*)assets
+- (void)setImageArray:(NSArray*)images
 {
     [_imageArray removeAllObjects];
     
-    for(int i=0;i<assets.count;i++)
-    {
-        ALAsset *asset=assets[i];
-        UIImage *img=[UIImage imageWithCGImage:asset.defaultRepresentation.fullScreenImage];
+    for (id img in images) {
         [_imageArray addObject:img];
     }
     

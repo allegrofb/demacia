@@ -394,6 +394,7 @@
 		894A5BEF1A107E8F007C0A1A /* ZYQAssetPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894A5BE11A107E8F007C0A1A /* ZYQAssetPickerController.m */; };
 		894A5BF31A1083C6007C0A1A /* addImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 894A5BF21A1083C6007C0A1A /* addImage.png */; };
 		894A5BF61A109745007C0A1A /* ImageHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 894A5BF51A109745007C0A1A /* ImageHeader.png */; };
+		894A5C141A11EE9A007C0A1A /* DMCUploadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 894A5C131A11EE9A007C0A1A /* DMCUploadHelper.m */; };
 		899D754819F88AD60052CBA6 /* DMCBuddyMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D754719F88AD60052CBA6 /* DMCBuddyMeTableViewController.m */; };
 		899D754B19F8971B0052CBA6 /* DMCKeyChainUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D754A19F8971B0052CBA6 /* DMCKeyChainUtil.m */; };
 		899D756619F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D756519F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m */; };
@@ -1140,6 +1141,8 @@
 		894A5BE11A107E8F007C0A1A /* ZYQAssetPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYQAssetPickerController.m; sourceTree = "<group>"; };
 		894A5BF21A1083C6007C0A1A /* addImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addImage.png; sourceTree = "<group>"; };
 		894A5BF51A109745007C0A1A /* ImageHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageHeader.png; sourceTree = "<group>"; };
+		894A5C121A11EE9A007C0A1A /* DMCUploadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCUploadHelper.h; sourceTree = "<group>"; };
+		894A5C131A11EE9A007C0A1A /* DMCUploadHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCUploadHelper.m; sourceTree = "<group>"; };
 		899D754619F88AD60052CBA6 /* DMCBuddyMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCBuddyMeTableViewController.h; sourceTree = "<group>"; };
 		899D754719F88AD60052CBA6 /* DMCBuddyMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCBuddyMeTableViewController.m; sourceTree = "<group>"; };
 		899D754919F8971B0052CBA6 /* DMCKeyChainUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCKeyChainUtil.h; sourceTree = "<group>"; };
@@ -3083,6 +3086,8 @@
 				89B0EA3D1A085DFC0031A846 /* DMCDatastore.m */,
 				89B0EA5A1A09E23B0031A846 /* DMCUserHelper.h */,
 				89B0EA5B1A09E23B0031A846 /* DMCUserHelper.m */,
+				894A5C121A11EE9A007C0A1A /* DMCUploadHelper.h */,
+				894A5C131A11EE9A007C0A1A /* DMCUploadHelper.m */,
 			);
 			path = Datastore;
 			sourceTree = "<group>";
@@ -3767,6 +3772,7 @@
 				890FFE4619F629950098B030 /* Emoji.m in Sources */,
 				890FFF0319F629950098B030 /* XHMessageTextView.m in Sources */,
 				890FFEC119F629950098B030 /* ChatGroupDetailViewController.m in Sources */,
+				894A5C141A11EE9A007C0A1A /* DMCUploadHelper.m in Sources */,
 				890FFE8819F629950098B030 /* DXChatBarMoreView.m in Sources */,
 				89B0E9E21A00C0780031A846 /* LKDBHelper.m in Sources */,
 				89B0E9FC1A00C0780031A846 /* TimeUtil.m in Sources */,

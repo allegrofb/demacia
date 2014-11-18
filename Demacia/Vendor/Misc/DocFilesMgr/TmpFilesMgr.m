@@ -46,14 +46,14 @@
 	return YES;
 }
 
-- (void) saveFile:(NSString*)name data:(NSData*)data
+- (NSString*)saveFile:(NSString*)name data:(NSData*)data
 {
 	NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:name];	
 
 	[[NSFileManager defaultManager] createFileAtPath:path
 											contents:data
 										attributes:nil];
-	return;
+	return path;
 }
 
 - (NSString*)getFullName:(NSString*)name

@@ -52,6 +52,7 @@
                 {
                     BmobObject* userInfo = [BmobObject objectWithClassName:@"DMCUserInfo"];
                     [userInfo setObject:bUser forKey:@"userPointer"];
+                    [userInfo setObject:username forKey:@"userName"];
                     
                     [userInfo saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                         if(isSuccessful)
@@ -110,6 +111,7 @@
                 {
                     BmobObject* userInfo = [BmobObject objectWithClassName:@"DMCUserInfo"];
                     [userInfo setObject:user forKey:@"userPointer"];
+                    [userInfo setObject:username forKey:@"userName"];
                     
                     [userInfo saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                         if(isSuccessful)
@@ -190,13 +192,44 @@
 
 - (void)addPost:(NSString*)userInfoId content:(NSString*)content picKeys:(NSArray*)picKeys thumbKeys:(NSArray*)thumbKeys block:(DMCRemoteBoolResultBlock)block
 {
-    BmobObject  *bObject = [BmobObject objectWithClassName:@"DMCPost"];
+    
+    [self addPhotos:userInfoId content:content picture:picKeys thumb:thumbKeys block:^(BOOL isSuccessful, NSError *error) {
+
+        BmobObject  *bObject = [BmobObject objectWithClassName:@"DMCPost"];
+        [bObject setObject:content forKey:@"content"];
+        [bObject setObject:[BmobObject objectWithoutDatatWithClassName:@"DMCUserInfo" objectId:userInfoId] forKey:@"userInfoPointer"];
+        if(picKeys != nil && thumbKeys != nil)
+        {
+            
+        }
+        [bObject saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            
+            block(isSuccessful,error);
+            
+        }];
+        
+        
+        
+    }];
+    
+    
+}
+
+- (void)addPhotos:(NSString*)userInfoId content:(NSString*)content picture:(NSArray*)pictures thumb:(NSArray*)thumbs block:(DMCRemoteBoolResultBlock)block
+{
+    BmobObject  *bObject = [BmobObject objectWithClassName:@"DMCPhoto"];
     [bObject setObject:content forKey:@"content"];
     [bObject setObject:[BmobObject objectWithoutDatatWithClassName:@"DMCUserInfo" objectId:userInfoId] forKey:@"userInfoPointer"];
-    if(picKeys != nil && thumbKeys != nil)
-    {
-        
-    }
+    
+//    if(picture)
+//    {
+//        [bObject setObject:picture forKey:@"picture"];
+//    }
+//    if(thumb)
+//    {
+//        [bObject setObject:thumb forKey:@"thumb"];
+//    }
+    
     [bObject saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         
         block(isSuccessful,error);
@@ -204,6 +237,69 @@
     }];
 }
 
+- (void)addPhoto:(NSString*)userInfoId content:(NSString*)content picture:(BmobFile*)picture thumb:(BmobFile*)thumb block:(DMCRemoteBoolResultBlock)block
+{
+    BmobObject  *bObject = [BmobObject objectWithClassName:@"DMCPhoto"];
+    [bObject setObject:content forKey:@"content"];
+    [bObject setObject:[BmobObject objectWithoutDatatWithClassName:@"DMCUserInfo" objectId:userInfoId] forKey:@"userInfoPointer"];
+    
+    if(picture)
+    {
+        [bObject setObject:picture forKey:@"picture"];
+    }
+    if(thumb)
+    {
+        [bObject setObject:thumb forKey:@"thumb"];
+    }
+
+    [bObject saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        block(isSuccessful,error);
+        
+    }];
+}
+
+- (void)uploadFile:(NSString*)filePath key:(NSURL*)key resultBlock:(DMCRemoteUploadResultBlock)resultBlock progressBlock:(DMCRemoteWithProgressBlock)progressBlock
+{
+    __block NSURL* tmp = key;
+    
+    BmobFile *file = [[BmobFile alloc] initWithClassName:@"DMCFiles" withFilePath:filePath];
+    
+    [file saveInBackground:^(BOOL isSuccessful, NSError *error) {
+        
+        resultBlock(tmp, file, isSuccessful,error);
+        
+    } withProgressBlock:^(float progress) {
+        
+        progressBlock(progress);
+        
+    }];
+}
+
+- (void)getBmobUserName:(NSString*)easeMobId block:(DMCRemoteStringResultBlock)block
+{
+    
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"DMCUserInfo"];
+    [bquery whereKey:@"objectId" equalTo:easeMobId];
+    [bquery selectKeys:@[@"userName"]];
+
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        for(NSString *obj in array){
+            NSLog(@"userName==============>%@",obj);
+        }
+        
+        if(array.count <= 0)
+        {
+            block(nil,NO,error);
+        }
+        else
+        {
+            block(array[0],YES,error);
+        }
+    }];
+
+}
 
 
 

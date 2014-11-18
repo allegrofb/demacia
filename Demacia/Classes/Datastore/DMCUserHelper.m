@@ -8,9 +8,20 @@
 
 #import "DMCUserHelper.h"
 
+@interface DMCUserHelper ()
+
+@end
+
+
 @implementation DMCUserHelper
 @synthesize userInfo;
-@synthesize photoUploadStatus;
+
+- (id)init
+{
+    self = [super init];
+    
+    return self;
+}
 
 + (DMCUserHelper *)sharedInstance
 {

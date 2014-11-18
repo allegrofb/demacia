@@ -12,9 +12,9 @@
 
 + (TmpFilesMgr *)sharedInstance;
 
-- (BOOL) deleteFile:(NSString*)name;
-- (void) saveFile:(NSString*)name data:(NSData*)data;
-- (NSData*) loadFile:(NSString*)name func:(void(^)(NSData* data))func;
+- (BOOL)deleteFile:(NSString*)name;
+- (NSString*)saveFile:(NSString*)name data:(NSData*)data;
+- (NSData*)loadFile:(NSString*)name func:(void(^)(NSData* data))func;
 - (NSString*)getFullName:(NSString*)name;
 
 @end

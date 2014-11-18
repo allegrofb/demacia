@@ -114,8 +114,10 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+//    DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
     
-    DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+    UINavigationController* nav = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+    DMCFirstViewController* vc = (DMCFirstViewController*)[nav.viewControllers objectAtIndex:0];
     
     if(vc.buddyTabBarController)
     {
@@ -133,7 +135,11 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     
-    DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+//    DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+  
+    UINavigationController* nav = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+    DMCFirstViewController* vc = (DMCFirstViewController*)[nav.viewControllers objectAtIndex:0];
+    
     
     if(vc.buddyTabBarController)
     {
@@ -195,7 +201,10 @@
     [[ApplyViewController shareController] addNewApply:dic];
     
     
-    DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+//    DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+
+    UINavigationController* nav = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+    DMCFirstViewController* vc = (DMCFirstViewController*)[nav.viewControllers objectAtIndex:0];
     
     if(vc.buddyTabBarController)
     {
@@ -224,7 +233,11 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"title":groupName, @"groupId":groupId, @"username":username, @"applyMessage":message, @"applyStyle":[NSNumber numberWithInteger:ApplyStyleGroupInvitation]}];
     [[ApplyViewController shareController] addNewApply:dic];
     
-    DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+//    DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+    
+    UINavigationController* nav = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+    DMCFirstViewController* vc = (DMCFirstViewController*)[nav.viewControllers objectAtIndex:0];
+    
     if(vc.buddyTabBarController)
     {
         [vc.buddyTabBarController setupUntreatedApplyCount];
@@ -262,7 +275,10 @@
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"title":groupname, @"groupId":groupId, @"username":username, @"groupname":groupname, @"applyMessage":reason, @"applyStyle":[NSNumber numberWithInteger:ApplyStyleJoinGroup]}];
         [[ApplyViewController shareController] addNewApply:dic];
         
-        DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+//        DMCFirstViewController* vc = (DMCFirstViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+        
+        UINavigationController* nav = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+        DMCFirstViewController* vc = (DMCFirstViewController*)[nav.viewControllers objectAtIndex:0];
 
         if(vc.buddyTabBarController)
         {
