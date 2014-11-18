@@ -75,14 +75,14 @@
  *
  *	@param	key	列名
  */
-- (void)orderByAscending:(NSString *)key ;
+-(void)orderByAscending:(NSString *)key ;
 
 /**
  *	按key进行降序排序
  *
  *	@param	key	列名
  */
-- (void)orderByDescending:(NSString *)key ;
+-(void)orderByDescending:(NSString *)key ;
 
 
 #pragma mark 查询条件
@@ -92,7 +92,7 @@
  *
  *  @param key 列名
  */
-- (void)includeKey:(NSString *)key;
+-(void)includeKey:(NSString *)key;
 
 /**
  *  设置查询后要返回的key
@@ -107,7 +107,7 @@
  *	@param	key	键
  *	@param	object	提供的值
  */
-- (void)whereKey:(NSString *)key equalTo:(id)object;
+-(void)whereKey:(NSString *)key equalTo:(id)object;
 
 /**
  *	添加key的值不为object的约束条件
@@ -115,7 +115,7 @@
  *	@param	key	键
  *	@param	object	提供的值
  */
-- (void)whereKey:(NSString *)key notEqualTo:(id)object;
+-(void)whereKey:(NSString *)key notEqualTo:(id)object;
 
 
 /**
@@ -124,7 +124,7 @@
  *	@param	key	键
  *	@param	object	提供的值
  */
-- (void)whereKey:(NSString *)key greaterThan:(id)object;
+-(void)whereKey:(NSString *)key greaterThan:(id)object;
 
 /**
  *	添加key的值大于或等于提供的object的约束条件
@@ -132,7 +132,7 @@
  *	@param	key	键
  *	@param	object	提供的值
  */
-- (void)whereKey:(NSString *)key greaterThanOrEqualTo:(id)object;
+-(void)whereKey:(NSString *)key greaterThanOrEqualTo:(id)object;
 
 /**
  *	添加key的值小于提供的object的约束条件
@@ -140,7 +140,7 @@
  *	@param	key	键
  *	@param	object	提供的值
  */
-- (void)whereKey:(NSString *)key lessThan:(id)object;
+-(void)whereKey:(NSString *)key lessThan:(id)object;
 
 /**
  *	添加key的值小于或等于提供的object的约束条件
@@ -148,7 +148,7 @@
  *	@param	key	键
  *	@param	object	提供的值
  */
-- (void)whereKey:(NSString *)key lessThanOrEqualTo:(id)object;
+-(void)whereKey:(NSString *)key lessThanOrEqualTo:(id)object;
 
 /**
  *	添加key的值包含array的约束条件
@@ -156,7 +156,7 @@
  *	@param	key	键
  *	@param	array	提供的数组
  */
-- (void)whereKey:(NSString *)key containedIn:(NSArray *)array;
+-(void)whereKey:(NSString *)key containedIn:(NSArray *)array;
 
 /**
  *	添加key的值不包含array的约束条件
@@ -164,21 +164,21 @@
  *	@param	key	键
  *	@param	array	提供的数组
  */
-- (void)whereKey:(NSString *)key notContainedIn:(NSArray *)array;
+-(void)whereKey:(NSString *)key notContainedIn:(NSArray *)array;
 
 /**
- *  指定的key的值是存在的
+ *  指定的key是存在的
  *
  *  @param key 键
  */
-- (void)whereKeyExists:(NSString *)key;
+-(void)whereKeyExists:(NSString *)key;
 
 /**
- *  指定的key的值是不存在的
+ *  指定的key是不存在的
  *
  *  @param key 键
  */
-- (void)whereKeyDoesNotExist:(NSString *)key;
+-(void)whereKeyDoesNotExist:(NSString *)key;
 
 /**
  *  查询的对象某个列符合另一个查询
@@ -186,7 +186,7 @@
  *  @param key   列名
  *  @param query 另一个查询
  */
-- (void)whereKey:(NSString *)key matchesQuery:(BmobQuery *)query;
+-(void)whereKey:(NSString *)key matchesQuery:(BmobQuery *)query;
 
 /**
  *  查询的对象某个列不符合另一个查询
@@ -194,7 +194,7 @@
  *  @param key   列名
  *  @param query 另一个查询
  */
-- (void)whereKey:(NSString *)key doesNotMatchQuery:(BmobQuery *)query;
+-(void)whereKey:(NSString *)key doesNotMatchQuery:(BmobQuery *)query;
 
 
 /**
@@ -203,7 +203,13 @@
  *  @param key    object所在表的列名，为Relation类型
  *  @param object Bmobject对象
  */
-- (void)whereObjectKey:(NSString *)key relatedTo:(BmobObject*)object;
+-(void)whereObjectKey:(NSString *)key relatedTo:(BmobObject*)object;
+
+-(void)whereKey:(NSString*)key matchesWithRegex:(NSString*)regex;
+
+-(void)whereKey:(NSString *)key startWithString:(NSString*)start;
+
+-(void)whereKey:(NSString *)key endWithString:(NSString*)end;
 
 #pragma mark 地理位置查询
 /**
@@ -212,7 +218,7 @@
  *	@param	key	键
  *	@param	geopoint	位置信息
  */
-- (void)whereKey:(NSString *)key nearGeoPoint:(BmobGeoPoint *)geopoint;
+-(void)whereKey:(NSString *)key nearGeoPoint:(BmobGeoPoint *)geopoint;
 
 /**
  *
@@ -221,7 +227,7 @@
  *	@param	geopoint	位置信息
  *	@param	maxDistance	最大长度（单位：英里）
  */
-- (void)whereKey:(NSString *)key nearGeoPoint:(BmobGeoPoint *)geopoint withinMiles:(double)maxDistance;
+-(void)whereKey:(NSString *)key nearGeoPoint:(BmobGeoPoint *)geopoint withinMiles:(double)maxDistance;
 
 /**
  *
@@ -230,7 +236,7 @@
  *	@param	geopoint	位置信息
  *	@param	maxDistance	最大长度（单位：公里）
  */
-- (void)whereKey:(NSString *)key nearGeoPoint:(BmobGeoPoint *)geopoint withinKilometers:(double)maxDistance;
+-(void)whereKey:(NSString *)key nearGeoPoint:(BmobGeoPoint *)geopoint withinKilometers:(double)maxDistance;
 
 /**
  *
@@ -239,7 +245,7 @@
  *	@param	geopoint	位置信息
  *	@param	maxDistance	最大半径
  */
-- (void)whereKey:(NSString *)key nearGeoPoint:(BmobGeoPoint *)geopoint withinRadians:(double)maxDistance;
+-(void)whereKey:(NSString *)key nearGeoPoint:(BmobGeoPoint *)geopoint withinRadians:(double)maxDistance;
 
 
 /**
@@ -249,7 +255,7 @@
  *	@param	southwest	西南方向位置
  *	@param	northeast	东北方向位置
  */
-- (void)whereKey:(NSString *)key withinGeoBoxFromSouthwest:(BmobGeoPoint *)southwest toNortheast:(BmobGeoPoint *)northeast;
+-(void)whereKey:(NSString *)key withinGeoBoxFromSouthwest:(BmobGeoPoint *)southwest toNortheast:(BmobGeoPoint *)northeast;
 
 #pragma mark 组合查询
 /**
@@ -269,7 +275,12 @@
 
 
 
-
+/**
+ *  构造查询条件,一旦设置，查询的条件即为conDictionary
+ *
+ *  @param conDictionary 构造查询条件
+ */
+-(void)queryWithAllConstraint:(NSDictionary*)conDictionary;
 
 #pragma mark 缓存方面的函数
 
@@ -278,19 +289,19 @@
  *
  *	@return	查询结果 有为YES 没有为NO
  */
-- (BOOL)hasCachedResult;
+-(BOOL)hasCachedResult;
 
 /**
  *	清理查询的缓存
  */
-- (void)clearCachedResult;
+-(void)clearCachedResult;
 
 /**
  *	清理所有查询的缓存
  */
-+ (void)clearAllCachedResults;
++(void)clearAllCachedResults;
 
-#pragma mark 得到对象的函数
+#pragma mark 网络访问
 
 /**
  *	通过id查找BmobObject对象
@@ -298,7 +309,7 @@
  *	@param	objectId	BmobObject对象的id
  *	@param	block	得到的BmobObject对象
  */
-- (void)getObjectInBackgroundWithId:(NSString *)objectId
+-(void)getObjectInBackgroundWithId:(NSString *)objectId
                               block:(BmobObjectResultBlock)block;
 
 /**
@@ -306,7 +317,7 @@
  *
  *	@param	block	得到BmobObject对象数组
  */
-- (void)findObjectsInBackgroundWithBlock:(BmobObjectArrayResultBlock)block;
+-(void)findObjectsInBackgroundWithBlock:(BmobObjectArrayResultBlock)block;
 
 
 /**
@@ -314,7 +325,12 @@
  *
  *	@param	block	得到个数
  */
-- (void)countObjectsInBackgroundWithBlock:(BmobIntegerResultBlock)block;
+-(void)countObjectsInBackgroundWithBlock:(BmobIntegerResultBlock)block;
 
+
+/**
+ *  取消查询
+ */
+-(void)cancle;
 
 @end

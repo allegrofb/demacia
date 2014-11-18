@@ -399,6 +399,7 @@
 		899D754B19F8971B0052CBA6 /* DMCKeyChainUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D754A19F8971B0052CBA6 /* DMCKeyChainUtil.m */; };
 		899D756619F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D756519F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m */; };
 		899D756919F8CBB90052CBA6 /* DMCBuddyDiscoveryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899D756819F8CBB90052CBA6 /* DMCBuddyDiscoveryTableViewController.m */; };
+		89AE70121A1ADF9E0028B859 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 89AE70111A1ADF9E0028B859 /* libicucore.dylib */; };
 		89B0E95D1A00B15A0031A846 /* HBImageScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0E9551A00B15A0031A846 /* HBImageScroller.m */; };
 		89B0E95E1A00B15A0031A846 /* HBImageViewList.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0E9571A00B15A0031A846 /* HBImageViewList.m */; };
 		89B0E95F1A00B15A0031A846 /* HBShowImageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0E9591A00B15A0031A846 /* HBShowImageControl.m */; };
@@ -1151,6 +1152,7 @@
 		899D756519F8AB350052CBA6 /* DMCStrokeRectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCStrokeRectTableViewCell.m; sourceTree = "<group>"; };
 		899D756719F8CBB90052CBA6 /* DMCBuddyDiscoveryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCBuddyDiscoveryTableViewController.h; sourceTree = "<group>"; };
 		899D756819F8CBB90052CBA6 /* DMCBuddyDiscoveryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCBuddyDiscoveryTableViewController.m; sourceTree = "<group>"; };
+		89AE70111A1ADF9E0028B859 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		89B0E9541A00B15A0031A846 /* HBImageScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBImageScroller.h; sourceTree = "<group>"; };
 		89B0E9551A00B15A0031A846 /* HBImageScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBImageScroller.m; sourceTree = "<group>"; };
 		89B0E9561A00B15A0031A846 /* HBImageViewList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBImageViewList.h; sourceTree = "<group>"; };
@@ -1332,6 +1334,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89AE70121A1ADF9E0028B859 /* libicucore.dylib in Frameworks */,
 				89B0EA0C1A00C6820031A846 /* libsqlite3.dylib in Frameworks */,
 				890FFF8719F640AF0098B030 /* libresolv.dylib in Frameworks */,
 				890FFF8519F640930098B030 /* libz.dylib in Frameworks */,
@@ -2761,6 +2764,7 @@
 		890FFF8A19F641AF0098B030 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				89AE70111A1ADF9E0028B859 /* libicucore.dylib */,
 				89B0EA0B1A00C6820031A846 /* libsqlite3.dylib */,
 				890FFF8019F6403C0098B030 /* libxml2.2.dylib */,
 				890FFF8219F640790098B030 /* ImageIO.framework */,

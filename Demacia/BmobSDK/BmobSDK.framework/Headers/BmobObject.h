@@ -11,6 +11,7 @@
 
 
 @class BmobRelation;
+@class BmobACL;
 
 @interface BmobObject : NSObject
 
@@ -18,7 +19,7 @@
 /**
  *	 BmobObject对象的id
  */
-@property(nonatomic,retain)NSString *objectId;
+@property(nonatomic,copy)NSString *objectId;
 
 /**
  *	 BmobObject对象的最后更新时间
@@ -33,9 +34,13 @@
 /**
  *  BmobObject对象的表名
  */
-@property(nonatomic,retain)NSString * className;
+@property(nonatomic,copy)NSString * className;
 
 
+/**
+ *  权限控制里列表
+ */
+@property(nonatomic,retain)BmobACL *ACL;
 
 
 /**
@@ -92,15 +97,20 @@
 -(void)saveAllWithDictionary:(NSDictionary*)dic;
 
 /**
- *	得到BombObject对象某个键的值
+ *	得到BombObject对象某个列的值
  *
- *	@param	aKey	键
+ *	@param	aKey	列名
  *
- *	@return	该键的值
+ *	@return	该列的值
  */
 -(id)objectForKey:(id)aKey;
 
 
+/**
+ *  删除BmobObject对象的某列的值
+ *
+ *  @param key 列名
+ */
 -(void)deleteForKey:(id)key;
 
 
@@ -111,7 +121,7 @@
  *  @param objects 想要添加的数组
  *  @param key     给定的列名
  */
-- (void)addObjectsFromArray:(NSArray *)objects forKey:(NSString *)key;
+-(void)addObjectsFromArray:(NSArray *)objects forKey:(NSString *)key;
 
 /**
  *  向给定的列添加数组，只会在原本数组字段中没有这些对象的情形下才会添加入数组
@@ -119,7 +129,7 @@
  *  @param objects 想要添加的数组
  *  @param key     给定的列名
  */
-- (void)addUniqueObjectsFromArray:(NSArray *)objects forKey:(NSString *)key;
+-(void)addUniqueObjectsFromArray:(NSArray *)objects forKey:(NSString *)key;
 
 /**
  *  从一个数组字段的值内移除指定的数组中的所有对象
@@ -127,7 +137,9 @@
  *  @param objects 想要移除的数组
  *  @param key     给定的列名
  */
-- (void)removeObjectsInArray:(NSArray *)objects forKey:(NSString *)key;
+-(void)removeObjectsInArray:(NSArray *)objects forKey:(NSString *)key;
+
+
 
 
 #pragma mark increment and decrment
@@ -137,7 +149,7 @@
  *
  *  @param key 列名
  */
-- (void)incrementKey:(NSString *)key;
+-(void)incrementKey:(NSString *)key;
 
 /**
  *  列的值加 amount
@@ -145,14 +157,14 @@
  *  @param key    列的值
  *  @param amount 增加的数值
  */
-- (void)incrementKey:(NSString *)key byAmount:(NSInteger )amount;
+-(void)incrementKey:(NSString *)key byAmount:(NSInteger )amount;
 
 /**
  *  列的值-1
  *
  *  @param key 列名
  */
-- (void)decrementKey:(NSString *)key;
+-(void)decrementKey:(NSString *)key;
 
 /**
  *  列的值减 amount
@@ -160,7 +172,7 @@
  *  @param key    列的值
  *  @param amount 减去的数值
  */
-- (void)decrementKey:(NSString *)key byAmount:(NSInteger )amount;
+-(void)decrementKey:(NSString *)key byAmount:(NSInteger )amount;
 
 
 

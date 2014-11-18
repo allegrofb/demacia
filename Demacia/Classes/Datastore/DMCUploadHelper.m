@@ -9,6 +9,8 @@
 #import "DMCUploadHelper.h"
 #import "TmpFilesMgr.h"
 #import "DMCDatastore.h"
+#import "DMCUserHelper.h"
+#import "Utility.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 @interface BmobTmpFile : NSObject
@@ -17,21 +19,14 @@
 @property (nonatomic) BOOL finishedFlag;
 @property (nonatomic) BOOL uploadingFlag;
 @property (nonatomic, strong) BmobFile* bmobFile;
+@property (nonatomic, strong) BmobObject* photoObject;
 @property (nonatomic) BOOL isSuccessful;
 @property (nonatomic, strong) NSError* error;
-
-@property (nonatomic, strong) NSString* thumbName;
-@property (nonatomic) BOOL finishedThumbFlag;
-@property (nonatomic) BOOL uploadingThumbFlag;
-@property (nonatomic, strong) BmobFile* bmobThumb;
-@property (nonatomic) BOOL isSuccessfulThumb;
-@property (nonatomic, strong) NSError* errorThumb;
 
 @end
 
 @implementation BmobTmpFile
-@synthesize fileName, finishedFlag, uploadingFlag, bmobFile, isSuccessful, error;
-@synthesize thumbName, finishedThumbFlag, uploadingThumbFlag, bmobThumb, isSuccessfulThumb, errorThumb;
+@synthesize fileName, finishedFlag, uploadingFlag, bmobFile, isSuccessful, error, photoObject;
 
 - (id)init
 {
@@ -39,9 +34,6 @@
     
     self.finishedFlag = false;
     self.uploadingFlag = false;
-    
-    self.finishedThumbFlag = false;
-    self.uploadingThumbFlag = false;
     
     return self;
 }
@@ -54,6 +46,8 @@
 @property (nonatomic, strong) NSMutableArray* currentArray;
 @property (nonatomic, strong) NSMutableDictionary* uploadQueue;
 @property (nonatomic) NSUInteger imageTmpNumber;
+@property (nonatomic) BOOL albumErrorFlag;
+@property (nonatomic, strong) BmobObject* currentAlbum;
 
 @end
 
@@ -83,38 +77,53 @@
 
 - (void)setupUpload:(NSArray*)images urls:(NSArray*)urls
 {
-    [_currentArray removeAllObjects];
     
-    int i = 0;
-    
-    for(i = 0;i<images.count;i++)
-    {
-        NSURL* url = urls[i];
-        UIImage* image = images[i];
+    [[DMCDatastore sharedInstance] addAlbum:[DMCUserHelper sharedInstance].userInfo content:@"" block:^(BmobObject *object, BOOL isSuccessful, NSError *error) {
+
+        _albumErrorFlag = isSuccessful;
         
-        BmobTmpFile* obj = [_uploadQueue objectForKey:url];
-        if(obj == nil)
+        if(isSuccessful)
         {
-            NSString* name = [NSString stringWithFormat:@"%lu.jpg",(unsigned long)_imageTmpNumber];
-            NSString* thumbName = [NSString stringWithFormat:@"%luThumb.jpg",(unsigned long)_imageTmpNumber];
-            _imageTmpNumber++;
+            _currentAlbum = object;
             
-            NSData* data = UIImageJPEGRepresentation(image,1.0);
-            name = [[TmpFilesMgr sharedInstance] saveFile:name data:data];
+            [_currentArray removeAllObjects];
             
-            thumbName = [[TmpFilesMgr sharedInstance] saveFile:thumbName data:data];
+            int i = 0;
             
-            BmobTmpFile* file = [[BmobTmpFile alloc] init];
-            file.fileName = name;
-            file.thumbName = thumbName;
+            for(i = 0;i<images.count;i++)
+            {
+                NSURL* url = urls[i];
+                UIImage* image = images[i];
+                
+                BmobTmpFile* obj = [_uploadQueue objectForKey:url];
+                if(obj == nil)
+                {
+                    NSString* name = [NSString stringWithFormat:@"%lu",(unsigned long)_imageTmpNumber];
+                    _imageTmpNumber++;
+                    
+                    NSData* data = UIImageJPEGRepresentation(image,1.0);
+                    name = [[TmpFilesMgr sharedInstance] saveFile:name data:data];
+                    
+                    BmobTmpFile* file = [[BmobTmpFile alloc] init];
+                    file.fileName = name;
+                    
+                    [_uploadQueue setObject:file forKey:url];
+                }
+                
+                [_currentArray addObject:url];
+                
+            }
             
-            [_currentArray addObject:url];
-            [_uploadQueue setObject:file forKey:url];
+            [self startUpload];
+            
+        }
+        else
+        {
+            DLog(@"addAlbum failed");
         }
         
-    }
-    
-    [self startUpload];
+    }];
+
 }
 
 - (void)startUpload
@@ -136,9 +145,49 @@
         {
         
             [[DMCDatastore sharedInstance]uploadFile:file.fileName key:i resultBlock:^(NSURL *key, BmobFile* bmobFile, BOOL isSuccessful, NSError *error) {
-            
+                
+                if(!isSuccessful)
+                {
+                    DLog(@"uploadFile failed, %ld",(long)error.code);
+                }
+                
                 BmobTmpFile* result = [_uploadQueue objectForKey:key];
-                [self setFinishedFlag:result bmobFile:bmobFile isSuccessful:isSuccessful error:error];
+                result.bmobFile = bmobFile;
+                
+                if(isSuccessful)
+                {
+                    NSString* userInfo = [DMCUserHelper sharedInstance].userInfo.objectId;
+                
+                    [[DMCDatastore sharedInstance] addPhoto:userInfo content:@"" picture:result.bmobFile thumbWidth:100 block:^(BmobObject* object, BOOL isSuccessful, NSError *error) {
+                    
+                            if(!isSuccessful)
+                            {
+                                DLog(@"addPhoto failed, %ld",(long)error.code);
+                            }
+                            result.photoObject = object;
+                        
+                            [[DMCDatastore sharedInstance] addPhotoToAlbum:_currentAlbum photo:object block:^(BOOL isSuccessful, NSError *error) {
+                        
+                                if(!isSuccessful)
+                                {
+                                    DLog(@"addPhotoToAlbum failed,%ld ",(long)error.code);
+                                }
+                                else
+                                {
+                                    [self setFinishedFlag:result isSuccessful:isSuccessful error:error];
+                                    
+                                }
+                                
+                            }];
+                        
+                    }];
+                }
+                else
+                {
+                    [self setFinishedFlag:result isSuccessful:isSuccessful error:error];
+                    
+                }
+                
             
             } progressBlock:^(float progress) {
             
@@ -146,75 +195,23 @@
             
             }];
         }
-        
-        flag = false;
-        
-        [_uploadCondition lock];
-        flag = file.uploadingThumbFlag;
-        if(!flag)
-        {
-            file.uploadingThumbFlag = true;
-        }
-        [_uploadCondition unlock];
-        
-        if(!flag)
-        {
-            
-            [[DMCDatastore sharedInstance]uploadFile:file.thumbName key:i resultBlock:^(NSURL *key, BmobFile* bmobFile, BOOL isSuccessful, NSError *error) {
-                
-                BmobTmpFile* result = [_uploadQueue objectForKey:key];
-                [self setFinishedThumbFlag:result bmobFile:bmobFile isSuccessful:isSuccessful error:error];
-                
-            } progressBlock:^(float progress) {
-                
-                
-                
-            }];
-        }
-        
     }
 }
 
-- (void)setFinishedFlag:(BmobTmpFile*)result bmobFile:(BmobFile*)bmobFile isSuccessful:(BOOL) isSuccessful error:(NSError*)error
+- (void)setFinishedFlag:(BmobTmpFile*)result isSuccessful:(BOOL) isSuccessful error:(NSError*)error
 {
     [_uploadCondition lock];
     
     result.uploadingFlag = false;
     result.finishedFlag = true;
     result.error = error;
-    result.bmobFile = bmobFile;
     result.isSuccessful = isSuccessful;
     
     bool all = true;
     for(NSURL* url in _currentArray)
     {
         BmobTmpFile* file = [_uploadQueue objectForKey:url];
-        all = all && file.finishedFlag && file.finishedThumbFlag;
-    }
-    
-    if(all)
-    {
-        [_uploadCondition signal];
-    }
-    
-    [_uploadCondition unlock];
-}
-
-- (void)setFinishedThumbFlag:(BmobTmpFile*)result bmobFile:(BmobFile*)bmobFile isSuccessful:(BOOL) isSuccessful error:(NSError*)error
-{
-    [_uploadCondition lock];
-    
-    result.uploadingThumbFlag = false;
-    result.finishedThumbFlag = true;
-    result.errorThumb = error;
-    result.bmobThumb = bmobFile;
-    result.isSuccessfulThumb = isSuccessful;
-    
-    bool all = true;
-    for(NSURL* url in _currentArray)
-    {
-        BmobTmpFile* file = [_uploadQueue objectForKey:url];
-        all = all && file.finishedFlag && file.finishedThumbFlag;
+        all = all && file.finishedFlag;
     }
     
     if(all)
@@ -244,30 +241,42 @@
     [_uploadCondition unlock];
 }
 
-- (NSArray*)getUploadFiles
+- (NSArray*)getUploadPhotos
 {
     NSMutableArray* array = [[NSMutableArray alloc] init];
     
     for(NSURL* url in _currentArray)
     {
         BmobTmpFile* file = [_uploadQueue objectForKey:url];
-        [array addObject:file.bmobFile];
+        [array addObject:file.photoObject];
     }
     
     return array;
 }
 
-- (NSArray*)getUploadThumbs
+- (BmobObject*)getUploadAlbum
 {
-    NSMutableArray* array = [[NSMutableArray alloc] init];
+    return _currentAlbum;
+}
+
+- (NSString*)getUploadError
+{
+    if(!_albumErrorFlag)
+    {
+        return @"album failed";
+    }
     
     for(NSURL* url in _currentArray)
     {
         BmobTmpFile* file = [_uploadQueue objectForKey:url];
-        [array addObject:file.bmobThumb];
+        if(!file.isSuccessful)
+        {
+            return @"photo failed";
+        }
     }
     
-    return array;
+    return nil;
 }
+
 
 @end

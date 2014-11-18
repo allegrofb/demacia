@@ -16,6 +16,7 @@ typedef void (^DMCRemoteDictResultBlock) (NSDictionary* result, BOOL isSuccessfu
 typedef void (^DMCRemoteListResultBlock) (NSArray* result, BmobQuery* query, BOOL isSuccessful, NSError *error);
 typedef void (^DMCRemoteUploadResultBlock) (NSURL* key, BmobFile* bmobFile, BOOL isSuccessful, NSError *error);
 typedef void (^DMCRemoteWithProgressBlock) (float progress);
+typedef void (^DMCRemoteObjectResultBlock) (BmobObject* object, BOOL isSuccessful, NSError *error);
 
 
 typedef enum : NSUInteger {
@@ -67,11 +68,14 @@ typedef enum : NSUInteger {
 - (void)getFollowingsPostList:(NSString*)userInfoId block:(DMCRemoteListResultBlock)block;
 - (void)getPostDetail:(NSString*)postId block:(DMCRemoteDictResultBlock)block;
 - (void)addFiles:(NSString*)userInfoId pics:(NSArray*)pics block:(DMCRemoteBoolResultBlock)block;
-- (void)addPost:(NSString*)userInfoId content:(NSString*)content picKeys:(NSArray*)picKeys thumbKeys:(NSArray*)thumbKeys block:(DMCRemoteBoolResultBlock)block;
+- (void)addPost:(BmobObject*)userInfo content:(NSString*)content album:(BmobObject*)album block:(DMCRemoteBoolResultBlock)block;
 - (void)modifyPost:(NSString*)postId info:(NSDictionary*)info block:(DMCRemoteBoolResultBlock)block;
-- (void)addPhoto:(NSString*)userInfoId content:(NSString*)content picture:(BmobFile*)picture thumb:(BmobFile*)thumb block:(DMCRemoteBoolResultBlock)block;
-- (void)addPhotos:(NSString*)userInfoId content:(NSString*)content picture:(NSArray*)pictures thumb:(NSArray*)thumbs block:(DMCRemoteBoolResultBlock)block;
+- (void)addPhoto:(NSString*)userInfoId content:(NSString*)content picture:(BmobFile*)picture thumbWidth:(NSInteger)thumbWidth block:(DMCRemoteObjectResultBlock)block;
 - (void)uploadFile:(NSString*)filePath key:(NSURL*)key resultBlock:(DMCRemoteUploadResultBlock)resultBlock progressBlock:(DMCRemoteWithProgressBlock)progressBlock;
+- (void)addAlbum:(BmobObject*)userInfo content:(NSString*)content block:(DMCRemoteObjectResultBlock)block;
+- (void)deleteAlbum:(BmobObject*)album  block:(DMCRemoteBoolResultBlock)block;
+- (void)deletePhotoFromAlbum:(BmobObject*)album photo:(BmobObject*)photo block:(DMCRemoteBoolResultBlock)block;
+- (void)addPhotoToAlbum:(BmobObject*)album photo:(BmobObject*)photo block:(DMCRemoteBoolResultBlock)block;
 
 - (void)getNextList:(BmobQuery*)query block:(DMCRemoteListResultBlock)block;
 

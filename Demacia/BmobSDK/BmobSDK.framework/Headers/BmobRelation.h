@@ -12,7 +12,12 @@
 
 @interface BmobRelation : NSObject
 
-
+/**
+ *  创建BmobRelation对象实例
+ *
+ *  @return BmobRelation对象实例
+ */
++(instancetype)relation;
 
 /**
  *  添加关联关系

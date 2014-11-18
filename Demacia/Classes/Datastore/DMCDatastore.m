@@ -7,6 +7,7 @@
 //
 
 #import "DMCDatastore.h"
+#import "Utility.h"
 
 @implementation DMCDatastore
 
@@ -36,6 +37,11 @@
     [bUser setPassword:password];
 
     [bUser signUpInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        if(!isSuccessful)
+        {
+            DLog(@"signUp failed");
+        }
         
         if(isSuccessful)
         {
@@ -96,6 +102,11 @@
     
     [BmobUser logInWithUsernameInBackground:username password:password block:^(BmobUser *user, NSError *error) {
         
+        if(!isSuccessful)
+        {
+            DLog(@"signIn failed");
+        }
+        
         if(user)
         {
             BmobQuery *bquery = [BmobQuery queryWithClassName:@"DMCUserInfo"];
@@ -114,8 +125,13 @@
                     [userInfo setObject:username forKey:@"userName"];
                     
                     [userInfo saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                        if(!isSuccessful)
+                        {
+                            DLog(@"signIn failed");
+                        }
                         if(isSuccessful)
                         {
+ 
                             block(userInfo,isSuccessful,error);
                         }
                         else
@@ -190,73 +206,59 @@
     
 }
 
-- (void)addPost:(NSString*)userInfoId content:(NSString*)content picKeys:(NSArray*)picKeys thumbKeys:(NSArray*)thumbKeys block:(DMCRemoteBoolResultBlock)block
+- (void)addPost:(BmobObject*)userInfo content:(NSString*)content album:(BmobObject*)album block:(DMCRemoteBoolResultBlock)block
 {
+    BmobObject  *bObject = [BmobObject objectWithClassName:@"DMCPost"];
+    [bObject setObject:content forKey:@"content"];
+    [bObject setObject:userInfo forKey:@"userInfoPointer"];
     
-    [self addPhotos:userInfoId content:content picture:picKeys thumb:thumbKeys block:^(BOOL isSuccessful, NSError *error) {
-
-        BmobObject  *bObject = [BmobObject objectWithClassName:@"DMCPost"];
-        [bObject setObject:content forKey:@"content"];
-        [bObject setObject:[BmobObject objectWithoutDatatWithClassName:@"DMCUserInfo" objectId:userInfoId] forKey:@"userInfoPointer"];
-        if(picKeys != nil && thumbKeys != nil)
+    if(album)
+    {
+        BmobRelation *relation = [[BmobRelation alloc] init];
+        [relation addObject:album];
+        [bObject addRelation:relation forKey:@"albumsRelation"];
+    }
+    
+    [bObject saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        if(!isSuccessful)
         {
-            
+            DLog(@"addPost failed");
         }
-        [bObject saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-            
-            block(isSuccessful,error);
-            
-        }];
-        
-        
-        
-    }];
-    
-    
-}
-
-- (void)addPhotos:(NSString*)userInfoId content:(NSString*)content picture:(NSArray*)pictures thumb:(NSArray*)thumbs block:(DMCRemoteBoolResultBlock)block
-{
-    BmobObject  *bObject = [BmobObject objectWithClassName:@"DMCPhoto"];
-    [bObject setObject:content forKey:@"content"];
-    [bObject setObject:[BmobObject objectWithoutDatatWithClassName:@"DMCUserInfo" objectId:userInfoId] forKey:@"userInfoPointer"];
-    
-//    if(picture)
-//    {
-//        [bObject setObject:picture forKey:@"picture"];
-//    }
-//    if(thumb)
-//    {
-//        [bObject setObject:thumb forKey:@"thumb"];
-//    }
-    
-    [bObject saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         
         block(isSuccessful,error);
         
     }];
+    
 }
 
-- (void)addPhoto:(NSString*)userInfoId content:(NSString*)content picture:(BmobFile*)picture thumb:(BmobFile*)thumb block:(DMCRemoteBoolResultBlock)block
+- (void)addPhoto:(NSString*)userInfoId content:(NSString*)content picture:(BmobFile*)picture thumbWidth:(NSInteger)thumbWidth block:(DMCRemoteObjectResultBlock)block
 {
-    BmobObject  *bObject = [BmobObject objectWithClassName:@"DMCPhoto"];
-    [bObject setObject:content forKey:@"content"];
-    [bObject setObject:[BmobObject objectWithoutDatatWithClassName:@"DMCUserInfo" objectId:userInfoId] forKey:@"userInfoPointer"];
     
-    if(picture)
-    {
-        [bObject setObject:picture forKey:@"picture"];
-    }
-    if(thumb)
-    {
-        [bObject setObject:thumb forKey:@"thumb"];
-    }
+    [BmobImage thumbnailImageBySpecifiesTheWidth:thumbWidth quality:100 sourceImageUrl:picture.url outputType:kBmobImageOutputBmobFile resultBlock:^(id object, NSError *error) {
 
-    [bObject saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        
-        block(isSuccessful,error);
-        
+        if(object)
+        {
+            BmobObject  *bObject = [BmobObject objectWithClassName:@"DMCPhoto"];
+            [bObject setObject:content forKey:@"content"];
+            [bObject setObject:[BmobObject objectWithoutDatatWithClassName:@"DMCUserInfo" objectId:userInfoId] forKey:@"userInfoPointer"];
+
+            [bObject setObject:picture forKey:@"picture"];
+            [bObject setObject:object forKey:@"thumb"];
+            
+            [bObject saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                
+                block(bObject, isSuccessful,error);
+                
+            }];
+        }
+        else
+        {
+            block(nil,FALSE,error);
+        }
+    
     }];
+    
 }
 
 - (void)uploadFile:(NSString*)filePath key:(NSURL*)key resultBlock:(DMCRemoteUploadResultBlock)resultBlock progressBlock:(DMCRemoteWithProgressBlock)progressBlock
@@ -266,6 +268,11 @@
     BmobFile *file = [[BmobFile alloc] initWithClassName:@"DMCFiles" withFilePath:filePath];
     
     [file saveInBackground:^(BOOL isSuccessful, NSError *error) {
+        
+        if(!isSuccessful)
+        {
+            DLog(@"uploadFile failed, %ld",(long)error.code);
+        }
         
         resultBlock(tmp, file, isSuccessful,error);
         
@@ -301,6 +308,31 @@
 
 }
 
+- (void)addAlbum:(BmobObject*)userInfo content:(NSString*)content block:(DMCRemoteObjectResultBlock)block
+{
+    BmobObject  *bObject = [BmobObject objectWithClassName:@"DMCAlbum"];
+    [bObject setObject:content forKey:@"content"];
+    [bObject setObject:userInfo forKey:@"userInfoPointer"];
+    
+    [bObject saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        block(bObject, isSuccessful,error);
+        
+    }];
+    
+}
 
+- (void)addPhotoToAlbum:(BmobObject*)album photo:(BmobObject*)photo block:(DMCRemoteBoolResultBlock)block
+{
+    BmobRelation *relation = [[BmobRelation alloc] init];
+    [relation addObject:photo];
+    [album addRelation:relation forKey:@"photosRelation"];
+    
+    [album updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        block(isSuccessful,error);
+        
+    }];
+}
 
 @end

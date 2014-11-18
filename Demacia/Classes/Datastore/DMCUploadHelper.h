@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <BmobSDK/Bmob.h>
 
 @interface DMCUploadHelper : NSObject
 
 - (void)setupUpload:(NSArray*)images urls:(NSArray*)urls;
 - (void)blockHUD;
 - (void)clearTmpFolder;
-- (NSArray*)getUploadFiles;
-- (NSArray*)getUploadThumbs;
+- (NSArray*)getUploadPhotos;
+- (BmobObject*)getUploadAlbum;
+- (NSString*)getUploadError;
 
 + (DMCUploadHelper *)sharedInstance;
 

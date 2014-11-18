@@ -149,14 +149,20 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     
     [[DMCUploadHelper sharedInstance] blockHUD];
     
-    NSArray* picKeys = [[DMCUploadHelper sharedInstance]getUploadFiles];
-    NSArray* thumbKeys = [[DMCUploadHelper sharedInstance]getUploadThumbs];
+    NSString* error = [[DMCUploadHelper sharedInstance] getUploadError];
+    if(error)
+    {
+        [self hideHud];
+        TTAlertNoTitle(error);
+        return;
+    }
     
-    NSString* userInfo = [DMCUserHelper sharedInstance].userInfo.objectId;
+    BmobObject* album = [[DMCUploadHelper sharedInstance]getUploadAlbum];
+    BmobObject* userInfo = [DMCUserHelper sharedInstance].userInfo;
     NSString* content = self.textView.text;
     
-    [[DMCDatastore sharedInstance]addPost:userInfo content:content picKeys:picKeys thumbKeys:thumbKeys block:^(BOOL isSuccessful, NSError *error) {
-       
+    [[DMCDatastore sharedInstance]addPost:userInfo content:content album:album block:^(BOOL isSuccessful, NSError *error) {
+    
         if(isSuccessful)
         {
             [self hideHud];
@@ -240,8 +246,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
         [urlArray addObject:url];
     }
 
-    [[DMCUploadHelper sharedInstance] setupUpload:imageArray urls:urlArray];
     [self.imageCell setImageArray:imageArray];
+    [[DMCUploadHelper sharedInstance] setupUpload:imageArray urls:urlArray];
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{

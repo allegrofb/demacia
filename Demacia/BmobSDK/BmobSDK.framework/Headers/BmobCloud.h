@@ -20,7 +20,7 @@
  *
  *  @return 云函数响应结果
  */
-+ (id)callFunction:(NSString *)function withParameters:(NSDictionary *)parameters;
++(id)callFunction:(NSString *)function withParameters:(NSDictionary *)parameters;
 
 /**
  *  异步调用云函数
@@ -29,6 +29,6 @@
  *  @param parameters 传递给函数的参数
  *  @param block      云函数响应结果跟信息
  */
-+ (void)callFunctionInBackground:(NSString *)function withParameters:(NSDictionary *)parameters block:(BmobIdResultBlock)block;
++(void)callFunctionInBackground:(NSString *)function withParameters:(NSDictionary *)parameters block:(BmobIdResultBlock)block;
 
 @end
