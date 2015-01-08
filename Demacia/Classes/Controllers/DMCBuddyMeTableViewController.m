@@ -10,6 +10,8 @@
 #import "DMCBuddySettingsTableViewController.h"
 #import "RootViewController.h"
 #import "DMCMomentsViewController.h"
+#import "DMCDatastore.h"
+#import "DMCUserHelper.h"
 
 
 @interface DMCBuddyMeTableViewController ()
@@ -162,6 +164,35 @@
             UITableViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"DMCBuddyWritePostTableViewController"];
             
             [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if(indexPath.row == 1)
+        {
+            BmobObject* userInfo = [DMCUserHelper sharedInstance].userInfo;
+            BmobObject* userDetail = [DMCUserHelper sharedInstance].userDetail;
+            
+            JSONUserDetail* jsonDetail = [[JSONUserDetail alloc] init];
+            jsonDetail.birthday_y = 2001;
+            jsonDetail.birthday_m = 2;
+            jsonDetail.birthday_d = 2;
+            jsonDetail.maleOrFemale = FALSE;
+            
+            [[DMCDatastore sharedInstance]setUserDetail:userInfo userDetail:userDetail json:jsonDetail block:^(BOOL isSuccessful, NSError *error) {
+               
+                NSLog(@"ssss %d", isSuccessful);
+                
+            }];
+            
+        }
+        else if(indexPath.row == 2)
+        {
+            BmobObject* userInfo = [DMCUserHelper sharedInstance].userInfo;
+            
+            [[DMCDatastore sharedInstance]getUserDetail:userInfo block:^(id object, id result, BOOL isSuccessful, NSError *error) {
+
+                [DMCUserHelper sharedInstance].userDetail = object;
+                JSONUserDetail* detail = result;
+                
+            }];
         }
         else if(indexPath.row == 3)
         {

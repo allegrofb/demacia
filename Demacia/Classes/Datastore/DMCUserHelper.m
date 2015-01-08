@@ -14,7 +14,7 @@
 
 
 @implementation DMCUserHelper
-@synthesize userInfo;
+@synthesize userInfo,userDetail,userPortrait;
 
 - (id)init
 {

@@ -11,4 +11,10 @@
 
 @interface JSONUserInfo : JSONModel
 
+@property(nonatomic,strong) NSString* userName;
+@property(nonatomic,strong) NSString* nickname;
+@property(nonatomic,strong) NSString* shortDescription;
+@property(nonatomic,strong) NSString* usernameEasemob;
+@property(nonatomic,strong) NSString* passwordEasemob;
+
 @end

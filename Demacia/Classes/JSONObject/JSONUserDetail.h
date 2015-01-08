@@ -10,4 +10,9 @@
 
 @interface JSONUserDetail : JSONModel
 
+@property(nonatomic) NSUInteger birthday_y;
+@property(nonatomic) NSUInteger birthday_m;
+@property(nonatomic) NSUInteger birthday_d;
+@property(nonatomic) BOOL maleOrFemale;
+
 @end

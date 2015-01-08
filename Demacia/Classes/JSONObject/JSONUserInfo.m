@@ -9,5 +9,6 @@
 #import "JSONUserInfo.h"
 
 @implementation JSONUserInfo
+@synthesize userName,usernameEasemob,passwordEasemob,shortDescription;
 
 @end

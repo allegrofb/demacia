@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <BmobSDK/Bmob.h>
+#import "JSONUserInfo.h"
+#import "JSONUserDetail.h"
+#import "JSONPhoto.h"
 
 typedef void (^DMCRemoteLoginResultBlock) (BmobObject* userInfo, BOOL isSuccessful, NSError *error);
 typedef void (^DMCRemoteBoolResultBlock) (BOOL isSuccessful, NSError *error);
+typedef void (^DMCRemoteIdResultBlock) (id object, id result, BOOL isSuccessful, NSError *error);
 typedef void (^DMCRemoteStringResultBlock) (NSString* result, BOOL isSuccessful, NSError *error);
 typedef void (^DMCRemoteDictResultBlock) (NSDictionary* result, BOOL isSuccessful, NSError *error);
 typedef void (^DMCRemoteListResultBlock) (NSArray* result, BmobQuery* query, BOOL isSuccessful, NSError *error);
@@ -51,16 +55,20 @@ typedef enum : NSUInteger {
 - (void)signIn:(NSString*)username password:(NSString*)password block:(DMCRemoteLoginResultBlock)block;
 - (void)signOut:(DMCRemoteBoolResultBlock)block;
 
-- (void)getUserInfo:(NSString*)userName block:(DMCRemoteDictResultBlock)block;
-- (void)setUserInfo:(NSString*)userName info:(NSDictionary*)info block:(DMCRemoteBoolResultBlock)block;
+- (void)getUserInfo:(BmobObject*)userInfo json:(JSONUserInfo*)json;
+- (void)getUserDetail:(BmobObject*)userInfo block:(DMCRemoteIdResultBlock)block;
+- (void)setUserInfo:(BmobObject*)userInfo json:(JSONUserInfo*)json block:(DMCRemoteBoolResultBlock)block;
+- (void)setUserDetail:(BmobObject*)userInfo userDetail:(BmobObject*)userDetail json:(JSONUserDetail*)json block:(DMCRemoteBoolResultBlock)block;
 
-- (void)getUserDetail:(NSString*)userInfoId block:(DMCRemoteDictResultBlock)block;
-- (void)setUserDetail:(NSString*)userInfoId info:(NSDictionary*)info block:(DMCRemoteBoolResultBlock)block;
+- (void)getUserPortrait:(BmobObject*)userInfo block:(DMCRemoteIdResultBlock)block;
+- (void)setUserPortrait:(BmobObject*)userInfo portrait:(BmobObject*)portrait image:(UIImage*)image thumbWidth:(NSInteger)thumbWidth block:(DMCRemoteObjectResultBlock)block progressBlock:(DMCRemoteWithProgressBlock)progressBlock;
 
 - (void)getFriendsList:(NSString*)userInfoId block:(DMCRemoteListResultBlock)block;
 - (void)getFunsList:(NSString*)userInfoId block:(DMCRemoteListResultBlock)block;
 - (void)getFollowingsList:(NSString*)userInfoId block:(DMCRemoteListResultBlock)block;
-- (void)getNearbyUserList:(NSString*)userInfoId longitude:(double)longitude latitude:(double)latitude block:(DMCRemoteListResultBlock)block;
+
+- (void)getNearbyUserList:(BmobObject*)geoInfo longitude:(double)longitude latitude:(double)latitude limit:(NSInteger)limit block:(DMCRemoteListResultBlock)block;
+- (void)updateGeo:(BmobObject*)geoInfo longitude:(double)longitude latitude:(double)latitude block:(DMCRemoteBoolResultBlock)block;
 
 - (void)getMyPostList:(NSString*)userInfoId block:(DMCRemoteListResultBlock)block;
 - (void)getFriendsPostList:(NSString*)userInfoId block:(DMCRemoteListResultBlock)block;
@@ -77,10 +85,9 @@ typedef enum : NSUInteger {
 - (void)deletePhotoFromAlbum:(BmobObject*)album photo:(BmobObject*)photo block:(DMCRemoteBoolResultBlock)block;
 - (void)addPhotoToAlbum:(BmobObject*)album photo:(BmobObject*)photo block:(DMCRemoteBoolResultBlock)block;
 
-- (void)getNextList:(BmobQuery*)query block:(DMCRemoteListResultBlock)block;
+- (void)getNextList:(BmobQuery*)query skip:(NSInteger)skip block:(DMCRemoteListResultBlock)block;
 
 - (void)getBmobUserName:(NSString*)easeMobId block:(DMCRemoteStringResultBlock)block;
-
 
 + (DMCDatastore *)sharedInstance;
 

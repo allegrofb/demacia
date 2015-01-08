@@ -8,6 +8,7 @@
 
 #import "DMCDatastore.h"
 #import "Utility.h"
+#import "TmpFilesMgr.h"
 
 @implementation DMCDatastore
 
@@ -51,7 +52,7 @@
             [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
                 
                 for(BmobObject *obj in array){
-                    NSLog(@"objectId==============>%@",obj.objectId);
+                    DLog(@"objectId==============>%@",obj.objectId);
                 }
                 
                 if(array.count <= 0)
@@ -61,6 +62,7 @@
                     [userInfo setObject:username forKey:@"userName"];
                     
                     [userInfo saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                        
                         if(isSuccessful)
                         {
                             block(userInfo,isSuccessful,error);
@@ -102,21 +104,12 @@
     
     [BmobUser logInWithUsernameInBackground:username password:password block:^(BmobUser *user, NSError *error) {
         
-        if(!isSuccessful)
-        {
-            DLog(@"signIn failed");
-        }
-        
         if(user)
         {
             BmobQuery *bquery = [BmobQuery queryWithClassName:@"DMCUserInfo"];
             [bquery whereKey:@"userPointer" equalTo:user];
             
             [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-                
-                for(BmobObject *obj in array){
-                    NSLog(@"objectId==============>%@",obj.objectId);
-                }
                 
                 if(array.count <= 0)
                 {
@@ -127,11 +120,11 @@
                     [userInfo saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                         if(!isSuccessful)
                         {
-                            DLog(@"signIn failed");
+                            DLog(@"signIn failed, %ld",(long)error.code);
+
                         }
                         if(isSuccessful)
                         {
- 
                             block(userInfo,isSuccessful,error);
                         }
                         else
@@ -150,6 +143,7 @@
         }
         else
         {
+            DLog(@"user nil, %ld",(long)error.code);
             block(nil,isSuccessful,error);
         }
         
@@ -164,14 +158,145 @@
     
 }
 
-- (void)getUserInfo:(NSString*)userName block:(DMCRemoteDictResultBlock)block
+- (void)setUserInfo:(BmobObject*)userInfo info:(NSDictionary*)info block:(DMCRemoteBoolResultBlock)block
 {
-    BOOL isSuccessful = false;
-    NSDictionary* result = [[NSDictionary alloc] init];
+
+    BmobObject* detail = [userInfo objectForKey:@"UserPointer"];
     
-    block(result, isSuccessful,nil);
+    
+//    [userInfo setObject:userInfo forKey:@"userInfoPointer"];
+    
+    [userInfo updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        if(!isSuccessful)
+        {
+            DLog(@"addPost failed");
+        }
+        
+        block(isSuccessful,error);
+        
+    }];
+    
+    
+    
     
 }
+
+- (void)getUserInfo:(BmobObject*)userInfo json:(JSONUserInfo*)json
+{
+    json.userName = [userInfo objectForKey:@"userName"];
+    json.usernameEasemob = userInfo.objectId;
+    json.passwordEasemob = userInfo.objectId;
+    json.shortDescription = [userInfo objectForKey:@"shortDescription"];
+    
+    return;
+}
+
+- (void)getUserDetail:(BmobObject*)userInfo block:(DMCRemoteIdResultBlock)block
+{
+    JSONUserDetail* json = [[JSONUserDetail alloc]init];
+
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"DMCUserDetail"];
+    [bquery whereKey:@"userInfoPointer" equalTo:userInfo];
+    
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if(array.count <= 0)
+        {
+            block(nil,json,NO,error);
+        }
+        else
+        {
+            BmobObject* obj = array[0];
+            
+            NSNumber* n = nil;
+            n = [obj objectForKey:@"birthday_d"];
+            json.birthday_d = [n intValue];
+            n = [obj objectForKey:@"birthday_m"];
+            json.birthday_m = [n intValue];
+            n = [obj objectForKey:@"birthday_y"];
+            json.birthday_y = [n intValue];
+            json.maleOrFemale = [obj objectForKey:@"maleOrFemale"];
+            
+            block(obj,json,YES,error);
+        }
+    }];
+    
+    return;
+}
+
+- (void)setUserInfo:(BmobObject*)userInfo json:(JSONUserInfo*)json block:(DMCRemoteBoolResultBlock)block
+{
+    [userInfo setObject:json.nickname forKey:@"nickname"];
+    [userInfo setObject:json.shortDescription forKey:@"shortDescription"];
+    
+    [userInfo updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        if(!isSuccessful)
+        {
+            DLog(@"setUserInfo failed");
+        }
+        
+        block(isSuccessful,error);
+        
+    }];
+    
+}
+
+- (void)addUserDetail:(BmobObject*)userInfo json:(JSONUserDetail*)json block:(DMCRemoteBoolResultBlock)block
+{
+    BmobObject* detail = [BmobObject objectWithClassName:@"DMCUserDetail"];
+    
+    [detail setObject:userInfo forKey:@"userInfoPointer"];
+    
+    ;
+    
+    [detail setObject:[[NSNumber alloc] initWithUnsignedInteger:json.birthday_y] forKey:@"birthday_y"];
+    [detail setObject:[[NSNumber alloc] initWithUnsignedInteger:json.birthday_m] forKey:@"birthday_m"];
+    [detail setObject:[[NSNumber alloc] initWithUnsignedInteger:json.birthday_d] forKey:@"birthday_d"];
+    [detail setObject:[NSNumber numberWithBool:json.maleOrFemale] forKey:@"maleOrFemale"];
+    
+    [detail saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        if(!isSuccessful)
+        {
+            DLog(@"addUserDetail failed");
+        }
+        
+        block(isSuccessful,error);
+        
+    }];
+    
+    return;
+}
+
+- (void)setUserDetail:(BmobObject*)userInfo userDetail:(BmobObject*)userDetail json:(JSONUserDetail*)json block:(DMCRemoteBoolResultBlock)block
+{
+    if(userDetail)
+    {
+        [userDetail setObject:[[NSNumber alloc] initWithUnsignedInteger:json.birthday_y] forKey:@"birthday_y"];
+        [userDetail setObject:[[NSNumber alloc] initWithUnsignedInteger:json.birthday_m] forKey:@"birthday_m"];
+        [userDetail setObject:[[NSNumber alloc] initWithUnsignedInteger:json.birthday_d] forKey:@"birthday_d"];
+        [userDetail setObject:[NSNumber numberWithBool:json.maleOrFemale] forKey:@"maleOrFemale"];
+        
+        [userDetail updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            if(isSuccessful)
+            {
+                DLog(@"setUserDetail failed");
+            }
+
+            block(isSuccessful,error);
+            
+        }];
+    
+    }
+    else
+    {
+        [self addUserDetail:userInfo json:json block:block];
+    }
+    
+}
+
 
 - (void)getFriendsList:(NSString*)userInfoId block:(DMCRemoteListResultBlock)block
 {
@@ -194,15 +319,6 @@
     BOOL isSuccessful = false;
     
 
-    
-}
-
-- (void)getUserDetail:(NSString*)userInfoId block:(DMCRemoteDictResultBlock)block
-{
-    BOOL isSuccessful = false;
-    NSDictionary* result = [[NSDictionary alloc] init];
-    
-    block(result, isSuccessful,nil);
     
 }
 
@@ -260,6 +376,32 @@
     }];
     
 }
+
+- (void)updatePhoto:(BmobObject*)photo picture:(BmobFile*)picture thumbWidth:(NSInteger)thumbWidth block:(DMCRemoteBoolResultBlock)block
+{
+    
+    [BmobImage thumbnailImageBySpecifiesTheWidth:thumbWidth quality:100 sourceImageUrl:picture.url outputType:kBmobImageOutputBmobFile resultBlock:^(id object, NSError *error) {
+        
+        if(object)
+        {
+            [photo setObject:picture forKey:@"picture"];
+            [photo setObject:object forKey:@"thumb"];
+            
+            [photo updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                
+                block(isSuccessful,error);
+                
+            }];
+        }
+        else
+        {
+            block(FALSE,error);
+        }
+        
+    }];
+    
+}
+
 
 - (void)uploadFile:(NSString*)filePath key:(NSURL*)key resultBlock:(DMCRemoteUploadResultBlock)resultBlock progressBlock:(DMCRemoteWithProgressBlock)progressBlock
 {
@@ -335,4 +477,154 @@
     }];
 }
 
+- (void)getNearbyUserList:(BmobObject*)geoInfo longitude:(double)longitude latitude:(double)latitude limit:(NSInteger)limit block:(DMCRemoteListResultBlock)block
+{
+    if(longitude > 180.0)
+    {
+        longitude = 179.99;
+    }
+    else if(longitude < -180.0)
+    {
+        longitude = -179.99;
+    }
+    
+    if(latitude > 90.0)
+    {
+        longitude = 89.99;
+    }
+    else if(longitude < -90.0)
+    {
+        longitude = -89.99;
+    }
+    
+    BmobGeoPoint  *point = [[BmobGeoPoint alloc] initWithLongitude:longitude WithLatitude:latitude];
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"DMCUserLocation"];
+    [bquery whereKey:@"geo" nearGeoPoint:point];
+    [bquery setLimit:limit];
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+
+        block(array, bquery, YES, error);
+        
+    }];
+}
+
+- (void)getNextList:(BmobQuery*)query skip:(NSInteger)skip block:(DMCRemoteListResultBlock)block
+{
+    [query setSkip:skip];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        block(array, query, YES, error);
+        
+    }];
+}
+
+- (void)updateGeo:(BmobObject*)geoInfo longitude:(double)longitude latitude:(double)latitude block:(DMCRemoteBoolResultBlock)block
+{
+    if(longitude > 180.0)
+    {
+        longitude = 179.99;
+    }
+    else if(longitude < -180.0)
+    {
+        longitude = -179.99;
+    }
+    
+    if(latitude > 90.0)
+    {
+        longitude = 89.99;
+    }
+    else if(longitude < -90.0)
+    {
+        longitude = -89.99;
+    }
+    
+    BmobGeoPoint* geo = [[BmobGeoPoint alloc] initWithLongitude:longitude WithLatitude:latitude];
+    [geoInfo setObject:geo forKey:@"geo"];
+    [geoInfo updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        block(isSuccessful,error);
+        
+    }];
+}
+
+- (void)setUserPortrait:(BmobObject*)userInfo portrait:(BmobObject*)portrait image:(UIImage*)image thumbWidth:(NSInteger)thumbWidth block:(DMCRemoteObjectResultBlock)block progressBlock:(DMCRemoteWithProgressBlock)progressBlock
+{
+    
+    if(!portrait)
+    {
+        return [self addUserPortrait:userInfo image:image thumbWidth:thumbWidth block:block progressBlock:progressBlock];
+    }
+    
+    NSString* name = @"portrait";
+    NSData* data = UIImageJPEGRepresentation(image,1.0);
+    name = [[TmpFilesMgr sharedInstance] saveFile:name data:data];
+    
+    [self uploadFile:name key:nil resultBlock:^(NSURL *key, BmobFile *bmobFile, BOOL isSuccessful, NSError *error) {
+        
+        [self updatePhoto:portrait picture:bmobFile thumbWidth:thumbWidth block:^(BOOL isSuccessful, NSError *error) {
+
+
+        }];
+        
+    } progressBlock:progressBlock];
+}
+
+- (void)addUserPortrait:(BmobObject*)userInfo image:(UIImage*)image thumbWidth:(NSInteger)thumbWidth block:(DMCRemoteObjectResultBlock)block progressBlock:(DMCRemoteWithProgressBlock)progressBlock
+{
+    NSString* name = @"portrait";
+    NSData* data = UIImageJPEGRepresentation(image,1.0);
+    name = [[TmpFilesMgr sharedInstance] saveFile:name data:data];
+    
+    [self uploadFile:name key:nil resultBlock:^(NSURL *key, BmobFile *bmobFile, BOOL isSuccessful, NSError *error) {
+        
+        NSString* userInfoId = userInfo.objectId;
+        
+        [self addPhoto:userInfoId content:@"" picture:bmobFile thumbWidth:thumbWidth block:^(BmobObject *object, BOOL isSuccessful, NSError *error) {
+            
+            BmobRelation *relation = [[BmobRelation alloc] init];
+            [relation addObject:object];
+            [userInfo addRelation:relation forKey:@"portraitRelation"];
+
+            [userInfo updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+
+                block(object, isSuccessful, error);
+            }];
+            
+        }];
+        
+        
+    } progressBlock:progressBlock];
+    
+}
+
+- (void)getUserPortrait:(BmobObject*)userInfo block:(DMCRemoteIdResultBlock)block
+{
+    JSONPhoto* json = [[JSONPhoto alloc]init];
+    
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"DMCPhoto"];
+    [bquery whereObjectKey:@"portraitRelation" relatedTo:userInfo];
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if(array.count <= 0)
+        {
+            block(nil,json,NO,error);
+        }
+        else
+        {
+            BmobObject* obj = array[0];
+            
+            json.picture = [obj objectForKey:@"picture"];
+            json.thumb = [obj objectForKey:@"thumb"];
+            json.content = [obj objectForKey:@"content"];
+            
+            block(obj,json,YES,error);
+        }
+    }];
+    
+    return;
+}
+
 @end
+
+
+

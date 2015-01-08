@@ -470,6 +470,7 @@
 		89B0EA561A0875760031A846 /* JSONGroupPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA551A0875760031A846 /* JSONGroupPost.m */; };
 		89B0EA591A09B2C50031A846 /* DMCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA581A09B2C40031A846 /* DMCLoginViewController.m */; };
 		89B0EA5C1A09E23B0031A846 /* DMCUserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B0EA5B1A09E23B0031A846 /* DMCUserHelper.m */; };
+		89F1C71A1A1DD6A400520A61 /* JSONPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F1C7191A1DD6A400520A61 /* JSONPhoto.m */; };
 		89F7DD2319F8D44900334B5D /* DMCBuddySettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F7DD2219F8D44900334B5D /* DMCBuddySettingsTableViewController.m */; };
 		89F7DD2619FDCD7400334B5D /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F7DD2519FDCD7400334B5D /* BmobSDK.framework */; };
 		89F7DD4E19FDCDF600334B5D /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F7DD2819FDCDF600334B5D /* add@2x.png */; };
@@ -1288,6 +1289,8 @@
 		89B0EA581A09B2C40031A846 /* DMCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCLoginViewController.m; sourceTree = "<group>"; };
 		89B0EA5A1A09E23B0031A846 /* DMCUserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCUserHelper.h; sourceTree = "<group>"; };
 		89B0EA5B1A09E23B0031A846 /* DMCUserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCUserHelper.m; sourceTree = "<group>"; };
+		89F1C7181A1DD6A400520A61 /* JSONPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONPhoto.h; sourceTree = "<group>"; };
+		89F1C7191A1DD6A400520A61 /* JSONPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONPhoto.m; sourceTree = "<group>"; };
 		89F7DD2119F8D44900334B5D /* DMCBuddySettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCBuddySettingsTableViewController.h; sourceTree = "<group>"; };
 		89F7DD2219F8D44900334B5D /* DMCBuddySettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCBuddySettingsTableViewController.m; sourceTree = "<group>"; };
 		89F7DD2519FDCD7400334B5D /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
@@ -3164,6 +3167,8 @@
 				89B0EA521A08755A0031A846 /* JSONGroupDetail.m */,
 				89B0EA541A0875760031A846 /* JSONGroupPost.h */,
 				89B0EA551A0875760031A846 /* JSONGroupPost.m */,
+				89F1C7181A1DD6A400520A61 /* JSONPhoto.h */,
+				89F1C7191A1DD6A400520A61 /* JSONPhoto.m */,
 			);
 			path = JSONObject;
 			sourceTree = "<group>";
@@ -3615,6 +3620,7 @@
 				89B0E9661A00B4BC0031A846 /* DMCMomentsTableViewCell.m in Sources */,
 				890FFEFB19F629950098B030 /* BaseTableViewCell.m in Sources */,
 				8905ACD219F780E700CD0C1D /* DMCCarGroupTabBarController.m in Sources */,
+				89F1C71A1A1DD6A400520A61 /* JSONPhoto.m in Sources */,
 				89F7DD2319F8D44900334B5D /* DMCBuddySettingsTableViewController.m in Sources */,
 				890FFE8319F629950098B030 /* DXMessageToolBar.m in Sources */,
 				890FFEBB19F629950098B030 /* EMChatViewBaseCell.m in Sources */,
